@@ -15,21 +15,21 @@
 }
 
 /* ── RESET & BASE ── */
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;color:var(--ink);background:var(--surf);min-height:100vh;display:flex;flex-direction:column}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;color:var(--ink);background:var(--surf);min-height:100vh;display:flex;flex-direction:column}
 
 /* ── HEADER ── */
 .hdr{background:var(--navy);padding:0 20px;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:100}
-.hdr-brand{font-size:15px;font-weight:600;color:#fff;letter-spacing:.02em}
+.hdr-brand{font-size:16px;font-weight:600;color:#fff;letter-spacing:.02em}
 .hdr-brand span{color:var(--green);font-weight:700}
 .hdr-right{display:flex;align-items:center;gap:8px}
-.tool-btn{background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:rgba(255,255,255,.7);font-size:11px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:all .15s}
+.tool-btn{background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:rgba(255,255,255,.7);font-size:16px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:all .15s}
 .tool-btn:hover{background:rgba(255,255,255,.13);color:#fff}
 
 /* ── TAB BAR ── */
 .tab-bar{background:#0a1520;border-bottom:0.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:38px;flex-shrink:0;position:sticky;top:48px;z-index:99;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab-bar::-webkit-scrollbar{display:none}
 .tabs{display:flex;flex-shrink:0}
-.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.35);font-size:13px;font-weight:500;padding:0 16px;height:38px;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;flex-shrink:0}
+.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.35);font-size:16px;font-weight:500;padding:0 16px;height:38px;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;flex-shrink:0}
 .tab:hover{color:rgba(255,255,255,.7)}
 .tab.active{color:#fff;border-bottom-color:var(--green)}
 .tab-tools{display:flex;gap:6px;align-items:center;flex-shrink:0;margin-left:12px}
@@ -45,21 +45,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .intro-right{padding:28px 36px;background:#fafafa;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
 .pocket-brand{font-size:26px;font-weight:700;color:var(--green);letter-spacing:-.01em;margin-bottom:4px}
 .pocket-brand span{color:var(--navy)}
-.pocket-sub{font-size:13px;color:#bbb;letter-spacing:.04em;margin-bottom:20px}
+.pocket-sub{font-size:16px;color:#bbb;letter-spacing:.04em;margin-bottom:20px}
 .pocket-divider{width:32px;height:2px;background:var(--green);margin-bottom:20px}
-.pocket-proj-label{font-size:11px;letter-spacing:.14em;color:#bbb;text-transform:uppercase;margin-bottom:8px}
+.pocket-proj-label{font-size:16px;letter-spacing:.14em;color:#bbb;text-transform:uppercase;margin-bottom:8px}
 .pocket-proj-name{font-size:24px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:12px}
 .pocket-bullets{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:18px}
-.pocket-bullets li{font-size:13px;color:#333;font-weight:500;padding-left:14px;position:relative;line-height:1.5}
+.pocket-bullets li{font-size:16px;color:#333;font-weight:500;padding-left:14px;position:relative;line-height:1.5}
 .pocket-bullets li::before{content:'';position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--green)}
 .pocket-pills{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:20px}
-.pocket-pill{font-size:9px;color:var(--green2);background:var(--green-lt);border:1px solid var(--green-bd);border-radius:2px;padding:2px 8px}
-.pocket-btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--green);background:transparent;border:1.5px solid var(--green);border-radius:4px;padding:9px 18px;cursor:pointer;font-family:inherit;transition:all .15s;width:fit-content}
+.pocket-pill{font-size:16px;color:var(--green2);background:var(--green-lt);border:1px solid var(--green-bd);border-radius:2px;padding:2px 8px}
+.pocket-btn{display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:600;color:var(--green);background:transparent;border:1.5px solid var(--green);border-radius:4px;padding:9px 18px;cursor:pointer;font-family:inherit;transition:all .15s;width:fit-content}
 .pocket-btn:hover{background:var(--green);color:#fff}
-.intro-q-label{font-size:11px;letter-spacing:.12em;color:#bbb;text-transform:uppercase;margin-bottom:8px}
-.intro-stage-name{font-size:13px;font-weight:700;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;min-height:16px}
+.intro-q-label{font-size:16px;letter-spacing:.12em;color:#bbb;text-transform:uppercase;margin-bottom:8px}
+.intro-stage-name{font-size:16px;font-weight:700;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;min-height:16px}
 .intro-text-box{background:#fff;border:0.5px solid #eee;border-radius:5px;padding:12px 14px}
-.intro-typed{font-size:14px;color:#444;line-height:1.8;min-height:56px}
+.intro-typed{font-size:16px;color:#444;line-height:1.8;min-height:56px}
 .intro-cursor{display:inline-block;width:2px;height:12px;background:var(--green);margin-left:1px;vertical-align:middle;animation:cur .65s infinite}
 @keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
 .intro-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;min-height:20px}
@@ -71,34 +71,34 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 #view-model{overflow-y:auto;background:var(--surf)}
 .wrap{border:0.5px solid var(--border);border-radius:10px;overflow:hidden;max-width:1600px;margin:16px auto;width:calc(100% - 32px)}
 .mhdr{background:var(--navy);padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
-.mhdr h1{font-size:14px;font-weight:500;color:#fff}
-.mhdr p{font-size:10px;color:var(--ink3);margin-top:2px}
-.badge{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.14);border-radius:20px;padding:3px 11px;font-size:10px;color:var(--ink3)}
+.mhdr h1{font-size:16px;font-weight:500;color:#fff}
+.mhdr p{font-size:16px;color:var(--ink3);margin-top:2px}
+.badge{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.14);border-radius:20px;padding:3px 11px;font-size:16px;color:var(--ink3)}
 .mstrip{background:var(--navy2);display:flex;align-items:stretch}
 .mcards{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));flex:1}
 .mcard{padding:10px 12px;border-right:0.5px solid rgba(255,255,255,.06);cursor:pointer;transition:background .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .mcard:hover{background:rgba(255,255,255,.05)}
 .mcard.active{background:var(--navy3);border-bottom:2px solid #3CC9A0}
-.mcard .ml{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.mcard .ml{font-size:16px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
 .mcard .mn{font-size:18px;font-weight:500;color:#fff;line-height:1;white-space:nowrap}
-.mcard .mv{font-size:10px;margin-top:2px;color:var(--ink3)}
+.mcard .mv{font-size:16px;margin-top:2px;color:var(--ink3)}
 .g{color:#3CC9A0!important}.w{color:#E8B55A!important}.r{color:#F07060!important}
 .yr-sel{padding:10px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-left:0.5px solid rgba(255,255,255,.08);min-width:100px}
-.yr-sel label{font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
-.yr-sel select{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:4px;color:#fff;font-size:11px;padding:3px 6px;cursor:pointer;width:100%}
+.yr-sel label{font-size:16px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.yr-sel select{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:4px;color:#fff;font-size:16px;padding:3px 6px;cursor:pointer;width:100%}
 .yr-sel select option{background:var(--navy);color:#fff}
 .drill{background:var(--navy3);border-bottom:0.5px solid rgba(255,255,255,.08);padding:12px 20px;overflow-x:auto}
 .drill-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.drill-title{font-size:11px;font-weight:500;color:#fff}
-.export-btn{background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:5px;color:#fff;font-size:10px;padding:4px 12px;cursor:pointer;transition:background .15s}
+.drill-title{font-size:16px;font-weight:500;color:#fff}
+.export-btn{background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:5px;color:#fff;font-size:16px;padding:4px 12px;cursor:pointer;transition:background .15s}
 .export-btn:hover{background:rgba(255,255,255,.18)}
-.drill table{border-collapse:collapse;font-size:11px;width:100%;min-width:700px}
-.drill th{font-size:9.5px;color:var(--ink3);text-align:right;padding:4px 8px;border-bottom:0.5px solid rgba(255,255,255,.1);white-space:nowrap}
+.drill table{border-collapse:collapse;font-size:16px;width:100%;min-width:700px}
+.drill th{font-size:16px;color:var(--ink3);text-align:right;padding:4px 8px;border-bottom:0.5px solid rgba(255,255,255,.1);white-space:nowrap}
 .drill th:first-child{text-align:left;min-width:160px}
-.drill th.sub{font-size:8px;color:rgba(255,255,255,.3);font-weight:400}
+.drill th.sub{font-size:16px;color:rgba(255,255,255,.3);font-weight:400}
 .drill td{padding:4px 8px;text-align:right;border-bottom:0.5px solid rgba(255,255,255,.06);color:rgba(255,255,255,.75);white-space:nowrap}
 .drill td:first-child{text-align:left;color:var(--ink3)}
-.drill td.fml{font-size:9px;color:rgba(255,255,255,.35);text-align:left;padding-top:1px;padding-bottom:4px;border-bottom:0.5px solid rgba(255,255,255,.04)}
+.drill td.fml{font-size:16px;color:rgba(255,255,255,.35);text-align:left;padding-top:1px;padding-bottom:4px;border-bottom:0.5px solid rgba(255,255,255,.04)}
 .drill tr.tot td{font-weight:600;color:#fff;border-top:0.5px solid rgba(255,255,255,.2)}
 .drill tr.eb td{color:#3CC9A0;font-weight:600}
 .drill tr.key td{font-weight:600;color:#fff}
@@ -108,66 +108,66 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .s1{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.72fr) minmax(0,.72fr) minmax(0,.72fr);background:#fff;border-top:0.5px solid var(--border)}
 .zone{padding:14px 16px;border-right:0.5px solid var(--border)}
 .zone:last-child{border-right:none}
-.zt{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
-.zst{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;margin:8px 0 5px}
+.zt{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
+.zst{font-size:16px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;margin:8px 0 5px}
 .zdiv{height:0.5px;background:var(--border);margin:8px 0}
 .pa-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
 .pa-item{background:var(--surf);border:0.5px solid var(--border);border-radius:6px;padding:6px 8px}
-.pa-lbl{font-size:11px;color:var(--ink3);margin-bottom:2px}
+.pa-lbl{font-size:16px;color:var(--ink3);margin-bottom:2px}
 .pa-inp{display:flex;align-items:center;gap:4px}
-.pa-inp input[type=number]{width:100%;border:none;background:transparent;font-size:12px;font-weight:500;color:var(--ink);-moz-appearance:textfield;padding:0}
+.pa-inp input[type=number]{width:100%;border:none;background:transparent;font-size:16px;font-weight:500;color:var(--ink);-moz-appearance:textfield;padding:0}
 .pa-inp input[type=number]::-webkit-inner-spin-button{opacity:1;height:14px}
-.pa-unit{font-size:9.5px;color:var(--ink3);white-space:nowrap}
-.cx-hdr{display:grid;grid-template-columns:36% 13% 35% 16%;font-size:9px;color:var(--ink3);padding:0 0 4px;border-bottom:0.5px solid var(--border);margin-bottom:2px;letter-spacing:.03em}
+.pa-unit{font-size:16px;color:var(--ink3);white-space:nowrap}
+.cx-hdr{display:grid;grid-template-columns:36% 13% 35% 16%;font-size:16px;color:var(--ink3);padding:0 0 4px;border-bottom:0.5px solid var(--border);margin-bottom:2px;letter-spacing:.03em}
 .cx-hdr span:not(:first-child){text-align:right}
 .cx-total{display:flex;justify-content:space-between;align-items:baseline;background:var(--surf);border-radius:5px;padding:6px 8px;margin-bottom:8px;border:0.5px solid var(--border)}
-.cx-total-lbl{font-size:10px;color:var(--ink3)}
+.cx-total-lbl{font-size:16px;color:var(--ink3)}
 .cx-total-val{font-size:16px;font-weight:500;color:var(--navy)}
 .cx{width:100%;border-collapse:collapse}
 .cx tr{border-bottom:0.5px solid var(--border)}
 .cx tr:last-child{border-bottom:none}
 .cx td{padding:4px 0;vertical-align:middle}
-.cx .ca{font-size:10.5px;color:var(--ink2);width:36%}
-.cx .cs{font-size:9.5px;color:var(--ink3);width:13%;text-align:right;padding-right:5px}
+.cx .ca{font-size:16px;color:var(--ink2);width:36%}
+.cx .cs{font-size:16px;color:var(--ink3);width:13%;text-align:right;padding-right:5px}
 .cx .cc{width:35%}
-.cx .cm{font-size:11px;font-weight:500;color:var(--ink);width:16%;text-align:right}
+.cx .cm{font-size:16px;font-weight:500;color:var(--ink);width:16%;text-align:right}
 .slw{display:flex;flex-direction:column;gap:1px}
-.slv{font-size:9px;color:var(--ink3);text-align:right}
+.slv{font-size:16px;color:var(--ink3);text-align:right}
 input[type=range]{width:100%;-webkit-appearance:none;height:3px;background:var(--border);border-radius:2px;outline:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;background:var(--navy);border:2px solid #fff;box-shadow:0 0 0 1px var(--border)}
 .spw{display:flex;align-items:center;gap:3px}
-.spw input[type=number]{width:48px;border:0.5px solid var(--border);border-radius:4px;padding:2px 5px;font-size:10.5px;color:var(--ink);background:var(--surf);-moz-appearance:textfield}
+.spw input[type=number]{width:48px;border:0.5px solid var(--border);border-radius:4px;padding:2px 5px;font-size:16px;color:var(--ink);background:var(--surf);-moz-appearance:textfield}
 .spw input[type=number]::-webkit-inner-spin-button{opacity:1}
 .ptw{display:flex;align-items:center;gap:3px}
-.ptw input[type=number]{width:40px;border:0.5px solid var(--border);border-radius:4px;padding:2px 5px;font-size:10.5px;color:var(--ink);background:var(--surf);-moz-appearance:textfield}
+.ptw input[type=number]{width:40px;border:0.5px solid var(--border);border-radius:4px;padding:2px 5px;font-size:16px;color:var(--ink);background:var(--surf);-moz-appearance:textfield}
 .ptw input[type=number]::-webkit-inner-spin-button{opacity:1}
-.u{font-size:9.5px;color:var(--ink3)}
+.u{font-size:16px;color:var(--ink3)}
 .ir{display:flex;align-items:center;gap:7px;margin-bottom:8px}
-.ir .lb{font-size:12px;color:var(--ink2);flex:1;min-width:0;line-height:1.3}
-.ir .vl{font-size:12px;font-weight:500;color:var(--ink);min-width:52px;text-align:right}
+.ir .lb{font-size:16px;color:var(--ink2);flex:1;min-width:0;line-height:1.3}
+.ir .vl{font-size:16px;font-weight:500;color:var(--ink);min-width:52px;text-align:right}
 .ir input[type=range]{max-width:85px;width:100%}
-.gnote{font-size:9.5px;color:var(--ink3);line-height:1.5;margin-top:3px}
+.gnote{font-size:16px;color:var(--ink3);line-height:1.5;margin-top:3px}
 .adv-toggle{background:var(--surf2);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);padding:8px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
 .adv-toggle:hover{background:#E8F0F4}
-.adv-toggle-label{font-size:10px;font-weight:500;color:var(--ink)}
-.adv-toggle-hint{font-size:9.5px;color:var(--ink3)}
-.adv-arrow{font-size:10px;color:var(--ink3);transition:transform .2s}
+.adv-toggle-label{font-size:16px;font-weight:500;color:var(--ink)}
+.adv-toggle-hint{font-size:16px;color:var(--ink3)}
+.adv-arrow{font-size:16px;color:var(--ink3);transition:transform .2s}
 .adv-arrow.open{transform:rotate(180deg)}
 .adv-body{display:none;background:var(--surf);border-bottom:0.5px solid var(--border);padding:14px 18px}
 .adv-body.open{display:block}
 .adv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 20px}
 .adv-section{margin-bottom:10px}
-.adv-section-title{font-size:9px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;padding-bottom:4px;border-bottom:0.5px solid var(--border)}
+.adv-section-title{font-size:16px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;padding-bottom:4px;border-bottom:0.5px solid var(--border)}
 .nlp-bar{background:#0a1520;border-bottom:1px solid rgba(255,255,255,.1);padding:10px 20px;display:flex;gap:10px;align-items:center}
-.nlp-input{flex:1;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.18);border-radius:6px;color:#fff;font-size:14px;padding:8px 14px;outline:none;font-family:inherit}
+.nlp-input{flex:1;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.18);border-radius:6px;color:#fff;font-size:16px;padding:8px 14px;outline:none;font-family:inherit}
 .nlp-input::placeholder{color:#8FA8B8}
 .nlp-input:focus{border-color:rgba(255,255,255,.35)}
-.nlp-btn{background:#0D7A6B;border:none;border-radius:6px;color:#fff;font-size:11px;padding:8px 16px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.nlp-btn{background:#0D7A6B;border:none;border-radius:6px;color:#fff;font-size:16px;padding:8px 16px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .nlp-btn:hover{background:#0A6558}
 .nlp-btn:disabled{opacity:.5;cursor:not-allowed}
-.nlp-resp{padding:10px 20px;background:#080f18;border-bottom:0.5px solid rgba(255,255,255,.08);font-size:11.5px;color:#8BB8CC;line-height:1.6;display:none}
+.nlp-resp{padding:10px 20px;background:#080f18;border-bottom:0.5px solid rgba(255,255,255,.08);font-size:16px;color:#8BB8CC;line-height:1.6;display:none}
 .nlp-resp.on{display:block}
-.nlp-chip{background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.12);border-radius:20px;color:#8FA8B8;font-size:10px;padding:3px 10px;cursor:pointer;display:inline-block;margin:2px}
+.nlp-chip{background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.12);border-radius:20px;color:#8FA8B8;font-size:16px;padding:3px 10px;cursor:pointer;display:inline-block;margin:2px}
 .nlp-chip:hover{background:rgba(255,255,255,.12);color:#fff}
 .nlp-hi{color:#3CC9A0;font-weight:500}
 .nlp-wa{color:#E8B55A;font-weight:500}
@@ -180,117 +180,117 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 #view-compliance{background:#fff;overflow-y:auto;padding:24px}
 .comp-header{margin-bottom:24px}
 .comp-header h2{font-size:22px;font-weight:500;color:var(--navy);margin-bottom:4px}
-.comp-header p{font-size:14px;color:var(--ink3)}
+.comp-header p{font-size:16px;color:var(--ink3)}
 .comp-grid{display:flex;flex-direction:column;gap:0}
 .comp-item{display:grid;grid-template-columns:160px 1fr 120px 140px;gap:0;border-bottom:0.5px solid var(--border);padding:14px 0;align-items:start}
 .comp-item:last-child{border-bottom:none}
-.comp-phase{font-size:10px;font-weight:600;color:var(--green2);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
-.comp-main h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:3px}
-.comp-main p{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:4px}
-.comp-main .gates{font-size:11px;color:#E24B4A;font-weight:500}
-.comp-timeline{font-size:11px;color:var(--ink2);text-align:center}
+.comp-phase{font-size:16px;font-weight:600;color:var(--green2);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.comp-main h4{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:3px}
+.comp-main p{font-size:16px;color:var(--ink2);line-height:1.6;margin-bottom:4px}
+.comp-main .gates{font-size:16px;color:#E24B4A;font-weight:500}
+.comp-timeline{font-size:16px;color:var(--ink2);text-align:center}
 .comp-timeline .months{font-size:18px;font-weight:500;color:var(--navy);display:block;line-height:1.2}
-.comp-timeline .unit{font-size:10px;color:var(--ink3)}
+.comp-timeline .unit{font-size:16px;color:var(--ink3)}
 .comp-status{display:flex;justify-content:center}
-.status-dot{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:4px 10px;border-radius:12px}
+.status-dot{display:inline-flex;align-items:center;gap:5px;font-size:16px;font-weight:600;padding:4px 10px;border-radius:12px}
 .status-dot.critical{background:#FCEBEB;color:#A32D2D}
 .status-dot.important{background:#FAEEDA;color:#854F0B}
 .status-dot.standard{background:var(--green-lt);color:var(--green3)}
-.comp-section-hdr{background:var(--surf2);padding:8px 16px;margin:12px -0px;border-radius:4px;font-size:12px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em;border-left:3px solid var(--green)}
+.comp-section-hdr{background:var(--surf2);padding:8px 16px;margin:12px -0px;border-radius:4px;font-size:16px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em;border-left:3px solid var(--green)}
 
 /* ── FUNDS TAB ── */
 #view-funds{background:#fff;overflow-y:auto;padding:24px}
 .funds-header{margin-bottom:24px}
 .funds-header h2{font-size:22px;font-weight:500;color:var(--navy);margin-bottom:4px}
-.funds-header p{font-size:14px;color:var(--ink3)}
+.funds-header p{font-size:16px;color:var(--ink3)}
 .funds-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:24px}
 .fund-card{background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:18px;cursor:pointer;transition:all .15s;border-top:3px solid var(--green)}
 .fund-card:hover{border-color:var(--green);box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .fund-card.debt-card{border-top-color:#185FA5}
-.fund-card h3{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px}
-.fund-card .fund-type{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:2px;display:inline-block;margin-bottom:10px}
+.fund-card h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.fund-card .fund-type{font-size:16px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:2px;display:inline-block;margin-bottom:10px}
 .fund-card .fund-type.eq{background:var(--green-lt);color:var(--green3)}
 .fund-card .fund-type.dbt{background:#E6F1FB;color:#0C447C}
-.fund-card p{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:12px}
-.fund-card .fund-cares{font-size:12px;color:var(--ink3);margin-bottom:8px}
+.fund-card p{font-size:16px;color:var(--ink2);line-height:1.6;margin-bottom:12px}
+.fund-card .fund-cares{font-size:16px;color:var(--ink3);margin-bottom:8px}
 .fund-card .fund-cares strong{color:var(--ink2)}
 .fund-pills{display:flex;flex-wrap:wrap;gap:4px}
-.fund-pill{font-size:10px;padding:2px 8px;border-radius:2px}
+.fund-pill{font-size:16px;padding:2px 8px;border-radius:2px}
 .fund-pill.eq{background:var(--green-lt);color:var(--green3);border:0.5px solid var(--green-bd)}
 .fund-pill.dbt{background:#E6F1FB;color:#0C447C;border:0.5px solid #B5D4F4}
 .funds-narrative{background:var(--surf2);border-radius:8px;padding:18px;border:0.5px solid var(--border);margin-top:8px}
-.funds-narrative h3{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:8px}
-.funds-narrative p{font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:8px}
+.funds-narrative h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.funds-narrative p{font-size:16px;color:var(--ink2);line-height:1.7;margin-bottom:8px}
 .funds-narrative p:last-child{margin-bottom:0}
 .funds-numbers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}
 .fn-card{background:#fff;border:0.5px solid var(--border);border-radius:6px;padding:10px 12px;text-align:center}
 .fn-card .num{font-size:22px;font-weight:500;color:var(--navy);line-height:1}
-.fn-card .lbl{font-size:11px;color:var(--ink3);margin-top:3px}
+.fn-card .lbl{font-size:16px;color:var(--ink3);margin-top:3px}
 
 /* ── OVERLAYS ── */
-.cmp-btn{background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.25);border-radius:6px;color:#fff;font-size:11px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:background .15s}
+.cmp-btn{background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.25);border-radius:6px;color:#fff;font-size:16px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:background .15s}
 .cmp-btn:hover{background:rgba(255,255,255,.18)}
 .cmp-overlay{position:fixed;inset:0;background:#0a1218;z-index:9999;display:none;flex-direction:column;overflow:hidden}
 .cmp-overlay.open{display:flex}
 .cmp-hdr{background:#0E1E2B;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid rgba(255,255,255,.1);flex-shrink:0}
-.cmp-hdr h2{font-size:15px;font-weight:500;color:#fff}
+.cmp-hdr h2{font-size:16px;font-weight:500;color:#fff}
 .cmp-hdr-right{display:flex;gap:10px;align-items:center}
-.cmp-close{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.2);border-radius:6px;color:#fff;font-size:12px;padding:6px 16px;cursor:pointer;font-family:inherit}
+.cmp-close{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.2);border-radius:6px;color:#fff;font-size:16px;padding:6px 16px;cursor:pointer;font-family:inherit}
 .cmp-close:hover{background:rgba(255,255,255,.15)}
-.cmp-export{background:#0D7A6B;border:none;border-radius:6px;color:#fff;font-size:11px;padding:6px 14px;cursor:pointer;font-family:inherit}
+.cmp-export{background:#0D7A6B;border:none;border-radius:6px;color:#fff;font-size:16px;padding:6px 14px;cursor:pointer;font-family:inherit}
 .cmp-export:hover{background:#0A6558}
 .cmp-body{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;flex:1;overflow:hidden}
 .cmp-col{display:flex;flex-direction:column;border-right:0.5px solid rgba(255,255,255,.08);overflow:hidden}
 .cmp-col:last-child{border-right:none}
 .cmp-col-hdr{padding:12px 16px;background:#0E1E2B;border-bottom:0.5px solid rgba(255,255,255,.1);flex-shrink:0}
-.cmp-col-name{font-size:13px;font-weight:500;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.cmp-col-name input{background:transparent;border:none;color:#fff;font-size:13px;font-weight:500;font-family:inherit;width:100%;outline:none;border-bottom:0.5px solid rgba(255,255,255,.2);padding-bottom:2px}
+.cmp-col-name{font-size:16px;font-weight:500;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.cmp-col-name input{background:transparent;border:none;color:#fff;font-size:16px;font-weight:500;font-family:inherit;width:100%;outline:none;border-bottom:0.5px solid rgba(255,255,255,.2);padding-bottom:2px}
 .cmp-nlp-wrap{display:flex;gap:6px;margin-top:4px}
-.cmp-nlp-input{flex:1;background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:#fff;font-size:11px;padding:6px 10px;outline:none;font-family:inherit}
+.cmp-nlp-input{flex:1;background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:#fff;font-size:16px;padding:6px 10px;outline:none;font-family:inherit}
 .cmp-nlp-input::placeholder{color:rgba(255,255,255,.3)}
 .cmp-nlp-input:focus{border-color:rgba(255,255,255,.35)}
-.cmp-nlp-btn{background:#0D7A6B;border:none;border-radius:5px;color:#fff;font-size:10px;padding:6px 10px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.cmp-nlp-btn{background:#0D7A6B;border:none;border-radius:5px;color:#fff;font-size:16px;padding:6px 10px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .cmp-nlp-btn:hover{background:#0A6558}
 .cmp-nlp-btn:disabled{opacity:.4;cursor:not-allowed}
-.cmp-reset{background:rgba(255,100,80,.15);border:0.5px solid rgba(255,100,80,.3);border-radius:5px;color:rgba(255,120,100,1);font-size:10px;padding:6px 10px;cursor:pointer;font-family:inherit}
+.cmp-reset{background:rgba(255,100,80,.15);border:0.5px solid rgba(255,100,80,.3);border-radius:5px;color:rgba(255,120,100,1);font-size:16px;padding:6px 10px;cursor:pointer;font-family:inherit}
 .cmp-reset:hover{background:rgba(255,100,80,.25)}
-.cmp-status{font-size:10px;color:rgba(255,255,255,.35);margin-top:4px;min-height:14px;font-style:italic}
+.cmp-status{font-size:16px;color:rgba(255,255,255,.35);margin-top:4px;min-height:14px;font-style:italic}
 .cmp-scroll{flex:1;overflow-y:auto;padding:0}
-.cmp-section-title{font-size:9px;font-weight:500;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em;padding:10px 16px 6px;background:#0E1E2B;position:sticky;top:0;z-index:1;border-bottom:0.5px solid rgba(255,255,255,.06)}
+.cmp-section-title{font-size:16px;font-weight:500;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em;padding:10px 16px 6px;background:#0E1E2B;position:sticky;top:0;z-index:1;border-bottom:0.5px solid rgba(255,255,255,.06)}
 .cmp-row{display:flex;justify-content:space-between;align-items:center;padding:5px 16px;border-bottom:0.5px solid rgba(255,255,255,.04)}
 .cmp-row:hover{background:rgba(255,255,255,.02)}
-.cmp-row-lbl{font-size:11px;color:rgba(255,255,255,.5);flex:1}
-.cmp-row-val{font-size:11.5px;font-weight:500;color:#fff;text-align:right}
+.cmp-row-lbl{font-size:16px;color:rgba(255,255,255,.5);flex:1}
+.cmp-row-val{font-size:16px;font-weight:500;color:#fff;text-align:right}
 .cmp-row-val.changed{color:#E8B55A}
 .cmp-row-val.better{color:#3CC9A0}
 .cmp-row-val.worse{color:#F07060}
 .cmp-row-val.same{color:rgba(255,255,255,.35)}
-.cmp-empty{padding:40px 16px;text-align:center;color:rgba(255,255,255,.25);font-size:12px;line-height:1.8}
+.cmp-empty{padding:40px 16px;text-align:center;color:rgba(255,255,255,.25);font-size:16px;line-height:1.8}
 .drill td.exp-lbl{cursor:pointer;user-select:none}
-.drill td.exp-lbl .exp-icon{display:inline-block;width:14px;height:14px;border:0.5px solid rgba(255,255,255,.25);border-radius:3px;text-align:center;line-height:13px;font-size:9px;margin-right:5px;transition:transform .15s;vertical-align:middle}
+.drill td.exp-lbl .exp-icon{display:inline-block;width:14px;height:14px;border:0.5px solid rgba(255,255,255,.25);border-radius:3px;text-align:center;line-height:13px;font-size:16px;margin-right:5px;transition:transform .15s;vertical-align:middle}
 .drill tr.sub-row{display:none}
 .drill tr.sub-row.open{display:table-row}
-.drill tr.sub-row td{font-size:10px;color:rgba(255,255,255,.45);background:rgba(255,255,255,.02);padding:3px 8px 3px 26px}
+.drill tr.sub-row td{font-size:16px;color:rgba(255,255,255,.45);background:rgba(255,255,255,.02);padding:3px 8px 3px 26px}
 .drill tr.sub-row td:first-child{color:rgba(255,255,255,.35);font-style:italic}
-.agent-toggle{position:fixed;right:0;bottom:140px;background:#0D7A6B;color:#fff;border:none;border-radius:8px 0 0 8px;padding:12px 7px;cursor:pointer;font-size:10px;writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:.06em;z-index:1000;font-family:inherit;box-shadow:-2px 0 8px rgba(0,0,0,.3);white-space:nowrap}
+.agent-toggle{position:fixed;right:0;bottom:140px;background:#0D7A6B;color:#fff;border:none;border-radius:8px 0 0 8px;padding:12px 7px;cursor:pointer;font-size:16px;writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:.06em;z-index:1000;font-family:inherit;box-shadow:-2px 0 8px rgba(0,0,0,.3);white-space:nowrap}
 .agent-toggle:hover{background:#0A6558}
 .agent-panel{position:fixed;right:-420px;top:0;width:420px;height:100vh;background:#0a1520;border-left:0.5px solid rgba(255,255,255,.12);display:flex;flex-direction:column;z-index:999;transition:right .25s ease;box-shadow:-4px 0 20px rgba(0,0,0,.4)}
 .agent-panel.open{right:0}
 .agent-hdr{background:#0E1E2B;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid rgba(255,255,255,.1);flex-shrink:0}
-.agent-hdr-left h3{font-size:13px;font-weight:500;color:#fff;margin-bottom:2px}
-.agent-hdr-left p{font-size:10px;color:#8FA8B8}
-.agent-close{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:#fff;font-size:11px;padding:5px 10px;cursor:pointer;font-family:inherit}
+.agent-hdr-left h3{font-size:16px;font-weight:500;color:#fff;margin-bottom:2px}
+.agent-hdr-left p{font-size:16px;color:#8FA8B8}
+.agent-close{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:#fff;font-size:16px;padding:5px 10px;cursor:pointer;font-family:inherit}
 .agent-close:hover{background:rgba(255,255,255,.15)}
-.agent-status{padding:6px 14px;background:#0E1E2B;border-bottom:0.5px solid rgba(255,255,255,.08);font-size:9.5px;color:#3CC9A0;flex-shrink:0}
+.agent-status{padding:6px 14px;background:#0E1E2B;border-bottom:0.5px solid rgba(255,255,255,.08);font-size:16px;color:#3CC9A0;flex-shrink:0}
 .agent-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
 .agent-msg{display:flex;flex-direction:column;gap:4px;max-width:95%}
 .agent-msg.user{align-self:flex-end;align-items:flex-end}
 .agent-msg.assistant{align-self:flex-start;align-items:flex-start}
-.agent-bubble{padding:9px 13px;border-radius:10px;font-size:11.5px;line-height:1.6}
+.agent-bubble{padding:9px 13px;border-radius:10px;font-size:16px;line-height:1.6}
 .agent-msg.user .agent-bubble{background:#0D7A6B;color:#fff;border-radius:10px 10px 2px 10px}
 .agent-msg.assistant .agent-bubble{background:#152636;color:rgba(255,255,255,.85);border-radius:10px 10px 10px 2px;border:0.5px solid rgba(255,255,255,.08)}
-.agent-msg-time{font-size:9px;color:rgba(255,255,255,.25)}
-.agent-actions{font-size:10px;color:#3CC9A0;margin-top:4px;font-style:italic}
+.agent-msg-time{font-size:16px;color:rgba(255,255,255,.25)}
+.agent-actions{font-size:16px;color:#3CC9A0;margin-top:4px;font-style:italic}
 .agent-thinking{display:flex;gap:4px;align-items:center;padding:9px 13px;background:#152636;border-radius:10px;border:0.5px solid rgba(255,255,255,.08)}
 .agent-thinking span{width:6px;height:6px;background:#3CC9A0;border-radius:50%;animation:bounce .8s infinite}
 .agent-thinking span:nth-child(2){animation-delay:.15s}
@@ -298,53 +298,53 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
 .agent-input-area{padding:12px 14px;border-top:0.5px solid rgba(255,255,255,.1);background:#0E1E2B;flex-shrink:0}
 .agent-input-row{display:flex;gap:8px}
-.agent-input{flex:1;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:6px;color:#fff;font-size:12px;padding:9px 12px;outline:none;font-family:inherit;resize:none;height:40px;max-height:120px}
+.agent-input{flex:1;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:6px;color:#fff;font-size:16px;padding:9px 12px;outline:none;font-family:inherit;resize:none;height:40px;max-height:120px}
 .agent-input:focus{border-color:rgba(255,255,255,.35)}
-.agent-send{background:#0D7A6B;border:none;border-radius:6px;color:#fff;padding:9px 14px;cursor:pointer;font-size:12px;font-family:inherit;flex-shrink:0}
+.agent-send{background:#0D7A6B;border:none;border-radius:6px;color:#fff;padding:9px 14px;cursor:pointer;font-size:16px;font-family:inherit;flex-shrink:0}
 .agent-send:hover{background:#0A6558}
 .agent-send:disabled{opacity:.4;cursor:not-allowed}
-.agent-clear{background:transparent;border:none;color:rgba(255,255,255,.3);font-size:10px;cursor:pointer;padding:6px 0 0;font-family:inherit}
+.agent-clear{background:transparent;border:none;color:rgba(255,255,255,.3);font-size:16px;cursor:pointer;padding:6px 0 0;font-family:inherit}
 .agent-clear:hover{color:rgba(255,255,255,.6)}
 .agent-suggestions{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
-.agent-sug{background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.12);border-radius:14px;color:rgba(255,255,255,.5);font-size:10px;padding:4px 10px;cursor:pointer;transition:all .15s}
+.agent-sug{background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.12);border-radius:14px;color:rgba(255,255,255,.5);font-size:16px;padding:4px 10px;cursor:pointer;transition:all .15s}
 .agent-sug:hover{background:rgba(255,255,255,.12);color:#fff}
 .hi{color:#3CC9A0;font-weight:500}.wa{color:#E8B55A;font-weight:500}.lo{color:#F07060;font-weight:500}
-.narr-btn{background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.7);font-size:11px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:all .15s}
+.narr-btn{background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.7);font-size:16px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:all .15s}
 .narr-btn:hover{background:rgba(255,255,255,.12);color:#fff}
 .narr-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;display:none;align-items:center;justify-content:center}
 .narr-overlay.open{display:flex}
 .narr-modal{background:#fff;border-radius:10px;width:820px;max-width:96vw;max-height:92vh;overflow-y:auto;position:relative}
 .narr-modal-hdr{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;z-index:10;border-radius:10px 10px 0 0}
-.narr-modal-hdr h3{font-size:13px;font-weight:500;color:#1a1a1a;font-family:Arial,sans-serif}
+.narr-modal-hdr h3{font-size:16px;font-weight:500;color:#1a1a1a;font-family:Arial,sans-serif}
 .narr-modal-hdr-btns{display:flex;gap:8px}
-.narr-tab-btn{background:transparent;border:1px solid #ddd;border-radius:4px;color:#555;font-size:11px;padding:5px 12px;cursor:pointer;font-family:Arial,sans-serif;transition:all .15s}
+.narr-tab-btn{background:transparent;border:1px solid #ddd;border-radius:4px;color:#555;font-size:16px;padding:5px 12px;cursor:pointer;font-family:Arial,sans-serif;transition:all .15s}
 .narr-tab-btn.active{background:#185FA5;border-color:#185FA5;color:#fff}
 .narr-tab-btn.eq.active{background:#1D9E75;border-color:#1D9E75}
-.narr-close{background:transparent;border:1px solid #ddd;border-radius:4px;color:#555;font-size:11px;padding:5px 10px;cursor:pointer;font-family:Arial,sans-serif}
-.narr-export{background:#1a1a1a;border:none;border-radius:4px;color:#fff;font-size:11px;padding:5px 14px;cursor:pointer;font-family:Arial,sans-serif}
+.narr-close{background:transparent;border:1px solid #ddd;border-radius:4px;color:#555;font-size:16px;padding:5px 10px;cursor:pointer;font-family:Arial,sans-serif}
+.narr-export{background:#1a1a1a;border:none;border-radius:4px;color:#fff;font-size:16px;padding:5px 14px;cursor:pointer;font-family:Arial,sans-serif}
 .narr-content{padding:0}
 .narr-page{padding:44px 48px;font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;min-height:900px}
 .n-top-bar{display:flex;justify-content:flex-end;align-items:flex-start;margin-bottom:32px;padding-bottom:18px}
-.n-doc-label{font-size:9px;letter-spacing:.12em;color:#888;font-family:Arial,sans-serif;text-transform:uppercase}
-.n-doc-title{font-size:13px;font-weight:600;font-family:Arial,sans-serif;margin-top:2px}
+.n-doc-label{font-size:16px;letter-spacing:.12em;color:#888;font-family:Arial,sans-serif;text-transform:uppercase}
+.n-doc-title{font-size:16px;font-weight:600;font-family:Arial,sans-serif;margin-top:2px}
 .n-doc-title.eq{color:#1D9E75;border-top:3px solid #1D9E75;padding-top:10px}
 .n-doc-title.dbt{color:#185FA5;border-top:3px solid #185FA5;padding-top:10px}
-.n-conf{display:inline-block;border-radius:2px;font-size:8px;letter-spacing:.08em;font-family:Arial,sans-serif;padding:2px 8px;text-transform:uppercase;margin-left:8px}
+.n-conf{display:inline-block;border-radius:2px;font-size:16px;letter-spacing:.08em;font-family:Arial,sans-serif;padding:2px 8px;text-transform:uppercase;margin-left:8px}
 .n-conf.eq{background:#E1F5EE;border:1px solid #9FE1CB;color:#085041}
 .n-conf.dbt{background:#EFF6FD;border:1px solid #B5D4F4;color:#185FA5}
-.n-hero-sub{font-size:9px;letter-spacing:.1em;color:#888;font-family:Arial,sans-serif;text-transform:uppercase;margin-bottom:8px}
+.n-hero-sub{font-size:16px;letter-spacing:.1em;color:#888;font-family:Arial,sans-serif;text-transform:uppercase;margin-bottom:8px}
 .n-hero-h{font-size:26px;font-weight:400;color:#1a1a1a;line-height:1.25;margin-bottom:10px}
-.n-hero-desc{font-size:11px;color:#555;font-family:Arial,sans-serif;line-height:1.6}
+.n-hero-desc{font-size:16px;color:#555;font-family:Arial,sans-serif;line-height:1.6}
 .n-divider{height:1px;background:#eee;margin:20px 0}
-.n-sec-lbl{font-size:9px;letter-spacing:.12em;color:#888;font-family:Arial,sans-serif;text-transform:uppercase;margin-bottom:12px}
+.n-sec-lbl{font-size:16px;letter-spacing:.12em;color:#888;font-family:Arial,sans-serif;text-transform:uppercase;margin-bottom:12px}
 .n-stack-row{display:flex;gap:0;border-radius:4px;overflow:hidden;height:46px;margin-bottom:6px}
 .n-stack-debt{background:#1D9E75;display:flex;align-items:center;padding:0 16px;flex:1}
 .n-stack-eq{background:#E1F5EE;border:1px solid #1D9E75;display:flex;align-items:center;padding:0 16px}
-.n-stack-a{font-size:12px;font-weight:700;font-family:Arial,sans-serif}
-.n-stack-b{font-size:9px;font-family:Arial,sans-serif;margin-top:1px}
+.n-stack-a{font-size:16px;font-weight:700;font-family:Arial,sans-serif}
+.n-stack-b{font-size:16px;font-family:Arial,sans-serif;margin-top:1px}
 .n-stack-debt .n-stack-a{color:#fff}.n-stack-debt .n-stack-b{color:rgba(255,255,255,.7)}
 .n-stack-eq .n-stack-a{color:#085041}.n-stack-eq .n-stack-b{color:#0F6E56}
-.n-note{font-size:9px;color:#888;font-family:Arial,sans-serif;font-style:italic;margin-bottom:18px}
+.n-note{font-size:16px;color:#888;font-family:Arial,sans-serif;font-style:italic;margin-bottom:18px}
 .n-tl{margin:16px 0 4px;position:relative;padding-bottom:28px}
 .n-tl-track{display:flex;justify-content:space-between;position:relative}
 .n-tl-track::before{content:'';position:absolute;top:16px;left:0;right:0;height:1px;background:#ddd;z-index:0}
@@ -352,38 +352,38 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 .n-tl-dot{width:10px;height:10px;border-radius:50%;background:#ddd;border:2px solid #ddd;margin-bottom:7px;margin-top:11px}
 .n-tl-dot.g{background:#1D9E75;border-color:#1D9E75}
 .n-tl-dot.lg{background:#E1F5EE;border-color:#1D9E75}
-.n-tl-yr{font-size:9px;color:#aaa;font-family:Arial,sans-serif;margin-bottom:2px}
-.n-tl-ev{font-size:9px;font-weight:600;color:#333;font-family:Arial,sans-serif;text-align:center;max-width:64px;line-height:1.3}
-.n-tl-vl{font-size:9px;color:#1D9E75;font-family:Arial,sans-serif;font-weight:700;text-align:center;margin-top:2px}
+.n-tl-yr{font-size:16px;color:#aaa;font-family:Arial,sans-serif;margin-bottom:2px}
+.n-tl-ev{font-size:16px;font-weight:600;color:#333;font-family:Arial,sans-serif;text-align:center;max-width:64px;line-height:1.3}
+.n-tl-vl{font-size:16px;color:#1D9E75;font-family:Arial,sans-serif;font-weight:700;text-align:center;margin-top:2px}
 .n-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:6px}
 .n-mc{background:#E1F5EE;border:1px solid #9FE1CB;border-radius:4px;padding:12px}
 .n-mc .num{font-size:20px;font-weight:700;color:#085041;font-family:Arial,sans-serif;line-height:1;margin-bottom:3px}
-.n-mc .lbl{font-size:9px;color:#0F6E56;font-family:Arial,sans-serif;line-height:1.4}
+.n-mc .lbl{font-size:16px;color:#0F6E56;font-family:Arial,sans-serif;line-height:1.4}
 .n-exit-row{display:flex;gap:8px;height:52px;margin-bottom:6px}
 .n-exit-seg{border-radius:4px;display:flex;flex-direction:column;justify-content:center;padding:0 12px}
 .n-ef{background:#E1F5EE;border:1px solid #9FE1CB;flex:1.8}
 .n-eb{background:#1D9E75;flex:2.2}
 .n-eu{background:#085041;flex:2.8}
-.n-exit-lbl{font-size:9px;font-weight:700;font-family:Arial,sans-serif}
-.n-exit-val{font-size:11px;font-weight:700;font-family:Arial,sans-serif;margin-top:2px}
+.n-exit-lbl{font-size:16px;font-weight:700;font-family:Arial,sans-serif}
+.n-exit-val{font-size:16px;font-weight:700;font-family:Arial,sans-serif;margin-top:2px}
 .n-ef .n-exit-lbl,.n-ef .n-exit-val{color:#085041}
 .n-eb .n-exit-lbl,.n-eb .n-exit-val,.n-eu .n-exit-lbl,.n-eu .n-exit-val{color:#fff}
 .n-prot-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .n-prot{border-left:2px solid #1D9E75;padding:10px 12px;background:#FAFAFA}
 .n-prot.dbt{border-left-color:#185FA5}
-.n-prot-t{font-size:10px;font-weight:700;color:#1a1a1a;font-family:Arial,sans-serif;margin-bottom:3px}
-.n-prot-b{font-size:9px;color:#666;font-family:Arial,sans-serif;line-height:1.5}
+.n-prot-t{font-size:16px;font-weight:700;color:#1a1a1a;font-family:Arial,sans-serif;margin-bottom:3px}
+.n-prot-b{font-size:16px;color:#666;font-family:Arial,sans-serif;line-height:1.5}
 .n-footer{margin-top:24px;padding-top:10px;border-top:1px solid #eee;display:flex;justify-content:space-between}
-.n-footer-l,.n-footer-r{font-size:9px;color:#aaa;font-family:Arial,sans-serif}
+.n-footer-l,.n-footer-r{font-size:16px;color:#aaa;font-family:Arial,sans-serif}
 .n-footer-r{font-style:italic}
 .n-loan-row{display:flex;gap:8px;margin-bottom:6px}
 .n-loan-c{flex:1;background:#EFF6FD;border:1px solid #B5D4F4;border-radius:4px;padding:10px 12px}
 .n-loan-c.key{background:#185FA5;border-color:#185FA5}
 .n-loan-c .num{font-size:18px;font-weight:700;color:#0C447C;font-family:Arial,sans-serif;line-height:1;margin-bottom:2px}
-.n-loan-c .lbl{font-size:9px;color:#378ADD;font-family:Arial,sans-serif}
+.n-loan-c .lbl{font-size:16px;color:#378ADD;font-family:Arial,sans-serif}
 .n-loan-c.key .num{color:#fff}.n-loan-c.key .lbl{color:#B5D4F4}
-.n-dscr-tbl{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:10px;margin-bottom:6px}
-.n-dscr-tbl th{font-size:9px;color:#888;font-weight:600;text-align:left;padding:5px 8px;border-bottom:1.5px solid #185FA5;letter-spacing:.06em}
+.n-dscr-tbl{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:16px;margin-bottom:6px}
+.n-dscr-tbl th{font-size:16px;color:#888;font-weight:600;text-align:left;padding:5px 8px;border-bottom:1.5px solid #185FA5;letter-spacing:.06em}
 .n-dscr-tbl th.r{text-align:right}
 .n-dscr-tbl td{padding:6px 8px;border-bottom:1px solid #f0f0f0;color:#333}
 .n-dscr-tbl td.r{text-align:right;font-weight:600}
@@ -393,36 +393,36 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 .n-cov-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:16px}
 .n-cov-c{border:1px solid #B5D4F4;border-radius:4px;padding:10px 12px;background:#EFF6FD}
 .n-cov-c .num{font-size:18px;font-weight:700;color:#0C447C;font-family:Arial,sans-serif;line-height:1;margin-bottom:2px}
-.n-cov-c .lbl{font-size:9px;color:#378ADD;font-family:Arial,sans-serif;line-height:1.4}
+.n-cov-c .lbl{font-size:16px;color:#378ADD;font-family:Arial,sans-serif;line-height:1.4}
 
 /* ── DRILL OVERLAY ── */
 .drill-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:8000;display:none;align-items:flex-end;justify-content:center}
 .drill-overlay.open{display:flex}
 .drill-card{background:#0E1E2B;border-radius:12px 12px 0 0;width:100%;max-width:1100px;border:0.5px solid rgba(255,255,255,.12);overflow:hidden;max-height:85vh;display:flex;flex-direction:column}
 .drill-card-hdr{background:#071018;padding:14px 20px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:0.5px solid rgba(255,255,255,.1);flex-shrink:0}
-.drill-card-hdr h3{font-size:14px;font-weight:500;color:#fff;margin-bottom:3px}
-.drill-card-hdr p{font-size:10px;color:rgba(255,255,255,.3)}
+.drill-card-hdr h3{font-size:16px;font-weight:500;color:#fff;margin-bottom:3px}
+.drill-card-hdr p{font-size:16px;color:rgba(255,255,255,.3)}
 .drill-card-btns{display:flex;gap:8px;align-items:center;flex-shrink:0}
-.drill-export{background:#0D7A6B;border:none;border-radius:4px;color:#fff;font-size:10px;padding:5px 12px;cursor:pointer;font-family:inherit}
-.drill-close-btn{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.2);border-radius:4px;color:rgba(255,255,255,.6);font-size:12px;padding:4px 10px;cursor:pointer;font-family:inherit}
+.drill-export{background:#0D7A6B;border:none;border-radius:4px;color:#fff;font-size:16px;padding:5px 12px;cursor:pointer;font-family:inherit}
+.drill-close-btn{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.2);border-radius:4px;color:rgba(255,255,255,.6);font-size:16px;padding:4px 10px;cursor:pointer;font-family:inherit}
 .drill-close-btn:hover{background:rgba(255,255,255,.15);color:#fff}
 .drill-body{display:grid;grid-template-columns:220px 1fr;flex:1;overflow:hidden;min-height:0}
 .drill-narr{padding:16px 18px;border-right:0.5px solid rgba(255,255,255,.08);background:#071018;overflow-y:auto}
-.drill-narr-title{font-size:9px;font-weight:500;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.drill-narr-title{font-size:16px;font-weight:500;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
 .drill-narr-item{padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.05)}
 .drill-narr-item:last-child{border-bottom:none}
-.drill-narr-key{font-size:10px;font-weight:500;color:#fff;margin-bottom:3px}
-.drill-narr-eq{font-size:10px;color:rgba(255,255,255,.4);line-height:1.5}
+.drill-narr-key{font-size:16px;font-weight:500;color:#fff;margin-bottom:3px}
+.drill-narr-eq{font-size:16px;color:rgba(255,255,255,.4);line-height:1.5}
 .drill-narr-eq em{color:#3CC9A0;font-style:normal}
 .drill-tbl{overflow-y:auto}
-.drill-tbl table{width:100%;border-collapse:collapse;font-size:11px}
+.drill-tbl table{width:100%;border-collapse:collapse;font-size:16px}
 .drill-tbl thead tr{background:#071018;position:sticky;top:0;z-index:1}
-.drill-tbl th{font-size:9px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.04em;padding:9px 14px;text-align:left;border-bottom:0.5px solid rgba(255,255,255,.1);white-space:nowrap}
+.drill-tbl th{font-size:16px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.04em;padding:9px 14px;text-align:left;border-bottom:0.5px solid rgba(255,255,255,.1);white-space:nowrap}
 .drill-tbl th:not(:first-child){text-align:right}
 .drill-tbl td{padding:8px 14px;border-bottom:0.5px solid rgba(255,255,255,.05);color:rgba(255,255,255,.6)}
 .drill-tbl td:not(:first-child){text-align:right;color:#fff;font-weight:500}
 .drill-tbl tr:hover td{background:rgba(255,255,255,.02)}
-.drill-tbl tr.dr-sec td{background:#071018;font-size:9px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em;padding:5px 14px;font-weight:400}
+.drill-tbl tr.dr-sec td{background:#071018;font-size:16px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em;padding:5px 14px;font-weight:400}
 .drill-tbl tr.dr-tot td{border-top:0.5px solid rgba(255,255,255,.2);color:#3CC9A0;font-weight:600;background:rgba(29,158,117,.08)}
 .drill-tbl tr.dr-hi td{background:rgba(255,255,255,.03)}
 .drill-tbl tr.dr-hi td:not(:first-child){color:#3CC9A0;font-weight:600}
@@ -431,10 +431,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 
 /* ── KPI TILES ── */
 .kpi-tile{background:#111F2E;border:0.5px solid rgba(255,255,255,.08);border-radius:7px;padding:14px 16px;margin-bottom:10px}
-.kpi-lbl{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:.05em;margin-bottom:6px}
+.kpi-lbl{font-size:16px;color:rgba(255,255,255,.35);letter-spacing:.05em;margin-bottom:6px}
 .kpi-val{font-size:20px;font-weight:600;color:#fff;line-height:1;margin-bottom:5px}
 .kpi-meta{display:flex;align-items:center;justify-content:space-between}
-.kpi-vs{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:600}
+.kpi-vs{font-size:16px;padding:2px 7px;border-radius:3px;font-weight:600}
 .kpi-vs.g{background:rgba(60,201,160,.15);color:#3CC9A0}
 .kpi-vs.a{background:rgba(232,181,90,.15);color:#E8B55A}
 .kpi-vs.r{background:rgba(240,112,96,.15);color:#F07060}
@@ -465,8 +465,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
   .agent-panel{width:100%;right:-100%}
   .agent-panel.open{right:0}
   .narr-page{padding:24px 20px}
-  .tab{padding:0 12px;font-size:10px}
-  .hdr-brand{font-size:11px}
+  .tab{padding:0 12px;font-size:16px}
+  .hdr-brand{font-size:16px}
 }
 </style>
 </head>
@@ -786,258 +786,111 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
      TAB 4 — COMPLIANCE
 ══════════════════════════════════════════════════════ -->
 <div class="tab-view" id="view-compliance">
-  <div class="comp-header">
-    <h2>Compliance & Licensing Critical Path</h2>
-    <p>AyurExp · Bangalore · Sequence, timeline, and what each licence gates · Start early — most founders underestimate this</p>
+<div style="padding:24px;max-width:1200px;margin:0 auto;width:100%">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+    <div>
+      <h2 style="font-size:22px;font-weight:500;color:var(--navy);margin-bottom:4px">Compliance Tracker</h2>
+      <p style="font-size:14px;color:var(--ink3)">AyurExp · Bangalore · Licence critical path · Click any field to edit</p>
+    </div>
+    <button onclick="addCompRow()" style="background:var(--green);border:none;border-radius:6px;color:#fff;font-size:14px;padding:10px 20px;cursor:pointer;font-family:inherit;white-space:nowrap">+ Add licence</button>
   </div>
 
-  <div style="background:#E1F5EE;border:1px solid #9FE1CB;border-radius:6px;padding:12px 16px;margin-bottom:20px;font-size:11px;color:#085041;line-height:1.7">
-    <strong>Critical path:</strong> KSPCB CTE must be filed before construction starts. AYUSH licence gates all clinical revenue — 43% of Year 1. BBMP OC is the longest tail item — begin day one of construction. Two-entity structure recommended for GST optimisation before any registration is done.
-  </div>
-
-  <div class="comp-section-hdr">Pre-construction — file before breaking ground</div>
-  <div class="comp-grid">
-    <div class="comp-item">
-      <div class="comp-phase">Pre-construction</div>
-      <div class="comp-main">
-        <h4>KSPCB Consent to Establish (CTE)</h4>
-        <p>Karnataka State Pollution Control Board consent required before any construction activity begins. Apply with site plan, DPR, and environmental impact details. Without this, construction cannot legally start.</p>
-        <div class="gates">Gates: construction start</div>
-      </div>
-      <div class="comp-timeline"><span class="months">4–6</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot critical">Critical path</span></div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:24px">
+    <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:14px 16px;border-top:3px solid #A32D2D">
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:4px">Critical / overdue</div>
+      <div style="font-size:28px;font-weight:500;color:#A32D2D" id="cs-critical">0</div>
     </div>
-    <div class="comp-item">
-      <div class="comp-phase">Pre-construction</div>
-      <div class="comp-main">
-        <h4>Entity & GST structure</h4>
-        <p>Two-entity structure recommended — clinical entity (exempt from GST) and hospitality entity (taxable with ITC). Must be incorporated before any asset is created. Fixing structure after the fact is expensive and complex.</p>
-        <div class="gates">Gates: all downstream registrations and contracts</div>
-      </div>
-      <div class="comp-timeline"><span class="months">1–2</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot critical">Do first</span></div>
+    <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:14px 16px;border-top:3px solid #854F0B">
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:4px">In progress</div>
+      <div style="font-size:28px;font-weight:500;color:#854F0B" id="cs-inprog">0</div>
     </div>
-    <div class="comp-item">
-      <div class="comp-phase">Pre-construction</div>
-      <div class="comp-main">
-        <h4>Building plan approval — BBMP / BDA</h4>
-        <p>Sanctioned building plan from BBMP or BDA required before construction. For a 15-acre clinical facility, this involves zoning verification, FAR calculations, and health facility classification under master plan.</p>
-        <div class="gates">Gates: construction start, BBMP OC later</div>
-      </div>
-      <div class="comp-timeline"><span class="months">6–12</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot critical">Critical path</span></div>
+    <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:14px 16px;border-top:3px solid var(--green)">
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:4px">Approved</div>
+      <div style="font-size:28px;font-weight:500;color:var(--green)" id="cs-approved">0</div>
+    </div>
+    <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:14px 16px;border-top:3px solid var(--ink3)">
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:4px">Not started</div>
+      <div style="font-size:28px;font-weight:500;color:var(--ink3)" id="cs-notstarted">0</div>
     </div>
   </div>
 
-  <div class="comp-section-hdr">During construction — parallel track</div>
-  <div class="comp-grid">
-    <div class="comp-item">
-      <div class="comp-phase">During construction</div>
-      <div class="comp-main">
-        <h4>AYUSH Hospital Licence</h4>
-        <p>Karnataka AYUSH Department. Requires minimum 10 beds, registered BAMS/MD Ayurveda doctor as medical superintendent, qualified staff ratios, and compliant infrastructure. This is the single most important licence for this project.</p>
-        <div class="gates">Gates: all clinical operations — 43% of Year 1 revenue</div>
-      </div>
-      <div class="comp-timeline"><span class="months">10–12</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot critical">Critical path</span></div>
-    </div>
-    <div class="comp-item">
-      <div class="comp-phase">During construction</div>
-      <div class="comp-main">
-        <h4>BBMP Occupancy Certificate (OC)</h4>
-        <p>Required before any person can occupy or operate from the building. For a project this size, requires completion certificate from licensed architect and BBMP inspection. Start the process on day one of construction — do not wait for fit-out to complete.</p>
-        <div class="gates">Gates: operations start, all other licences</div>
-      </div>
-      <div class="comp-timeline"><span class="months">6–18</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot critical">Longest tail</span></div>
-    </div>
-    <div class="comp-item">
-      <div class="comp-phase">During construction</div>
-      <div class="comp-main">
-        <h4>Biomedical Waste Authorisation</h4>
-        <p>KSPCB authorisation for collection, storage, treatment and disposal of biomedical waste. Mandatory for any clinical facility. Requires waste management plan and tie-up with authorised disposal agency.</p>
-        <div class="gates">Gates: AYUSH licence grant</div>
-      </div>
-      <div class="comp-timeline"><span class="months">2–3</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot important">Important</span></div>
-    </div>
-    <div class="comp-item">
-      <div class="comp-phase">During construction</div>
-      <div class="comp-main">
-        <h4>Clinical Establishment Registration</h4>
-        <p>Under the Clinical Establishments (Registration and Regulation) Act 2010. Apply to District Health Office. Can be done in parallel with AYUSH licence application. Requires facility details and doctor registration.</p>
-        <div class="gates">Gates: clinical operations</div>
-      </div>
-      <div class="comp-timeline"><span class="months">3–6</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot important">Important</span></div>
-    </div>
-  </div>
-
-  <div class="comp-section-hdr">Pre-opening — before first guest</div>
-  <div class="comp-grid">
-    <div class="comp-item">
-      <div class="comp-phase">Pre-opening</div>
-      <div class="comp-main">
-        <h4>KSPCB Consent to Operate (CTO)</h4>
-        <p>Applied after construction completion. KSPCB inspects the facility and grants consent to operate. Separate from CTE — CTE is for construction, CTO is for operations. Required before opening.</p>
-        <div class="gates">Gates: operations start</div>
-      </div>
-      <div class="comp-timeline"><span class="months">2–3</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot important">Important</span></div>
-    </div>
-    <div class="comp-item">
-      <div class="comp-phase">Pre-opening</div>
-      <div class="comp-main">
-        <h4>Fire NOC</h4>
-        <p>Karnataka Fire and Emergency Services. Required for occupancy certificate and operations. Involves fire safety audit of the completed building. For a facility of this size, fire safety systems must be designed into the building from the start.</p>
-        <div class="gates">Gates: occupancy certificate, operations</div>
-      </div>
-      <div class="comp-timeline"><span class="months">2–4</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot important">Important</span></div>
-    </div>
-    <div class="comp-item">
-      <div class="comp-phase">Pre-opening</div>
-      <div class="comp-main">
-        <h4>Drug Licence</h4>
-        <p>Karnataka State Pharmacy Council for in-house pharmacy. Required if the facility dispenses Ayurvedic medicines on-site. A qualified pharmacist (D.Pharm or B.Pharm) must be on staff and registered with the council.</p>
-        <div class="gates">Gates: pharmacy operations and retail sales</div>
-      </div>
-      <div class="comp-timeline"><span class="months">1–2</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot standard">Standard</span></div>
-    </div>
-    <div class="comp-item">
-      <div class="comp-phase">Pre-opening</div>
-      <div class="comp-main">
-        <h4>FSSAI Central Licence</h4>
-        <p>For F&B operations. Central licence required if annual F&B turnover exceeds ₹20 Cr — which it will at these projections. Apply 30 days before commencement of F&B operations.</p>
-        <div class="gates">Gates: F&B operations — ~7% of Year 1 revenue</div>
-      </div>
-      <div class="comp-timeline"><span class="months">1–2</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot standard">Standard</span></div>
-    </div>
-    <div class="comp-item">
-      <div class="comp-phase">Pre-opening</div>
-      <div class="comp-main">
-        <h4>BBMP Trade Licence</h4>
-        <p>Required for commercial operations within BBMP limits. Applied for after obtaining OC. Separate licences may be required for the clinical and hospitality entities if two-entity structure is adopted.</p>
-        <div class="gates">Gates: commercial operations</div>
-      </div>
-      <div class="comp-timeline"><span class="months">1–2</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot standard">Standard</span></div>
-    </div>
-    <div class="comp-item">
-      <div class="comp-phase">Pre-opening</div>
-      <div class="comp-main">
-        <h4>GST Registration</h4>
-        <p>Both entities require separate GST registrations. Clinical entity — AYUSH treatments may be exempt or at 5%. Hospitality entity — 18% with ITC. Bundled package pricing strategy must be locked before registration to align with chosen GST position.</p>
-        <div class="gates">Gates: invoicing, revenue collection</div>
-      </div>
-      <div class="comp-timeline"><span class="months">0.5–1</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot standard">Standard</span></div>
-    </div>
-  </div>
-
-  <div class="comp-section-hdr">Post-opening — within 12 months of operations</div>
-  <div class="comp-grid">
-    <div class="comp-item">
-      <div class="comp-phase">Post-opening</div>
-      <div class="comp-main">
-        <h4>NABH Accreditation</h4>
-        <p>National Accreditation Board for Hospitals. Optional but highly recommended for premium clinical positioning and medical tourism. Requires 6 months of operations before application. Signals quality to both domestic HNI and international guests.</p>
-        <div class="gates">Enables: premium pricing, medical tourism, insurance empanelment</div>
-      </div>
-      <div class="comp-timeline"><span class="months">12–18</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot standard">Recommended</span></div>
-    </div>
-    <div class="comp-item">
-      <div class="comp-phase">Post-opening</div>
-      <div class="comp-main">
-        <h4>HRACC 5-star Classification</h4>
-        <p>Hotel and Restaurant Approval and Classification Committee under Ministry of Tourism. Requires 6 months of operations. Not required to open or operate — but important for the AyurExp premium positioning and international visibility.</p>
-        <div class="gates">Enables: OTA premium listings, international partnerships</div>
-      </div>
-      <div class="comp-timeline"><span class="months">6–12</span><span class="unit">months</span></div>
-      <div class="comp-status"><span class="status-dot standard">Recommended</span></div>
+  <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;overflow:hidden">
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;min-width:900px" id="comp-table">
+        <thead>
+          <tr style="background:var(--surf2);border-bottom:1px solid var(--border)">
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);min-width:200px">Licence / Registration</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);min-width:150px">Status</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);min-width:140px">Responsible</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);min-width:120px">Target date</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);min-width:120px">Actual date</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);min-width:200px">Notes</th>
+            <th style="padding:12px 8px;min-width:36px"></th>
+          </tr>
+        </thead>
+        <tbody id="comp-tbody"></tbody>
+      </table>
     </div>
   </div>
 </div>
+</div>
 
-<!-- ══════════════════════════════════════════════════════
-     TAB 5 — FUNDS
-══════════════════════════════════════════════════════ -->
 <div class="tab-view" id="view-funds">
-  <div class="funds-header">
-    <h2>Investor & Lender Landscape</h2>
-    <p>AyurExp · Who invests in a project like this, what they look for, and which narrative to use</p>
+<div style="padding:24px;max-width:1400px;margin:0 auto;width:100%">
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+    <div>
+      <h2 style="font-size:22px;font-weight:500;color:var(--navy);margin-bottom:4px">Capital Raise Tracker</h2>
+      <p style="font-size:14px;color:var(--ink3)">AyurExp · ₹100 Cr equity + ₹100 Cr debt · Live fundraise pipeline</p>
+    </div>
+    <button onclick="addFundsRow()" style="background:var(--green);border:none;border-radius:6px;color:#fff;font-size:14px;padding:10px 20px;cursor:pointer;font-family:inherit;white-space:nowrap">+ Add row</button>
   </div>
 
-  <div class="funds-numbers" id="funds-numbers">
-    <div class="fn-card"><div class="num" id="fn-capex">₹200 Cr</div><div class="lbl">Total project cost</div></div>
-    <div class="fn-card"><div class="num" id="fn-dscr">2.88x</div><div class="lbl">DSCR Year 1 ops</div></div>
-    <div class="fn-card"><div class="num" id="fn-fcf">₹33 Cr</div><div class="lbl">FCF Year 1 ops</div></div>
-    <div class="fn-card"><div class="num" id="fn-exit">₹1,800 Cr</div><div class="lbl">Exit at 10x Y10</div></div>
-  </div>
-
-  <div class="funds-grid">
-    <div class="fund-card">
-      <span class="fund-type eq">Equity — PE / Family Office</span>
-      <h3>Growth & Healthcare PE</h3>
-      <p>Funds with healthcare or premium consumer mandates. Looking for category creation plays, not pure hotel investments. This is a clinical wellness platform play — the first mover in a category that does not exist at scale.</p>
-      <div class="fund-cares"><strong>What they care about:</strong> IRR 25-35%, category leadership, exit optionality at 10-14x EBITDA, promoter skin in game</div>
-      <div class="fund-pills">
-        <span class="fund-pill eq">₹100 Cr ticket</span>
-        <span class="fund-pill eq">50% stake</span>
-        <span class="fund-pill eq">5-7 yr horizon</span>
-        <span class="fund-pill eq">Board seat</span>
-      </div>
+  <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:24px" id="funds-summary">
+    <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:14px 16px;border-top:3px solid var(--green)">
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:6px">Total target</div>
+      <div style="font-size:22px;font-weight:500;color:var(--navy)">₹200 Cr</div>
+      <div style="font-size:13px;color:var(--ink3);margin-top:2px">₹100 Cr equity + ₹100 Cr debt</div>
     </div>
-    <div class="fund-card">
-      <span class="fund-type eq">Equity — Family Office</span>
-      <h3>Healthcare & Wellness Family Offices</h3>
-      <p>Ultra-HNI family offices with healthcare, Ayurveda, or wellness exposure. More patient capital than PE funds. Comfortable with longer gestation and lower near-term IRR if the asset and brand are right.</p>
-      <div class="fund-cares"><strong>What they care about:</strong> Asset quality, brand building, cash yield from Year 5, aligned promoter vision</div>
-      <div class="fund-pills">
-        <span class="fund-pill eq">Flexible ticket</span>
-        <span class="fund-pill eq">Minority stake</span>
-        <span class="fund-pill eq">Patient capital</span>
-        <span class="fund-pill eq">Value alignment</span>
-      </div>
+    <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:14px 16px;border-top:3px solid #185FA5">
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:6px">Equity pipeline</div>
+      <div style="font-size:22px;font-weight:500;color:var(--navy)" id="ft-eq-amt">—</div>
+      <div style="font-size:13px;color:var(--ink3);margin-top:2px" id="ft-eq-count">0 funds tracked</div>
     </div>
-    <div class="fund-card debt-card">
-      <span class="fund-type dbt">Debt — Project Finance Bank</span>
-      <h3>HDFC / Axis / Kotak — Project Finance</h3>
-      <p>Private sector banks with project finance desks comfortable with hospitality and healthcare. Leasehold mortgage plus assignment of receivables is a standard security package. DSCR of 2.88x from Year 1 is strongly bankable.</p>
-      <div class="fund-cares"><strong>What they care about:</strong> DSCR above 1.25x, security package, promoter guarantee, AYUSH licence timeline</div>
-      <div class="fund-pills">
-        <span class="fund-pill dbt">₹100 Cr loan</span>
-        <span class="fund-pill dbt">10.5% rate</span>
-        <span class="fund-pill dbt">15 yr tenure</span>
-        <span class="fund-pill dbt">2 yr moratorium</span>
-      </div>
+    <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:14px 16px;border-top:3px solid #378ADD">
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:6px">Debt pipeline</div>
+      <div style="font-size:22px;font-weight:500;color:var(--navy)" id="ft-dbt-amt">—</div>
+      <div style="font-size:13px;color:var(--ink3);margin-top:2px" id="ft-dbt-count">0 lenders tracked</div>
     </div>
-    <div class="fund-card debt-card">
-      <span class="fund-type dbt">Debt — Development Finance</span>
-      <h3>IFC / DEG / FMO — Impact Lenders</h3>
-      <p>International development finance institutions actively investing in healthcare infrastructure in India. Clinical wellness with preventive health framing qualifies as impact. No personal guarantee requirement, longer tenure, patient on timelines.</p>
-      <div class="fund-cares"><strong>What they care about:</strong> Social impact, environmental standards, governance quality, replicability of the model</div>
-      <div class="fund-pills">
-        <span class="fund-pill dbt">Longer tenure</span>
-        <span class="fund-pill dbt">No promoter PG</span>
-        <span class="fund-pill dbt">Impact framing</span>
-        <span class="fund-pill dbt">ESG compliance</span>
-      </div>
+    <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:14px 16px;border-top:3px solid var(--green)">
+      <div style="font-size:13px;color:var(--ink3);margin-bottom:6px">Most advanced</div>
+      <div style="font-size:16px;font-weight:500;color:var(--navy)" id="ft-advanced">—</div>
+      <div style="font-size:13px;color:var(--ink3);margin-top:2px" id="ft-advanced-stage">—</div>
     </div>
   </div>
 
-  <div class="funds-narrative">
-    <h3>The narrative that works for each audience</h3>
-    <p><strong>For PE equity:</strong> This is not a hotel. It is the anchor asset of a clinical wellness platform — a category that does not exist at scale in India. Entry at asset value, no goodwill premium. Cash yield from Year 1 operations. Full capital back by Year 5. Exit at 10x EBITDA on ₹160 Cr gives ₹1,600 Cr equity value. The Apple pricing psychology — ₹80,000 per day, no discounting, ever — creates a moat that a standard wellness resort cannot replicate.</p>
-    <p><strong>For family office:</strong> A 15-acre leasehold in Bangalore with a 30-year tenure. Hard asset. Premium clinical Ayurveda brand. ₹80,000 per day positions this above any existing Ayurveda offering in India. You are not building a hotel — you are building the definitive Ayurveda experience for India's HNI and the international wellness traveller.</p>
-    <p><strong>For project finance bank:</strong> DSCR of 2.88x from the first operating year — 130% above the 1.25x minimum. FCF of ₹33 Cr positive from Year 1. Leasehold mortgage plus assignment of receivables plus DSRA. The AYUSH licence is the critical path — we have mapped the timeline and it is included in the moratorium period. The project does not require clinical revenue to service debt in Years 1 and 2.</p>
-    <p><strong>For development finance:</strong> Clinical Ayurveda at scale is preventive healthcare. Every guest who completes a programme reduces long-term healthcare burden. The 15-acre campus with therapeutic landscaping, traditional treatment protocols, and integrative medicine creates measurable health outcomes. This is impact investment with a strong financial return.</p>
+  <div style="background:#fff;border:0.5px solid var(--border);border-radius:8px;overflow:hidden">
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;min-width:1100px" id="funds-table">
+        <thead>
+          <tr style="background:var(--surf2);border-bottom:1px solid var(--border)">
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;min-width:160px">Fund / Lender</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;min-width:80px">Type</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;min-width:130px">Contact</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;min-width:100px">Ticket (₹ Cr)</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;min-width:180px">Stage</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;min-width:300px">Documents</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;min-width:160px">Next step</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;min-width:110px">Target date</th>
+            <th style="text-align:left;padding:12px 14px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;min-width:160px">Notes</th>
+            <th style="padding:12px 8px;min-width:36px"></th>
+          </tr>
+        </thead>
+        <tbody id="funds-tbody"></tbody>
+      </table>
+    </div>
   </div>
 </div>
-
+</div>
 
 <!-- CFO Agent Toggle -->
 <button class="agent-toggle" onclick="toggleAgent()" id="agent-toggle-btn">CFO Agent</button>
@@ -1185,7 +1038,8 @@ function switchTab(t){
   if(t==='intro'){_esRunning=true;_esIdx=0;clearInterval(_esTimer);setTimeout(esNext,300);}
   else{_esRunning=false;clearInterval(_esTimer);}
   if(t==='kpi') renderKPI();
-  if(t==='funds') renderFundsNumbers();
+  if(t==='compliance') renderCompTable();
+  if(t==='funds'){ renderFundsNumbers(); renderFundsTable(); }
   if(t==='model'){renderAdv();render();}
 }
 const ES_STAGES=[
@@ -2869,9 +2723,193 @@ renderAdv();
 render();
 
 
+
+// ── FUNDS TRACKER ─────────────────────────────────────────────────────────────
+const FUND_STAGES = ['Intro Meeting','NDA','Information Memorandum','Management Presentation','Term Sheet','Due Diligence','Definitive Agreements','Closed'];
+const FUND_DOCS   = ['Teaser','Information Memorandum','Financial Model','DSCR Analysis','Compliance Roadmap','Legal Structure Note','Term Sheet','SHA'];
+const DOC_STATUS  = ['—','Sent','Pending','Under Draft','Signed'];
+
+const DOC_COLOURS = {
+  '—':        {bg:'#f5f5f5',   color:'#999'},
+  'Sent':     {bg:'#E6F1FB',   color:'#0C447C'},
+  'Pending':  {bg:'#FAEEDA',   color:'#854F0B'},
+  'Under Draft':{bg:'#FFF3CD', color:'#856404'},
+  'Signed':   {bg:'#E1F5EE',   color:'#085041'},
+};
+const STAGE_COLOURS = {
+  'Intro Meeting':          {bg:'#f0f0f0',   color:'#555'},
+  'NDA':                    {bg:'#E6F1FB',   color:'#185FA5'},
+  'Information Memorandum': {bg:'#E6F1FB',   color:'#185FA5'},
+  'Management Presentation':{bg:'#FAEEDA',   color:'#854F0B'},
+  'Term Sheet':             {bg:'#FAC75033', color:'#854F0B'},
+  'Due Diligence':          {bg:'#FAEEDA',   color:'#854F0B'},
+  'Definitive Agreements':  {bg:'#E1F5EE',   color:'#085041'},
+  'Closed':                 {bg:'#1D9E75',   color:'#fff'},
+};
+
+let _fundsData = [
+  {name:'',type:'Equity',contact:'',ticket:'100',stage:'Intro Meeting',docs:{'Teaser':'—','Information Memorandum':'—','Financial Model':'—','DSCR Analysis':'—','Compliance Roadmap':'—','Legal Structure Note':'—','Term Sheet':'—','SHA':'—'},next:'',date:'',notes:''},
+  {name:'',type:'Debt',  contact:'',ticket:'100',stage:'Intro Meeting',docs:{'Teaser':'—','Information Memorandum':'—','Financial Model':'—','DSCR Analysis':'—','Compliance Roadmap':'—','Legal Structure Note':'—','Term Sheet':'—','SHA':'—'},next:'',date:'',notes:''},
+];
+
+function renderFundsTable() {
+  const tbody = document.getElementById('funds-tbody');
+  if(!tbody) return;
+  tbody.innerHTML = _fundsData.map((r,i) => {
+    const sc = STAGE_COLOURS[r.stage]||{bg:'#f0f0f0',color:'#555'};
+    const docsHtml = FUND_DOCS.map(d => {
+      const ds = r.docs[d]||'—';
+      const dc = DOC_COLOURS[ds]||DOC_COLOURS['—'];
+      return `<div style="display:inline-flex;align-items:center;gap:3px;margin:2px">
+        <span style="font-size:11px;color:var(--ink3)">${d.length>8?d.slice(0,8)+'…':d}:</span>
+        <select onchange="setFundDoc(${i},'${d}',this.value)" style="font-size:11px;background:${dc.bg};color:${dc.color};border:none;border-radius:3px;padding:1px 4px;cursor:pointer;font-family:inherit">
+          ${DOC_STATUS.map(s=>`<option value="${s}"${s===ds?' selected':''}>${s}</option>`).join('')}
+        </select>
+      </div>`;
+    }).join('');
+    return `<tr style="border-bottom:0.5px solid var(--border);${i%2===1?'background:#fafafa':''}">
+      <td style="padding:10px 14px"><input value="${r.name}" oninput="setFund(${i},'name',this.value)" placeholder="Fund or lender name" style="width:100%;border:none;background:transparent;font-size:14px;color:var(--ink);font-family:inherit;outline:none;border-bottom:1px dashed var(--border)"/></td>
+      <td style="padding:10px 14px">
+        <select onchange="setFund(${i},'type',this.value)" style="border:0.5px solid var(--border);border-radius:4px;padding:4px 8px;font-size:13px;font-family:inherit;background:${r.type==='Equity'?'#E1F5EE':'#E6F1FB'};color:${r.type==='Equity'?'#085041':'#0C447C'}">
+          <option${r.type==='Equity'?' selected':''}>Equity</option>
+          <option${r.type==='Debt'?' selected':''}>Debt</option>
+        </select>
+      </td>
+      <td style="padding:10px 14px"><input value="${r.contact}" oninput="setFund(${i},'contact',this.value)" placeholder="Name · Designation" style="width:100%;border:none;background:transparent;font-size:14px;color:var(--ink);font-family:inherit;outline:none;border-bottom:1px dashed var(--border)"/></td>
+      <td style="padding:10px 14px">
+        <div style="display:flex;align-items:center;gap:4px">
+          <span style="font-size:13px;color:var(--ink3)">₹</span>
+          <input value="${r.ticket}" oninput="setFund(${i},'ticket',this.value)" placeholder="Cr" style="width:60px;border:none;background:transparent;font-size:14px;font-weight:500;color:var(--navy);font-family:inherit;outline:none;border-bottom:1px dashed var(--border)"/>
+          <span style="font-size:13px;color:var(--ink3)">Cr</span>
+        </div>
+      </td>
+      <td style="padding:10px 14px">
+        <select onchange="setFund(${i},'stage',this.value)" style="border:none;border-radius:4px;padding:4px 10px;font-size:13px;font-family:inherit;font-weight:500;background:${sc.bg};color:${sc.color};cursor:pointer">
+          ${FUND_STAGES.map(s=>`<option value="${s}"${s===r.stage?' selected':''}>${s}</option>`).join('')}
+        </select>
+      </td>
+      <td style="padding:10px 14px"><div style="display:flex;flex-wrap:wrap;gap:2px">${docsHtml}</div></td>
+      <td style="padding:10px 14px"><input value="${r.next}" oninput="setFund(${i},'next',this.value)" placeholder="Next action" style="width:100%;border:none;background:transparent;font-size:14px;color:var(--ink);font-family:inherit;outline:none;border-bottom:1px dashed var(--border)"/></td>
+      <td style="padding:10px 14px"><input type="date" value="${r.date}" onchange="setFund(${i},'date',this.value)" style="border:0.5px solid var(--border);border-radius:4px;padding:4px 8px;font-size:13px;font-family:inherit;color:var(--ink)"/></td>
+      <td style="padding:10px 14px"><input value="${r.notes}" oninput="setFund(${i},'notes',this.value)" placeholder="Notes" style="width:100%;border:none;background:transparent;font-size:14px;color:var(--ink);font-family:inherit;outline:none;border-bottom:1px dashed var(--border)"/></td>
+      <td style="padding:10px 8px;text-align:center"><button onclick="deleteFundRow(${i})" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:16px;padding:2px 4px" title="Remove">×</button></td>
+    </tr>`;
+  }).join('');
+  updateFundsSummary();
+}
+
+function setFund(i,key,val){ _fundsData[i][key]=val; updateFundsSummary(); }
+function setFundDoc(i,doc,val){ _fundsData[i].docs[doc]=val; renderFundsTable(); }
+function addFundsRow(){
+  _fundsData.push({name:'',type:'Equity',contact:'',ticket:'',stage:'Intro Meeting',docs:Object.fromEntries(FUND_DOCS.map(d=>[d,'—'])),next:'',date:'',notes:''});
+  renderFundsTable();
+}
+function deleteFundRow(i){ _fundsData.splice(i,1); renderFundsTable(); }
+
+function updateFundsSummary(){
+  const eq = _fundsData.filter(r=>r.type==='Equity');
+  const dbt= _fundsData.filter(r=>r.type==='Debt');
+  const eqAmt = eq.map(r=>parseFloat(r.ticket)||0).reduce((a,b)=>a+b,0);
+  const dbtAmt= dbt.map(r=>parseFloat(r.ticket)||0).reduce((a,b)=>a+b,0);
+  const stageOrder = FUND_STAGES;
+  const mostAdv = _fundsData.filter(r=>r.name).sort((a,b)=>stageOrder.indexOf(b.stage)-stageOrder.indexOf(a.stage))[0];
+  const el=id=>document.getElementById(id);
+  if(el('ft-eq-amt'))    el('ft-eq-amt').textContent   = eqAmt>0?'₹'+eqAmt+' Cr':'—';
+  if(el('ft-eq-count'))  el('ft-eq-count').textContent = eq.length+' fund'+(eq.length!==1?'s':'');
+  if(el('ft-dbt-amt'))   el('ft-dbt-amt').textContent  = dbtAmt>0?'₹'+dbtAmt+' Cr':'—';
+  if(el('ft-dbt-count')) el('ft-dbt-count').textContent= dbt.length+' lender'+(dbt.length!==1?'s':'');
+  if(el('ft-advanced'))  el('ft-advanced').textContent = mostAdv?mostAdv.name:'—';
+  if(el('ft-advanced-stage')) el('ft-advanced-stage').textContent = mostAdv?mostAdv.stage:'—';
+}
+
+// ── COMPLIANCE TRACKER ────────────────────────────────────────────────────────
+const COMP_STATUSES = ['Not Started','In Progress','Filed','Approved','Renewal Due'];
+const COMP_STATUS_COLOURS = {
+  'Not Started': {bg:'#f5f5f5',   color:'#888'},
+  'In Progress': {bg:'#FAEEDA',   color:'#854F0B'},
+  'Filed':       {bg:'#E6F1FB',   color:'#185FA5'},
+  'Approved':    {bg:'#E1F5EE',   color:'#085041'},
+  'Renewal Due': {bg:'#FCEBEB',   color:'#A32D2D'},
+};
+
+let _compData = [
+  {name:'Entity & GST structure',           status:'Not Started', responsible:'CFO + Legal counsel',    target:'',actual:'',notes:'Two-entity structure. Must be done before any other registration.'},
+  {name:'KSPCB Consent to Establish (CTE)', status:'Not Started', responsible:'Environmental consultant',target:'',actual:'',notes:'File before construction starts. Gates construction.'},
+  {name:'Building plan approval — BBMP/BDA',status:'Not Started', responsible:'Architect + Legal',       target:'',actual:'',notes:'Required before construction. Involves zoning and FAR verification.'},
+  {name:'AYUSH Hospital Licence',           status:'Not Started', responsible:'AYUSH consultant',        target:'',actual:'',notes:'Critical path. Gates all clinical revenue. 10-12 months minimum.'},
+  {name:'BBMP Occupancy Certificate (OC)',  status:'Not Started', responsible:'Architect + BBMP liaison', target:'',actual:'',notes:'Longest tail. Start day one of construction.'},
+  {name:'Biomedical Waste Authorisation',   status:'Not Started', responsible:'KSPCB consultant',        target:'',actual:'',notes:'Required before AYUSH licence is granted.'},
+  {name:'Clinical Establishment Registration',status:'Not Started',responsible:'Legal',                  target:'',actual:'',notes:'Apply to District Health Office alongside AYUSH.'},
+  {name:'KSPCB Consent to Operate (CTO)',   status:'Not Started', responsible:'Environmental consultant',target:'',actual:'',notes:'After construction completion. Separate from CTE.'},
+  {name:'Fire NOC',                         status:'Not Started', responsible:'Fire safety consultant',  target:'',actual:'',notes:'Required for occupancy certificate. Design fire systems into building.'},
+  {name:'Drug Licence',                     status:'Not Started', responsible:'Pharmacist + Legal',      target:'',actual:'',notes:'For in-house pharmacy. Qualified pharmacist required on staff.'},
+  {name:'FSSAI Central Licence',            status:'Not Started', responsible:'Operations team',         target:'',actual:'',notes:'Required 30 days before F&B operations commence.'},
+  {name:'BBMP Trade Licence',               status:'Not Started', responsible:'Legal',                   target:'',actual:'',notes:'After OC. May need separate licences for each entity.'},
+  {name:'GST Registration (both entities)', status:'Not Started', responsible:'CFO',                     target:'',actual:'',notes:'Lock pricing strategy before registration.'},
+  {name:'NABH Accreditation',               status:'Not Started', responsible:'Clinical head + CFO',     target:'',actual:'',notes:'Post-opening. Requires 6 months operations. Recommended.'},
+  {name:'HRACC 5-star Classification',      status:'Not Started', responsible:'GM + Operations',         target:'',actual:'',notes:'Post-opening. Requires 6 months operations. Recommended.'},
+];
+
+function renderCompTable(){
+  const tbody = document.getElementById('comp-tbody');
+  if(!tbody) return;
+  tbody.innerHTML = _compData.map((r,i)=>{
+    const sc = COMP_STATUS_COLOURS[r.status]||COMP_STATUS_COLOURS['Not Started'];
+    return `<tr style="border-bottom:0.5px solid var(--border);${i%2===1?'background:#fafafa':''}">
+      <td style="padding:10px 14px">
+        <input value="${r.name}" oninput="setComp(${i},'name',this.value)" placeholder="Licence or registration name" style="width:100%;border:none;background:transparent;font-size:14px;font-weight:500;color:var(--navy);font-family:inherit;outline:none;border-bottom:1px dashed var(--border)"/>
+      </td>
+      <td style="padding:10px 14px">
+        <select onchange="setComp(${i},'status',this.value)" style="border:none;border-radius:4px;padding:5px 10px;font-size:13px;font-family:inherit;font-weight:500;background:${sc.bg};color:${sc.color};cursor:pointer">
+          ${COMP_STATUSES.map(s=>`<option value="${s}"${s===r.status?' selected':''}>${s}</option>`).join('')}
+        </select>
+      </td>
+      <td style="padding:10px 14px">
+        <input value="${r.responsible}" oninput="setComp(${i},'responsible',this.value)" placeholder="Who owns this" style="width:100%;border:none;background:transparent;font-size:14px;color:var(--ink);font-family:inherit;outline:none;border-bottom:1px dashed var(--border)"/>
+      </td>
+      <td style="padding:10px 14px">
+        <input type="date" value="${r.target}" onchange="setComp(${i},'target',this.value)" style="border:0.5px solid var(--border);border-radius:4px;padding:4px 8px;font-size:13px;font-family:inherit;color:var(--ink)"/>
+      </td>
+      <td style="padding:10px 14px">
+        <input type="date" value="${r.actual}" onchange="setComp(${i},'actual',this.value)" style="border:0.5px solid var(--border);border-radius:4px;padding:4px 8px;font-size:13px;font-family:inherit;color:var(--ink)"/>
+      </td>
+      <td style="padding:10px 14px">
+        <input value="${r.notes}" oninput="setComp(${i},'notes',this.value)" placeholder="Notes" style="width:100%;border:none;background:transparent;font-size:14px;color:var(--ink);font-family:inherit;outline:none;border-bottom:1px dashed var(--border)"/>
+      </td>
+      <td style="padding:10px 8px;text-align:center">
+        <button onclick="deleteCompRow(${i})" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:16px;padding:2px 4px" title="Remove">×</button>
+      </td>
+    </tr>`;
+  }).join('');
+  updateCompSummary();
+}
+
+function setComp(i,key,val){ _compData[i][key]=val; if(key==='status') renderCompTable(); else updateCompSummary(); }
+function addCompRow(){
+  _compData.push({name:'',status:'Not Started',responsible:'',target:'',actual:'',notes:''});
+  renderCompTable();
+}
+function deleteCompRow(i){ _compData.splice(i,1); renderCompTable(); }
+function updateCompSummary(){
+  const counts = {critical:0,inprog:0,approved:0,notstarted:0};
+  _compData.forEach(r=>{
+    if(r.status==='Renewal Due') counts.critical++;
+    else if(r.status==='In Progress'||r.status==='Filed') counts.inprog++;
+    else if(r.status==='Approved') counts.approved++;
+    else counts.notstarted++;
+  });
+  const el=id=>document.getElementById(id);
+  if(el('cs-critical'))   el('cs-critical').textContent   = counts.critical;
+  if(el('cs-inprog'))     el('cs-inprog').textContent     = counts.inprog;
+  if(el('cs-approved'))   el('cs-approved').textContent   = counts.approved;
+  if(el('cs-notstarted')) el('cs-notstarted').textContent = counts.notstarted;
+}
+
 renderAdv();
 render();
 switchTab('intro');
+renderFundsTable();
+renderCompTable();
 document.addEventListener('click',function(e){
   const el=e.target.closest('[data-drill]');
   if(el){e.stopPropagation();openDrillCard(el.dataset.drill,parseInt(el.dataset.yr)||0);}
