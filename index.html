@@ -1,0 +1,2883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AyurExp — Pocket CFO</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0E1E2B;--navy2:#152636;--navy3:#1D3347;
+  --border:#DDE8EE;--surf:#F4F8FA;--surf2:#EEF4F7;
+  --ink:#1C2B35;--ink2:#4A6070;--ink3:#8FA8B8;
+  --green:#1D9E75;--green2:#0F6E56;--green3:#085041;
+  --green-lt:#E1F5EE;--green-bd:#9FE1CB;
+}
+
+/* ── RESET & BASE ── */
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;color:var(--ink);background:var(--surf);min-height:100vh;display:flex;flex-direction:column}
+
+/* ── HEADER ── */
+.hdr{background:var(--navy);padding:0 20px;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:100}
+.hdr-brand{font-size:13px;font-weight:600;color:#fff;letter-spacing:.02em}
+.hdr-brand span{color:var(--green);font-weight:700}
+.hdr-right{display:flex;align-items:center;gap:8px}
+.tool-btn{background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:rgba(255,255,255,.7);font-size:11px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:all .15s}
+.tool-btn:hover{background:rgba(255,255,255,.13);color:#fff}
+
+/* ── TAB BAR ── */
+.tab-bar{background:#0a1520;border-bottom:0.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:38px;flex-shrink:0;position:sticky;top:48px;z-index:99;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-bar::-webkit-scrollbar{display:none}
+.tabs{display:flex;flex-shrink:0}
+.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.35);font-size:11px;font-weight:500;padding:0 16px;height:38px;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;flex-shrink:0}
+.tab:hover{color:rgba(255,255,255,.7)}
+.tab.active{color:#fff;border-bottom-color:var(--green)}
+.tab-tools{display:flex;gap:6px;align-items:center;flex-shrink:0;margin-left:12px}
+
+/* ── TAB VIEWS ── */
+.tab-view{display:none;flex:1;flex-direction:column;min-height:0}
+.tab-view.active{display:flex}
+
+/* ── INTRO TAB ── */
+#view-intro{background:#fff;overflow-y:auto}
+.intro-layout{display:grid;grid-template-columns:2fr 3fr;min-height:calc(100vh - 86px)}
+.intro-left{padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid #f0f0f0;overflow-y:auto}
+.intro-right{padding:28px 36px;background:#fafafa;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
+.pocket-brand{font-size:22px;font-weight:700;color:var(--green);letter-spacing:-.01em;margin-bottom:4px}
+.pocket-brand span{color:var(--navy)}
+.pocket-sub{font-size:11px;color:#bbb;letter-spacing:.04em;margin-bottom:20px}
+.pocket-divider{width:32px;height:2px;background:var(--green);margin-bottom:20px}
+.pocket-proj-label{font-size:9px;letter-spacing:.14em;color:#bbb;text-transform:uppercase;margin-bottom:8px}
+.pocket-proj-name{font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:12px}
+.pocket-bullets{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:18px}
+.pocket-bullets li{font-size:11px;color:#333;font-weight:500;padding-left:14px;position:relative;line-height:1.5}
+.pocket-bullets li::before{content:'';position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--green)}
+.pocket-pills{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:20px}
+.pocket-pill{font-size:9px;color:var(--green2);background:var(--green-lt);border:1px solid var(--green-bd);border-radius:2px;padding:2px 8px}
+.pocket-btn{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--green);background:transparent;border:1.5px solid var(--green);border-radius:4px;padding:9px 18px;cursor:pointer;font-family:inherit;transition:all .15s;width:fit-content}
+.pocket-btn:hover{background:var(--green);color:#fff}
+.intro-q-label{font-size:9px;letter-spacing:.12em;color:#bbb;text-transform:uppercase;margin-bottom:8px}
+.intro-stage-name{font-size:11px;font-weight:700;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;min-height:16px}
+.intro-text-box{background:#fff;border:0.5px solid #eee;border-radius:5px;padding:12px 14px}
+.intro-typed{font-size:12px;color:#444;line-height:1.8;min-height:56px}
+.intro-cursor{display:inline-block;width:2px;height:12px;background:var(--green);margin-left:1px;vertical-align:middle;animation:cur .65s infinite}
+@keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
+.intro-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;min-height:20px}
+.es-node{transition:transform .4s cubic-bezier(.34,1.56,.64,1);transform-box:fill-box;transform-origin:center}
+.es-node.active{transform:scale(1.55)}
+.es-node circle{transition:fill .25s,stroke .25s}
+
+/* ── MODEL TAB ── */
+#view-model{overflow-y:auto;background:var(--surf)}
+.wrap{border:0.5px solid var(--border);border-radius:10px;overflow:hidden;max-width:1600px;margin:16px auto;width:calc(100% - 32px)}
+.mhdr{background:var(--navy);padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+.mhdr h1{font-size:14px;font-weight:500;color:#fff}
+.mhdr p{font-size:10px;color:var(--ink3);margin-top:2px}
+.badge{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.14);border-radius:20px;padding:3px 11px;font-size:10px;color:var(--ink3)}
+.mstrip{background:var(--navy2);display:flex;align-items:stretch}
+.mcards{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));flex:1}
+.mcard{padding:10px 12px;border-right:0.5px solid rgba(255,255,255,.06);cursor:pointer;transition:background .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.mcard:hover{background:rgba(255,255,255,.05)}
+.mcard.active{background:var(--navy3);border-bottom:2px solid #3CC9A0}
+.mcard .ml{font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.mcard .mn{font-size:16px;font-weight:500;color:#fff;line-height:1;white-space:nowrap}
+.mcard .mv{font-size:9px;margin-top:2px;color:var(--ink3)}
+.g{color:#3CC9A0!important}.w{color:#E8B55A!important}.r{color:#F07060!important}
+.yr-sel{padding:10px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-left:0.5px solid rgba(255,255,255,.08);min-width:100px}
+.yr-sel label{font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.yr-sel select{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:4px;color:#fff;font-size:11px;padding:3px 6px;cursor:pointer;width:100%}
+.yr-sel select option{background:var(--navy);color:#fff}
+.drill{background:var(--navy3);border-bottom:0.5px solid rgba(255,255,255,.08);padding:12px 20px;overflow-x:auto}
+.drill-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.drill-title{font-size:11px;font-weight:500;color:#fff}
+.export-btn{background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:5px;color:#fff;font-size:10px;padding:4px 12px;cursor:pointer;transition:background .15s}
+.export-btn:hover{background:rgba(255,255,255,.18)}
+.drill table{border-collapse:collapse;font-size:11px;width:100%;min-width:700px}
+.drill th{font-size:9.5px;color:var(--ink3);text-align:right;padding:4px 8px;border-bottom:0.5px solid rgba(255,255,255,.1);white-space:nowrap}
+.drill th:first-child{text-align:left;min-width:160px}
+.drill th.sub{font-size:8px;color:rgba(255,255,255,.3);font-weight:400}
+.drill td{padding:4px 8px;text-align:right;border-bottom:0.5px solid rgba(255,255,255,.06);color:rgba(255,255,255,.75);white-space:nowrap}
+.drill td:first-child{text-align:left;color:var(--ink3)}
+.drill td.fml{font-size:9px;color:rgba(255,255,255,.35);text-align:left;padding-top:1px;padding-bottom:4px;border-bottom:0.5px solid rgba(255,255,255,.04)}
+.drill tr.tot td{font-weight:600;color:#fff;border-top:0.5px solid rgba(255,255,255,.2)}
+.drill tr.eb td{color:#3CC9A0;font-weight:600}
+.drill tr.key td{font-weight:600;color:#fff}
+.drill tr.pct td{color:#8BB8CC;font-style:italic}
+.drill tr.ds td{font-weight:500}
+.drill tr.frow td{border-bottom:none;padding-top:0}
+.s1{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.72fr) minmax(0,.72fr) minmax(0,.72fr);background:#fff;border-top:0.5px solid var(--border)}
+.zone{padding:14px 16px;border-right:0.5px solid var(--border)}
+.zone:last-child{border-right:none}
+.zt{font-size:11px;font-weight:500;color:var(--ink);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
+.zst{font-size:9.5px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;margin:8px 0 5px}
+.zdiv{height:0.5px;background:var(--border);margin:8px 0}
+.pa-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.pa-item{background:var(--surf);border:0.5px solid var(--border);border-radius:6px;padding:6px 8px}
+.pa-lbl{font-size:9.5px;color:var(--ink3);margin-bottom:2px}
+.pa-inp{display:flex;align-items:center;gap:4px}
+.pa-inp input[type=number]{width:100%;border:none;background:transparent;font-size:12px;font-weight:500;color:var(--ink);-moz-appearance:textfield;padding:0}
+.pa-inp input[type=number]::-webkit-inner-spin-button{opacity:1;height:14px}
+.pa-unit{font-size:9.5px;color:var(--ink3);white-space:nowrap}
+.cx-hdr{display:grid;grid-template-columns:36% 13% 35% 16%;font-size:9px;color:var(--ink3);padding:0 0 4px;border-bottom:0.5px solid var(--border);margin-bottom:2px;letter-spacing:.03em}
+.cx-hdr span:not(:first-child){text-align:right}
+.cx-total{display:flex;justify-content:space-between;align-items:baseline;background:var(--surf);border-radius:5px;padding:6px 8px;margin-bottom:8px;border:0.5px solid var(--border)}
+.cx-total-lbl{font-size:10px;color:var(--ink3)}
+.cx-total-val{font-size:16px;font-weight:500;color:var(--navy)}
+.cx{width:100%;border-collapse:collapse}
+.cx tr{border-bottom:0.5px solid var(--border)}
+.cx tr:last-child{border-bottom:none}
+.cx td{padding:4px 0;vertical-align:middle}
+.cx .ca{font-size:10.5px;color:var(--ink2);width:36%}
+.cx .cs{font-size:9.5px;color:var(--ink3);width:13%;text-align:right;padding-right:5px}
+.cx .cc{width:35%}
+.cx .cm{font-size:11px;font-weight:500;color:var(--ink);width:16%;text-align:right}
+.slw{display:flex;flex-direction:column;gap:1px}
+.slv{font-size:9px;color:var(--ink3);text-align:right}
+input[type=range]{width:100%;-webkit-appearance:none;height:3px;background:var(--border);border-radius:2px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;background:var(--navy);border:2px solid #fff;box-shadow:0 0 0 1px var(--border)}
+.spw{display:flex;align-items:center;gap:3px}
+.spw input[type=number]{width:48px;border:0.5px solid var(--border);border-radius:4px;padding:2px 5px;font-size:10.5px;color:var(--ink);background:var(--surf);-moz-appearance:textfield}
+.spw input[type=number]::-webkit-inner-spin-button{opacity:1}
+.ptw{display:flex;align-items:center;gap:3px}
+.ptw input[type=number]{width:40px;border:0.5px solid var(--border);border-radius:4px;padding:2px 5px;font-size:10.5px;color:var(--ink);background:var(--surf);-moz-appearance:textfield}
+.ptw input[type=number]::-webkit-inner-spin-button{opacity:1}
+.u{font-size:9.5px;color:var(--ink3)}
+.ir{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.ir .lb{font-size:10.5px;color:var(--ink2);flex:1;min-width:0;line-height:1.3}
+.ir .vl{font-size:10.5px;font-weight:500;color:var(--ink);min-width:52px;text-align:right}
+.ir input[type=range]{max-width:85px;width:100%}
+.gnote{font-size:9.5px;color:var(--ink3);line-height:1.5;margin-top:3px}
+.adv-toggle{background:var(--surf2);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);padding:8px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
+.adv-toggle:hover{background:#E8F0F4}
+.adv-toggle-label{font-size:10px;font-weight:500;color:var(--ink)}
+.adv-toggle-hint{font-size:9.5px;color:var(--ink3)}
+.adv-arrow{font-size:10px;color:var(--ink3);transition:transform .2s}
+.adv-arrow.open{transform:rotate(180deg)}
+.adv-body{display:none;background:var(--surf);border-bottom:0.5px solid var(--border);padding:14px 18px}
+.adv-body.open{display:block}
+.adv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 20px}
+.adv-section{margin-bottom:10px}
+.adv-section-title{font-size:9px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;padding-bottom:4px;border-bottom:0.5px solid var(--border)}
+.nlp-bar{background:#0a1520;border-bottom:1px solid rgba(255,255,255,.1);padding:10px 20px;display:flex;gap:10px;align-items:center}
+.nlp-input{flex:1;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.18);border-radius:6px;color:#fff;font-size:12px;padding:8px 14px;outline:none;font-family:inherit}
+.nlp-input::placeholder{color:#8FA8B8}
+.nlp-input:focus{border-color:rgba(255,255,255,.35)}
+.nlp-btn{background:#0D7A6B;border:none;border-radius:6px;color:#fff;font-size:11px;padding:8px 16px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.nlp-btn:hover{background:#0A6558}
+.nlp-btn:disabled{opacity:.5;cursor:not-allowed}
+.nlp-resp{padding:10px 20px;background:#080f18;border-bottom:0.5px solid rgba(255,255,255,.08);font-size:11.5px;color:#8BB8CC;line-height:1.6;display:none}
+.nlp-resp.on{display:block}
+.nlp-chip{background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.12);border-radius:20px;color:#8FA8B8;font-size:10px;padding:3px 10px;cursor:pointer;display:inline-block;margin:2px}
+.nlp-chip:hover{background:rgba(255,255,255,.12);color:#fff}
+.nlp-hi{color:#3CC9A0;font-weight:500}
+.nlp-wa{color:#E8B55A;font-weight:500}
+.nlp-lo{color:#F07060;font-weight:500}
+
+/* ── KPI TAB ── */
+#view-kpi{background:#0D1B2A;overflow-y:auto;padding:20px 24px}
+
+/* ── COMPLIANCE TAB ── */
+#view-compliance{background:#fff;overflow-y:auto;padding:24px}
+.comp-header{margin-bottom:24px}
+.comp-header h2{font-size:18px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.comp-header p{font-size:12px;color:var(--ink3)}
+.comp-grid{display:flex;flex-direction:column;gap:0}
+.comp-item{display:grid;grid-template-columns:160px 1fr 120px 140px;gap:0;border-bottom:0.5px solid var(--border);padding:14px 0;align-items:start}
+.comp-item:last-child{border-bottom:none}
+.comp-phase{font-size:9px;font-weight:600;color:var(--green2);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.comp-main h4{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:3px}
+.comp-main p{font-size:11px;color:var(--ink2);line-height:1.6;margin-bottom:4px}
+.comp-main .gates{font-size:10px;color:#E24B4A;font-weight:500}
+.comp-timeline{font-size:11px;color:var(--ink2);text-align:center}
+.comp-timeline .months{font-size:18px;font-weight:500;color:var(--navy);display:block;line-height:1.2}
+.comp-timeline .unit{font-size:9px;color:var(--ink3)}
+.comp-status{display:flex;justify-content:center}
+.status-dot{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:4px 10px;border-radius:12px}
+.status-dot.critical{background:#FCEBEB;color:#A32D2D}
+.status-dot.important{background:#FAEEDA;color:#854F0B}
+.status-dot.standard{background:var(--green-lt);color:var(--green3)}
+.comp-section-hdr{background:var(--surf2);padding:8px 16px;margin:12px -0px;border-radius:4px;font-size:10px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em;border-left:3px solid var(--green)}
+
+/* ── FUNDS TAB ── */
+#view-funds{background:#fff;overflow-y:auto;padding:24px}
+.funds-header{margin-bottom:24px}
+.funds-header h2{font-size:18px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.funds-header p{font-size:12px;color:var(--ink3)}
+.funds-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:24px}
+.fund-card{background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:18px;cursor:pointer;transition:all .15s;border-top:3px solid var(--green)}
+.fund-card:hover{border-color:var(--green);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.fund-card.debt-card{border-top-color:#185FA5}
+.fund-card h3{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.fund-card .fund-type{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:2px;display:inline-block;margin-bottom:10px}
+.fund-card .fund-type.eq{background:var(--green-lt);color:var(--green3)}
+.fund-card .fund-type.dbt{background:#E6F1FB;color:#0C447C}
+.fund-card p{font-size:11px;color:var(--ink2);line-height:1.6;margin-bottom:12px}
+.fund-card .fund-cares{font-size:10px;color:var(--ink3);margin-bottom:8px}
+.fund-card .fund-cares strong{color:var(--ink2)}
+.fund-pills{display:flex;flex-wrap:wrap;gap:4px}
+.fund-pill{font-size:10px;padding:2px 8px;border-radius:2px}
+.fund-pill.eq{background:var(--green-lt);color:var(--green3);border:0.5px solid var(--green-bd)}
+.fund-pill.dbt{background:#E6F1FB;color:#0C447C;border:0.5px solid #B5D4F4}
+.funds-narrative{background:var(--surf2);border-radius:8px;padding:18px;border:0.5px solid var(--border);margin-top:8px}
+.funds-narrative h3{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.funds-narrative p{font-size:11px;color:var(--ink2);line-height:1.7;margin-bottom:8px}
+.funds-narrative p:last-child{margin-bottom:0}
+.funds-numbers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}
+.fn-card{background:#fff;border:0.5px solid var(--border);border-radius:6px;padding:10px 12px;text-align:center}
+.fn-card .num{font-size:18px;font-weight:500;color:var(--navy);line-height:1}
+.fn-card .lbl{font-size:9px;color:var(--ink3);margin-top:3px}
+
+/* ── OVERLAYS ── */
+.cmp-btn{background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.25);border-radius:6px;color:#fff;font-size:11px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:background .15s}
+.cmp-btn:hover{background:rgba(255,255,255,.18)}
+.cmp-overlay{position:fixed;inset:0;background:#0a1218;z-index:9999;display:none;flex-direction:column;overflow:hidden}
+.cmp-overlay.open{display:flex}
+.cmp-hdr{background:#0E1E2B;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid rgba(255,255,255,.1);flex-shrink:0}
+.cmp-hdr h2{font-size:15px;font-weight:500;color:#fff}
+.cmp-hdr-right{display:flex;gap:10px;align-items:center}
+.cmp-close{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.2);border-radius:6px;color:#fff;font-size:12px;padding:6px 16px;cursor:pointer;font-family:inherit}
+.cmp-close:hover{background:rgba(255,255,255,.15)}
+.cmp-export{background:#0D7A6B;border:none;border-radius:6px;color:#fff;font-size:11px;padding:6px 14px;cursor:pointer;font-family:inherit}
+.cmp-export:hover{background:#0A6558}
+.cmp-body{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;flex:1;overflow:hidden}
+.cmp-col{display:flex;flex-direction:column;border-right:0.5px solid rgba(255,255,255,.08);overflow:hidden}
+.cmp-col:last-child{border-right:none}
+.cmp-col-hdr{padding:12px 16px;background:#0E1E2B;border-bottom:0.5px solid rgba(255,255,255,.1);flex-shrink:0}
+.cmp-col-name{font-size:13px;font-weight:500;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.cmp-col-name input{background:transparent;border:none;color:#fff;font-size:13px;font-weight:500;font-family:inherit;width:100%;outline:none;border-bottom:0.5px solid rgba(255,255,255,.2);padding-bottom:2px}
+.cmp-nlp-wrap{display:flex;gap:6px;margin-top:4px}
+.cmp-nlp-input{flex:1;background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:#fff;font-size:11px;padding:6px 10px;outline:none;font-family:inherit}
+.cmp-nlp-input::placeholder{color:rgba(255,255,255,.3)}
+.cmp-nlp-input:focus{border-color:rgba(255,255,255,.35)}
+.cmp-nlp-btn{background:#0D7A6B;border:none;border-radius:5px;color:#fff;font-size:10px;padding:6px 10px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.cmp-nlp-btn:hover{background:#0A6558}
+.cmp-nlp-btn:disabled{opacity:.4;cursor:not-allowed}
+.cmp-reset{background:rgba(255,100,80,.15);border:0.5px solid rgba(255,100,80,.3);border-radius:5px;color:rgba(255,120,100,1);font-size:10px;padding:6px 10px;cursor:pointer;font-family:inherit}
+.cmp-reset:hover{background:rgba(255,100,80,.25)}
+.cmp-status{font-size:10px;color:rgba(255,255,255,.35);margin-top:4px;min-height:14px;font-style:italic}
+.cmp-scroll{flex:1;overflow-y:auto;padding:0}
+.cmp-section-title{font-size:9px;font-weight:500;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.06em;padding:10px 16px 6px;background:#0E1E2B;position:sticky;top:0;z-index:1;border-bottom:0.5px solid rgba(255,255,255,.06)}
+.cmp-row{display:flex;justify-content:space-between;align-items:center;padding:5px 16px;border-bottom:0.5px solid rgba(255,255,255,.04)}
+.cmp-row:hover{background:rgba(255,255,255,.02)}
+.cmp-row-lbl{font-size:11px;color:rgba(255,255,255,.5);flex:1}
+.cmp-row-val{font-size:11.5px;font-weight:500;color:#fff;text-align:right}
+.cmp-row-val.changed{color:#E8B55A}
+.cmp-row-val.better{color:#3CC9A0}
+.cmp-row-val.worse{color:#F07060}
+.cmp-row-val.same{color:rgba(255,255,255,.35)}
+.cmp-empty{padding:40px 16px;text-align:center;color:rgba(255,255,255,.25);font-size:12px;line-height:1.8}
+.drill td.exp-lbl{cursor:pointer;user-select:none}
+.drill td.exp-lbl .exp-icon{display:inline-block;width:14px;height:14px;border:0.5px solid rgba(255,255,255,.25);border-radius:3px;text-align:center;line-height:13px;font-size:9px;margin-right:5px;transition:transform .15s;vertical-align:middle}
+.drill tr.sub-row{display:none}
+.drill tr.sub-row.open{display:table-row}
+.drill tr.sub-row td{font-size:10px;color:rgba(255,255,255,.45);background:rgba(255,255,255,.02);padding:3px 8px 3px 26px}
+.drill tr.sub-row td:first-child{color:rgba(255,255,255,.35);font-style:italic}
+.agent-toggle{position:fixed;right:0;bottom:140px;background:#0D7A6B;color:#fff;border:none;border-radius:8px 0 0 8px;padding:12px 7px;cursor:pointer;font-size:10px;writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:.06em;z-index:1000;font-family:inherit;box-shadow:-2px 0 8px rgba(0,0,0,.3);white-space:nowrap}
+.agent-toggle:hover{background:#0A6558}
+.agent-panel{position:fixed;right:-420px;top:0;width:420px;height:100vh;background:#0a1520;border-left:0.5px solid rgba(255,255,255,.12);display:flex;flex-direction:column;z-index:999;transition:right .25s ease;box-shadow:-4px 0 20px rgba(0,0,0,.4)}
+.agent-panel.open{right:0}
+.agent-hdr{background:#0E1E2B;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid rgba(255,255,255,.1);flex-shrink:0}
+.agent-hdr-left h3{font-size:13px;font-weight:500;color:#fff;margin-bottom:2px}
+.agent-hdr-left p{font-size:10px;color:#8FA8B8}
+.agent-close{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:#fff;font-size:11px;padding:5px 10px;cursor:pointer;font-family:inherit}
+.agent-close:hover{background:rgba(255,255,255,.15)}
+.agent-status{padding:6px 14px;background:#0E1E2B;border-bottom:0.5px solid rgba(255,255,255,.08);font-size:9.5px;color:#3CC9A0;flex-shrink:0}
+.agent-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.agent-msg{display:flex;flex-direction:column;gap:4px;max-width:95%}
+.agent-msg.user{align-self:flex-end;align-items:flex-end}
+.agent-msg.assistant{align-self:flex-start;align-items:flex-start}
+.agent-bubble{padding:9px 13px;border-radius:10px;font-size:11.5px;line-height:1.6}
+.agent-msg.user .agent-bubble{background:#0D7A6B;color:#fff;border-radius:10px 10px 2px 10px}
+.agent-msg.assistant .agent-bubble{background:#152636;color:rgba(255,255,255,.85);border-radius:10px 10px 10px 2px;border:0.5px solid rgba(255,255,255,.08)}
+.agent-msg-time{font-size:9px;color:rgba(255,255,255,.25)}
+.agent-actions{font-size:10px;color:#3CC9A0;margin-top:4px;font-style:italic}
+.agent-thinking{display:flex;gap:4px;align-items:center;padding:9px 13px;background:#152636;border-radius:10px;border:0.5px solid rgba(255,255,255,.08)}
+.agent-thinking span{width:6px;height:6px;background:#3CC9A0;border-radius:50%;animation:bounce .8s infinite}
+.agent-thinking span:nth-child(2){animation-delay:.15s}
+.agent-thinking span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.agent-input-area{padding:12px 14px;border-top:0.5px solid rgba(255,255,255,.1);background:#0E1E2B;flex-shrink:0}
+.agent-input-row{display:flex;gap:8px}
+.agent-input{flex:1;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:6px;color:#fff;font-size:12px;padding:9px 12px;outline:none;font-family:inherit;resize:none;height:40px;max-height:120px}
+.agent-input:focus{border-color:rgba(255,255,255,.35)}
+.agent-send{background:#0D7A6B;border:none;border-radius:6px;color:#fff;padding:9px 14px;cursor:pointer;font-size:12px;font-family:inherit;flex-shrink:0}
+.agent-send:hover{background:#0A6558}
+.agent-send:disabled{opacity:.4;cursor:not-allowed}
+.agent-clear{background:transparent;border:none;color:rgba(255,255,255,.3);font-size:10px;cursor:pointer;padding:6px 0 0;font-family:inherit}
+.agent-clear:hover{color:rgba(255,255,255,.6)}
+.agent-suggestions{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.agent-sug{background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.12);border-radius:14px;color:rgba(255,255,255,.5);font-size:10px;padding:4px 10px;cursor:pointer;transition:all .15s}
+.agent-sug:hover{background:rgba(255,255,255,.12);color:#fff}
+.hi{color:#3CC9A0;font-weight:500}.wa{color:#E8B55A;font-weight:500}.lo{color:#F07060;font-weight:500}
+.narr-btn{background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.7);font-size:11px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:all .15s}
+.narr-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+.narr-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;display:none;align-items:center;justify-content:center}
+.narr-overlay.open{display:flex}
+.narr-modal{background:#fff;border-radius:10px;width:820px;max-width:96vw;max-height:92vh;overflow-y:auto;position:relative}
+.narr-modal-hdr{position:sticky;top:0;background:#fff;border-bottom:1px solid #eee;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;z-index:10;border-radius:10px 10px 0 0}
+.narr-modal-hdr h3{font-size:13px;font-weight:500;color:#1a1a1a;font-family:Arial,sans-serif}
+.narr-modal-hdr-btns{display:flex;gap:8px}
+.narr-tab-btn{background:transparent;border:1px solid #ddd;border-radius:4px;color:#555;font-size:11px;padding:5px 12px;cursor:pointer;font-family:Arial,sans-serif;transition:all .15s}
+.narr-tab-btn.active{background:#185FA5;border-color:#185FA5;color:#fff}
+.narr-tab-btn.eq.active{background:#1D9E75;border-color:#1D9E75}
+.narr-close{background:transparent;border:1px solid #ddd;border-radius:4px;color:#555;font-size:11px;padding:5px 10px;cursor:pointer;font-family:Arial,sans-serif}
+.narr-export{background:#1a1a1a;border:none;border-radius:4px;color:#fff;font-size:11px;padding:5px 14px;cursor:pointer;font-family:Arial,sans-serif}
+.narr-content{padding:0}
+.narr-page{padding:44px 48px;font-family:Georgia,'Times New Roman',serif;color:#1a1a1a;min-height:900px}
+.n-top-bar{display:flex;justify-content:flex-end;align-items:flex-start;margin-bottom:32px;padding-bottom:18px}
+.n-doc-label{font-size:9px;letter-spacing:.12em;color:#888;font-family:Arial,sans-serif;text-transform:uppercase}
+.n-doc-title{font-size:13px;font-weight:600;font-family:Arial,sans-serif;margin-top:2px}
+.n-doc-title.eq{color:#1D9E75;border-top:3px solid #1D9E75;padding-top:10px}
+.n-doc-title.dbt{color:#185FA5;border-top:3px solid #185FA5;padding-top:10px}
+.n-conf{display:inline-block;border-radius:2px;font-size:8px;letter-spacing:.08em;font-family:Arial,sans-serif;padding:2px 8px;text-transform:uppercase;margin-left:8px}
+.n-conf.eq{background:#E1F5EE;border:1px solid #9FE1CB;color:#085041}
+.n-conf.dbt{background:#EFF6FD;border:1px solid #B5D4F4;color:#185FA5}
+.n-hero-sub{font-size:9px;letter-spacing:.1em;color:#888;font-family:Arial,sans-serif;text-transform:uppercase;margin-bottom:8px}
+.n-hero-h{font-size:26px;font-weight:400;color:#1a1a1a;line-height:1.25;margin-bottom:10px}
+.n-hero-desc{font-size:11px;color:#555;font-family:Arial,sans-serif;line-height:1.6}
+.n-divider{height:1px;background:#eee;margin:20px 0}
+.n-sec-lbl{font-size:9px;letter-spacing:.12em;color:#888;font-family:Arial,sans-serif;text-transform:uppercase;margin-bottom:12px}
+.n-stack-row{display:flex;gap:0;border-radius:4px;overflow:hidden;height:46px;margin-bottom:6px}
+.n-stack-debt{background:#1D9E75;display:flex;align-items:center;padding:0 16px;flex:1}
+.n-stack-eq{background:#E1F5EE;border:1px solid #1D9E75;display:flex;align-items:center;padding:0 16px}
+.n-stack-a{font-size:12px;font-weight:700;font-family:Arial,sans-serif}
+.n-stack-b{font-size:9px;font-family:Arial,sans-serif;margin-top:1px}
+.n-stack-debt .n-stack-a{color:#fff}.n-stack-debt .n-stack-b{color:rgba(255,255,255,.7)}
+.n-stack-eq .n-stack-a{color:#085041}.n-stack-eq .n-stack-b{color:#0F6E56}
+.n-note{font-size:9px;color:#888;font-family:Arial,sans-serif;font-style:italic;margin-bottom:18px}
+.n-tl{margin:16px 0 4px;position:relative;padding-bottom:28px}
+.n-tl-track{display:flex;justify-content:space-between;position:relative}
+.n-tl-track::before{content:'';position:absolute;top:16px;left:0;right:0;height:1px;background:#ddd;z-index:0}
+.n-tl-pt{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;z-index:1}
+.n-tl-dot{width:10px;height:10px;border-radius:50%;background:#ddd;border:2px solid #ddd;margin-bottom:7px;margin-top:11px}
+.n-tl-dot.g{background:#1D9E75;border-color:#1D9E75}
+.n-tl-dot.lg{background:#E1F5EE;border-color:#1D9E75}
+.n-tl-yr{font-size:9px;color:#aaa;font-family:Arial,sans-serif;margin-bottom:2px}
+.n-tl-ev{font-size:9px;font-weight:600;color:#333;font-family:Arial,sans-serif;text-align:center;max-width:64px;line-height:1.3}
+.n-tl-vl{font-size:9px;color:#1D9E75;font-family:Arial,sans-serif;font-weight:700;text-align:center;margin-top:2px}
+.n-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:6px}
+.n-mc{background:#E1F5EE;border:1px solid #9FE1CB;border-radius:4px;padding:12px}
+.n-mc .num{font-size:20px;font-weight:700;color:#085041;font-family:Arial,sans-serif;line-height:1;margin-bottom:3px}
+.n-mc .lbl{font-size:9px;color:#0F6E56;font-family:Arial,sans-serif;line-height:1.4}
+.n-exit-row{display:flex;gap:8px;height:52px;margin-bottom:6px}
+.n-exit-seg{border-radius:4px;display:flex;flex-direction:column;justify-content:center;padding:0 12px}
+.n-ef{background:#E1F5EE;border:1px solid #9FE1CB;flex:1.8}
+.n-eb{background:#1D9E75;flex:2.2}
+.n-eu{background:#085041;flex:2.8}
+.n-exit-lbl{font-size:9px;font-weight:700;font-family:Arial,sans-serif}
+.n-exit-val{font-size:11px;font-weight:700;font-family:Arial,sans-serif;margin-top:2px}
+.n-ef .n-exit-lbl,.n-ef .n-exit-val{color:#085041}
+.n-eb .n-exit-lbl,.n-eb .n-exit-val,.n-eu .n-exit-lbl,.n-eu .n-exit-val{color:#fff}
+.n-prot-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.n-prot{border-left:2px solid #1D9E75;padding:10px 12px;background:#FAFAFA}
+.n-prot.dbt{border-left-color:#185FA5}
+.n-prot-t{font-size:10px;font-weight:700;color:#1a1a1a;font-family:Arial,sans-serif;margin-bottom:3px}
+.n-prot-b{font-size:9px;color:#666;font-family:Arial,sans-serif;line-height:1.5}
+.n-footer{margin-top:24px;padding-top:10px;border-top:1px solid #eee;display:flex;justify-content:space-between}
+.n-footer-l,.n-footer-r{font-size:9px;color:#aaa;font-family:Arial,sans-serif}
+.n-footer-r{font-style:italic}
+.n-loan-row{display:flex;gap:8px;margin-bottom:6px}
+.n-loan-c{flex:1;background:#EFF6FD;border:1px solid #B5D4F4;border-radius:4px;padding:10px 12px}
+.n-loan-c.key{background:#185FA5;border-color:#185FA5}
+.n-loan-c .num{font-size:18px;font-weight:700;color:#0C447C;font-family:Arial,sans-serif;line-height:1;margin-bottom:2px}
+.n-loan-c .lbl{font-size:9px;color:#378ADD;font-family:Arial,sans-serif}
+.n-loan-c.key .num{color:#fff}.n-loan-c.key .lbl{color:#B5D4F4}
+.n-dscr-tbl{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:10px;margin-bottom:6px}
+.n-dscr-tbl th{font-size:9px;color:#888;font-weight:600;text-align:left;padding:5px 8px;border-bottom:1.5px solid #185FA5;letter-spacing:.06em}
+.n-dscr-tbl th.r{text-align:right}
+.n-dscr-tbl td{padding:6px 8px;border-bottom:1px solid #f0f0f0;color:#333}
+.n-dscr-tbl td.r{text-align:right;font-weight:600}
+.n-dscr-tbl tr.hi td{background:#EFF6FD}
+.n-dscr-bar{display:inline-block;height:7px;border-radius:2px;background:#185FA5;vertical-align:middle;margin-right:4px}
+.n-dscr-v{font-weight:700;color:#1D9E75}
+.n-cov-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:16px}
+.n-cov-c{border:1px solid #B5D4F4;border-radius:4px;padding:10px 12px;background:#EFF6FD}
+.n-cov-c .num{font-size:18px;font-weight:700;color:#0C447C;font-family:Arial,sans-serif;line-height:1;margin-bottom:2px}
+.n-cov-c .lbl{font-size:9px;color:#378ADD;font-family:Arial,sans-serif;line-height:1.4}
+
+/* ── DRILL OVERLAY ── */
+.drill-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:8000;display:none;align-items:flex-end;justify-content:center}
+.drill-overlay.open{display:flex}
+.drill-card{background:#0E1E2B;border-radius:12px 12px 0 0;width:100%;max-width:1100px;border:0.5px solid rgba(255,255,255,.12);overflow:hidden;max-height:85vh;display:flex;flex-direction:column}
+.drill-card-hdr{background:#071018;padding:14px 20px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:0.5px solid rgba(255,255,255,.1);flex-shrink:0}
+.drill-card-hdr h3{font-size:14px;font-weight:500;color:#fff;margin-bottom:3px}
+.drill-card-hdr p{font-size:10px;color:rgba(255,255,255,.3)}
+.drill-card-btns{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.drill-export{background:#0D7A6B;border:none;border-radius:4px;color:#fff;font-size:10px;padding:5px 12px;cursor:pointer;font-family:inherit}
+.drill-close-btn{background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.2);border-radius:4px;color:rgba(255,255,255,.6);font-size:12px;padding:4px 10px;cursor:pointer;font-family:inherit}
+.drill-close-btn:hover{background:rgba(255,255,255,.15);color:#fff}
+.drill-body{display:grid;grid-template-columns:220px 1fr;flex:1;overflow:hidden;min-height:0}
+.drill-narr{padding:16px 18px;border-right:0.5px solid rgba(255,255,255,.08);background:#071018;overflow-y:auto}
+.drill-narr-title{font-size:9px;font-weight:500;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.drill-narr-item{padding:8px 0;border-bottom:0.5px solid rgba(255,255,255,.05)}
+.drill-narr-item:last-child{border-bottom:none}
+.drill-narr-key{font-size:10px;font-weight:500;color:#fff;margin-bottom:3px}
+.drill-narr-eq{font-size:10px;color:rgba(255,255,255,.4);line-height:1.5}
+.drill-narr-eq em{color:#3CC9A0;font-style:normal}
+.drill-tbl{overflow-y:auto}
+.drill-tbl table{width:100%;border-collapse:collapse;font-size:11px}
+.drill-tbl thead tr{background:#071018;position:sticky;top:0;z-index:1}
+.drill-tbl th{font-size:9px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.04em;padding:9px 14px;text-align:left;border-bottom:0.5px solid rgba(255,255,255,.1);white-space:nowrap}
+.drill-tbl th:not(:first-child){text-align:right}
+.drill-tbl td{padding:8px 14px;border-bottom:0.5px solid rgba(255,255,255,.05);color:rgba(255,255,255,.6)}
+.drill-tbl td:not(:first-child){text-align:right;color:#fff;font-weight:500}
+.drill-tbl tr:hover td{background:rgba(255,255,255,.02)}
+.drill-tbl tr.dr-sec td{background:#071018;font-size:9px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em;padding:5px 14px;font-weight:400}
+.drill-tbl tr.dr-tot td{border-top:0.5px solid rgba(255,255,255,.2);color:#3CC9A0;font-weight:600;background:rgba(29,158,117,.08)}
+.drill-tbl tr.dr-hi td{background:rgba(255,255,255,.03)}
+.drill-tbl tr.dr-hi td:not(:first-child){color:#3CC9A0;font-weight:600}
+.drillable{cursor:pointer;border-bottom:1px dotted rgba(60,201,160,.5);transition:border-color .15s}
+.drillable:hover{border-bottom-color:#3CC9A0}
+
+/* ── KPI TILES ── */
+.kpi-tile{background:#111F2E;border:0.5px solid rgba(255,255,255,.08);border-radius:7px;padding:14px 16px;margin-bottom:10px}
+.kpi-lbl{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.05em;margin-bottom:6px}
+.kpi-val{font-size:20px;font-weight:600;color:#fff;line-height:1;margin-bottom:5px}
+.kpi-meta{display:flex;align-items:center;justify-content:space-between}
+.kpi-vs{font-size:9px;padding:2px 7px;border-radius:3px;font-weight:600}
+.kpi-vs.g{background:rgba(60,201,160,.15);color:#3CC9A0}
+.kpi-vs.a{background:rgba(232,181,90,.15);color:#E8B55A}
+.kpi-vs.r{background:rgba(240,112,96,.15);color:#F07060}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .intro-layout{grid-template-columns:1fr;min-height:auto}
+  .intro-left{border-right:none;border-bottom:1px solid #f0f0f0;padding:24px 20px}
+  .intro-right{padding:20px}
+  .s1{grid-template-columns:1fr}
+  .zone{border-right:none;border-bottom:0.5px solid var(--border)}
+  .zone:last-child{border-bottom:none}
+  .mcards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mcard{border-bottom:0.5px solid rgba(255,255,255,.06)}
+  .yr-sel{min-width:80px;padding:8px 10px}
+  .cmp-body{grid-template-columns:1fr}
+  .cmp-col{border-right:none;border-bottom:0.5px solid rgba(255,255,255,.08)}
+  .drill-body{grid-template-columns:1fr}
+  .drill-narr{border-right:none;border-bottom:0.5px solid rgba(255,255,255,.08)}
+  .adv-grid{grid-template-columns:1fr}
+  .funds-grid{grid-template-columns:1fr}
+  .funds-numbers{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .comp-item{grid-template-columns:1fr 1fr;gap:8px}
+  .comp-phase{grid-column:1;grid-row:1}
+  .comp-main{grid-column:1/-1;grid-row:2}
+  .comp-timeline{grid-column:2;grid-row:1;text-align:right}
+  .comp-status{grid-column:1;grid-row:3;justify-content:flex-start}
+  .agent-panel{width:100%;right:-100%}
+  .agent-panel.open{right:0}
+  .narr-page{padding:24px 20px}
+  .tab{padding:0 12px;font-size:10px}
+  .hdr-brand{font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="hdr">
+  <div class="hdr-brand"><span>Pocket</span> CFO</div>
+  <div class="hdr-right" id="model-tools" style="display:none">
+    <button class="narr-btn" onclick="openNarrative()">Narratives</button>
+    <button class="cmp-btn" onclick="openCompare()">⇌ Compare</button>
+  </div>
+</div>
+
+<!-- ── TAB BAR ── -->
+<div class="tab-bar">
+  <div class="tabs">
+    <button class="tab active" id="tab-intro"      onclick="switchTab('intro')">Intro</button>
+    <button class="tab"        id="tab-model"      onclick="switchTab('model')">Model</button>
+    <button class="tab"        id="tab-kpi"        onclick="switchTab('kpi')">KPI</button>
+    <button class="tab"        id="tab-compliance" onclick="switchTab('compliance')">Compliance</button>
+    <button class="tab"        id="tab-funds"      onclick="switchTab('funds')">Funds</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     TAB 1 — INTRO
+══════════════════════════════════════════════════════ -->
+<div class="tab-view active" id="view-intro">
+  <div class="intro-layout">
+    <div class="intro-left">
+      <div>
+        <div class="pocket-brand"><span>Pocket</span> CFO</div>
+        <div class="pocket-sub">Strategic finance · End to end</div>
+        <div class="pocket-divider"></div>
+        <div class="pocket-proj-label">Project</div>
+        <div class="pocket-proj-name">AyurExp<br>Bangalore · 15 acres</div>
+        <ul class="pocket-bullets">
+          <li>Clinical Ayurveda experience centre</li>
+          <li>₹200 Cr project · 50/50 debt-equity</li>
+          <li>₹80,000 per day · all-inclusive</li>
+          <li>2-year build · operations Year 3</li>
+          <li>Year 1 revenue ~₹108 Cr · DSCR 2.88x</li>
+        </ul>
+        <div class="pocket-pills">
+          <span class="pocket-pill">Financial model</span>
+          <span class="pocket-pill">Compliance</span>
+          <span class="pocket-pill">Strategy</span>
+          <span class="pocket-pill">Capital raise</span>
+          <span class="pocket-pill">Fund network</span>
+        </div>
+      </div>
+      <button class="pocket-btn" onclick="switchTab('model')">View model &nbsp;→</button>
+    </div>
+    <div class="intro-right">
+      <div class="intro-q-label">The Pocket CFO engagement</div>
+      <svg viewBox="0 0 340 340" width="100%" style="max-width:260px;display:block;margin:0 auto">
+        <defs>
+          <marker id="esa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <circle cx="170" cy="170" r="140" fill="none" stroke="#f0f0f0" stroke-width="1"/>
+        <circle cx="170" cy="170" r="46" fill="#1D9E75"/>
+        <text x="170" y="163" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#fff" font-family="Arial,sans-serif">Pocket</text>
+        <text x="170" y="179" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#fff" font-family="Arial,sans-serif">CFO</text>
+        <g class="es-node" id="esn0">
+          <circle cx="170" cy="30" r="26" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="1.2"/>
+          <text x="170" y="24" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt0a">Structure</text>
+          <text x="170" y="36" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt0b">&amp; Strategy</text>
+        </g>
+        <g class="es-node" id="esn1">
+          <circle cx="293" cy="95" r="26" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="1.2"/>
+          <text x="293" y="89" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt1a">Model</text>
+          <text x="293" y="101" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt1b">&amp; Fundraise</text>
+        </g>
+        <g class="es-node" id="esn2">
+          <circle cx="293" cy="245" r="26" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="1.2"/>
+          <text x="293" y="239" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt2a">Build</text>
+          <text x="293" y="251" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt2b">&amp; Execute</text>
+        </g>
+        <g class="es-node" id="esn3">
+          <circle cx="170" cy="310" r="26" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="1.2"/>
+          <text x="170" y="304" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt3a">Compliance</text>
+          <text x="170" y="316" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt3b">&amp; Risk</text>
+        </g>
+        <g class="es-node" id="esn4">
+          <circle cx="47" cy="245" r="26" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="1.2"/>
+          <text x="47" y="239" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt4a">Track</text>
+          <text x="47" y="251" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt4b">&amp; Control</text>
+        </g>
+        <g class="es-node" id="esn5">
+          <circle cx="47" cy="95" r="26" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="1.2"/>
+          <text x="47" y="89" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt5a">Report</text>
+          <text x="47" y="101" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt5b">&amp; Govern</text>
+        </g>
+        <path d="M192 32 A140 140 0 0 1 267 73" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#esa)"/>
+        <path d="M311 116 A140 140 0 0 1 311 224" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#esa)"/>
+        <path d="M274 266 A140 140 0 0 1 199 306" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#esa)"/>
+        <path d="M141 306 A140 140 0 0 1 66 266" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#esa)"/>
+        <path d="M29 224 A140 140 0 0 1 29 116" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#esa)"/>
+        <path d="M66 73 A140 140 0 0 1 148 32" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#esa)"/>
+      </svg>
+      <div style="background:#fff;border:0.5px solid #eee;border-radius:6px;padding:12px 14px">
+        <div class="intro-stage-name" id="es-stage-lbl"></div>
+        <div class="intro-typed"><span id="es-q-text"></span><span class="intro-cursor"></span></div>
+        <div class="intro-pills" id="es-pills"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     TAB 2 — MODEL
+══════════════════════════════════════════════════════ -->
+<div class="tab-view" id="view-model">
+  <div class="wrap">
+    <div class="mhdr">
+      <div>
+        <h1>AyurExp · Bangalore · 15 acres · Clinical Ayurveda Experience Centre</h1>
+        <p>Pocket CFO · Strategic Finance Model · ₹ Crores · Leasehold</p>
+      </div>
+      <div class="badge">CFO Model</div>
+    </div>
+    <div class="nlp-bar">
+      <input class="nlp-input" id="nlp-input" type="text" autocomplete="off" placeholder="Ask — e.g. 'what if debt is 70% and daily rate 90000' or 'change rooms to 80'" />
+      <button class="nlp-btn" id="nlp-btn" onclick="askNLP()">Ask</button>
+    </div>
+    <div class="nlp-resp" id="nlp-resp">
+      <span id="nlp-text"></span>
+      <div id="nlp-chips" style="margin-top:6px"></div>
+    </div>
+    <div class="mstrip">
+      <div class="mcards" id="mcards"></div>
+      <div class="yr-sel">
+        <label>Operating year</label>
+        <select id="yr-sel">
+          <option value="0">Year 1 (Y3)</option><option value="1">Year 2 (Y4)</option>
+          <option value="2">Year 3 (Y5)</option><option value="3">Year 4 (Y6)</option>
+          <option value="4">Year 5 (Y7)</option><option value="5">Year 6 (Y8)</option>
+          <option value="6">Year 7 (Y9)</option><option value="7">Year 8 (Y10)</option>
+        </select>
+      </div>
+    </div>
+    <div id="drill-panel" style="display:none" class="drill"></div>
+    <div style="background:var(--surf2);padding:6px 18px;border-bottom:0.5px solid var(--border)">
+      <span style="font-size:9.5px;font-weight:500;color:var(--ink)">Inputs & capital structure</span>
+      <span style="font-size:9.5px;color:var(--ink3);margin-left:12px">Click any metric card to drill into the schedule · Export to Excel from any drill-down</span>
+    </div>
+    <div class="s1">
+      <div class="zone">
+        <div class="zt">Physical assumptions & capex</div>
+        <div class="zst">Project basics</div>
+        <div class="pa-grid">
+          <div class="pa-item"><div class="pa-lbl">Total rooms</div><div class="pa-inp"><input type="number" id="p_rooms" value="100" min="20" max="300" step="10"><span class="pa-unit">rooms</span></div></div>
+          <div class="pa-item"><div class="pa-lbl">Therapy rooms</div><div class="pa-inp"><input type="number" id="p_treat" value="30" min="5" max="100" step="5"><span class="pa-unit">rooms</span></div></div>
+          <div class="pa-item"><div class="pa-lbl">Total BUA</div><div class="pa-inp"><input type="number" id="p_bua" value="90000" min="10000" max="300000" step="1000"><span class="pa-unit">sqft</span></div></div>
+          <div class="pa-item"><div class="pa-lbl">Lease term</div><div class="pa-inp"><input type="number" id="p_lt" value="30" min="10" max="99" step="1"><span class="pa-unit">yrs</span></div></div>
+        </div>
+        <div class="zdiv"></div>
+        <div class="cx-total"><span class="cx-total-lbl">Total project cost (₹ Cr)</span><span class="cx-total-val" id="cx-total-big">200</span></div>
+        <div class="zst" style="margin-top:8px">Area assumptions (sqft)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
+          <div class="pa-item"><div class="pa-lbl">Room size / room</div><div class="pa-inp"><input type="number" id="a_roomsz" value="600" min="200" max="1200" step="50"><span class="pa-unit">sqft</span></div></div>
+          <div class="pa-item"><div class="pa-lbl">Common areas</div><div class="pa-inp"><input type="number" id="a_common" value="20000" min="2000" max="40000" step="500"><span class="pa-unit">sqft</span></div></div>
+          <div class="pa-item"><div class="pa-lbl">Clinical wing</div><div class="pa-inp"><input type="number" id="a_clin" value="10000" min="1000" max="20000" step="500"><span class="pa-unit">sqft</span></div></div>
+          <div class="pa-item"><div class="pa-lbl">Wellness & spa</div><div class="pa-inp"><input type="number" id="a_well" value="10000" min="1000" max="20000" step="500"><span class="pa-unit">sqft</span></div></div>
+          <div class="pa-item"><div class="pa-lbl">Landscaping</div><div class="pa-inp"><input type="number" id="a_land" value="15000" min="1000" max="30000" step="500"><span class="pa-unit">sqft</span></div></div>
+          <div class="pa-item"><div class="pa-lbl">F&B incl. kitchen</div><div class="pa-inp"><input type="number" id="a_fnb" value="5000" min="1000" max="10000" step="500"><span class="pa-unit">sqft</span></div></div>
+        </div>
+        <div class="zst">Debt drawdown split</div>
+        <div class="ir" style="margin-bottom:6px"><span class="lb">Year 1 drawdown (%)</span><input type="range" id="d_dd1" min="20" max="80" step="5" value="45"><span class="vl" id="dv_dd1">45%</span></div>
+        <div style="font-size:9px;color:var(--ink3);margin-bottom:8px">Year 2 = <span id="dv_dd2">55%</span> (balance)</div>
+        <div class="zdiv"></div>
+        <div class="cx-hdr"><span>Area</span><span>Sqft</span><span>Rate (₹/sqft)</span><span>₹ Cr</span></div>
+        <table class="cx">
+          <tr><td class="ca">Civil & conversion</td><td class="cs" id="cs_civil">90k</td><td class="cc"><div class="slw"><input type="range" id="r_civil" min="2000" max="25000" step="500" value="9000"><span class="slv" id="sv_civil">₹9,000</span></div></td><td class="cm" id="cm_civil">81.0</td></tr>
+          <tr><td class="ca">Room interior</td><td class="cs" id="cs_room">60k</td><td class="cc"><div class="slw"><input type="range" id="r_room" min="2000" max="25000" step="500" value="12000"><span class="slv" id="sv_room">₹12,000</span></div></td><td class="cm" id="cm_room">72.0</td></tr>
+          <tr><td class="ca">Common areas</td><td class="cs">20k</td><td class="cc"><div class="slw"><input type="range" id="r_common" min="1000" max="20000" step="500" value="6000"><span class="slv" id="sv_common">₹6,000</span></div></td><td class="cm" id="cm_common">12.0</td></tr>
+          <tr><td class="ca">Clinical fit-out</td><td class="cs">10k</td><td class="cc"><div class="slw"><input type="range" id="r_clnf" min="2000" max="25000" step="500" value="8000"><span class="slv" id="sv_clnf">₹8,000</span></div></td><td class="cm" id="cm_clnf">8.0</td></tr>
+          <tr><td class="ca">Wellness & spa</td><td class="cs">10k</td><td class="cc"><div class="slw"><input type="range" id="r_well" min="2000" max="25000" step="500" value="8000"><span class="slv" id="sv_well">₹8,000</span></div></td><td class="cm" id="cm_well">8.0</td></tr>
+          <tr><td class="ca">MEP</td><td class="cs" id="cs_mep">90k</td><td class="cc"><div class="slw"><input type="range" id="r_mep" min="500" max="8000" step="250" value="2500"><span class="slv" id="sv_mep">₹2,500</span></div></td><td class="cm" id="cm_mep">22.5</td></tr>
+          <tr><td class="ca">Landscaping</td><td class="cs">15k</td><td class="cc"><div class="slw"><input type="range" id="r_land" min="500" max="5000" step="250" value="2000"><span class="slv" id="sv_land">₹2,000</span></div></td><td class="cm" id="cm_land">3.0</td></tr>
+          <tr><td class="ca">Medical equipment</td><td class="cs">lump</td><td class="cc"><div class="spw"><input type="number" id="s_med" value="25" min="1" max="100" step="1"><span class="u">Cr</span></div></td><td class="cm" id="cm_med">25.0</td></tr>
+          <tr><td class="ca">Pre-operative</td><td class="cs">lump</td><td class="cc"><div class="spw"><input type="number" id="s_preop" value="10" min="0.5" max="30" step="0.5"><span class="u">Cr</span></div></td><td class="cm" id="cm_preop">10.0</td></tr>
+          <tr><td class="ca">Lease premium</td><td class="cs">lump</td><td class="cc"><div class="spw"><input type="number" id="s_lp" value="10" min="0.5" max="30" step="0.5"><span class="u">Cr</span></div></td><td class="cm" id="cm_lp">10.0</td></tr>
+          <tr><td class="ca">Contingency</td><td class="cs">% base</td><td class="cc"><div class="ptw"><input type="number" id="s_cont" value="8" min="0" max="20" step="1"><span class="u">%</span></div></td><td class="cm" id="cm_cont">8.0</td></tr>
+        </table>
+      </div>
+      <div class="zone">
+        <div class="zt">Funding structure</div>
+        <div class="ir"><span class="lb">Debt funding (%)</span><input type="range" id="f_debt" min="40" max="100" step="5" value="50"><span class="vl" id="fv_debt">50%</span></div>
+        <div class="ir"><span class="lb">Interest rate (% p.a.)</span><input type="range" id="f_int" min="8" max="15" step="0.5" value="10.5"><span class="vl" id="fv_int">10.5%</span></div>
+        <div class="ir"><span class="lb">Loan tenure (years)</span><input type="range" id="f_ten" min="10" max="25" step="1" value="15"><span class="vl" id="fv_ten">15 yrs</span></div>
+        <div class="ir"><span class="lb">Moratorium (years)</span><input type="range" id="f_mor" min="1" max="4" step="1" value="2"><span class="vl" id="fv_mor">2 yrs</span></div>
+        <div class="zdiv"></div>
+        <div class="ir"><span class="lb">Annual lease rental (₹ Cr)</span><input type="range" id="f_lr" min="0.5" max="8" step="0.25" value="2.5"><span class="vl" id="fv_lr">2.5</span></div>
+        <div class="ir"><span class="lb">Lease rental escalation (%)</span><input type="range" id="f_le" min="2" max="10" step="1" value="5"><span class="vl" id="fv_le">5%</span></div>
+      </div>
+      <div class="zone">
+        <div class="zt">Revenue assumptions</div>
+        <div class="zst">Clinical</div>
+        <div class="ir"><span class="lb">Clinical patrons (% of rooms)</span><input type="range" id="rv_clinmix" min="10" max="80" step="5" value="40"><span class="vl" id="rvv_clinmix">40%</span></div>
+        <div class="ir"><span class="lb">Daily rate all-incl (₹)</span><input type="range" id="rv_r" min="40000" max="200000" step="5000" value="80000"><span class="vl" id="rvv_r">₹80k</span></div>
+        <div class="ir"><span class="lb">Occupancy Y1 (%)</span><input type="range" id="rv_cy1" min="20" max="70" step="5" value="45"><span class="vl" id="rvv_cy1">45%</span></div>
+        <div class="ir"><span class="lb">Occupancy Y2 (%)</span><input type="range" id="rv_cy2" min="30" max="80" step="5" value="60"><span class="vl" id="rvv_cy2">60%</span></div>
+        <div class="ir"><span class="lb">Occupancy Y3 (%)</span><input type="range" id="rv_cy3" min="40" max="90" step="5" value="70"><span class="vl" id="rvv_cy3">70%</span></div>
+        <div class="ir"><span class="lb">Occupancy steady state (%)</span><input type="range" id="rv_css" min="50" max="95" step="5" value="80"><span class="vl" id="rvv_css">80%</span></div>
+        <div class="ir"><span class="lb">Rate growth (% p.a.)</span><input type="range" id="rv_rg" min="3" max="15" step="1" value="8"><span class="vl" id="rvv_rg">8%</span></div>
+        <div class="zdiv"></div>
+        <div class="zst">Resort / residential</div>
+        <div class="ir"><span class="lb">Residential patrons (% of rooms)</span><input type="range" id="rv_resmix" min="10" max="80" step="5" value="30"><span class="vl" id="rvv_resmix">30%</span></div>
+        <div class="ir"><span class="lb">ADR (₹/night)</span><input type="range" id="rv_adr" min="15000" max="120000" step="2500" value="55000"><span class="vl" id="rvv_adr">₹55k</span></div>
+        <div class="ir"><span class="lb">Occupancy Y1 (%)</span><input type="range" id="rv_oy1" min="20" max="70" step="5" value="50"><span class="vl" id="rvv_oy1">50%</span></div>
+        <div class="ir"><span class="lb">Occupancy steady state (%)</span><input type="range" id="rv_oss" min="40" max="90" step="5" value="75"><span class="vl" id="rvv_oss">75%</span></div>
+        <div class="zdiv"></div>
+        <div class="zst">Wellness</div>
+        <div class="ir"><span class="lb">Session rate (₹)</span><input type="range" id="rv_ws" min="3000" max="25000" step="500" value="12000"><span class="vl" id="rvv_ws">₹12k</span></div>
+        <div class="ir"><span class="lb">Utilisation steady state (%)</span><input type="range" id="rv_wu" min="30" max="90" step="5" value="70"><span class="vl" id="rvv_wu">70%</span></div>
+        <div class="zdiv"></div>
+        <div class="zst">GST impact</div>
+        <div class="ir"><span class="lb">Effective blended GST rate (%)</span><input type="range" id="rv_gst" min="0" max="18" step="1" value="9"><span class="vl" id="rvv_gst">9%</span></div>
+        <div class="gnote">0% = composite exemption · 18% = mixed supply worst case · 9% = two-entity optimised</div>
+      </div>
+      <div class="zone">
+        <div class="zt">Cost assumptions</div>
+        <div class="zst">Payroll (₹ Cr / month)</div>
+        <div class="ir"><span class="lb">Clinical staff</span><input type="range" id="c_cp" min="0.2" max="4" step="0.1" value="1.0"><span class="vl" id="cv_cp">1.00</span></div>
+        <div class="ir"><span class="lb">Hospitality staff</span><input type="range" id="c_hp" min="0.2" max="4" step="0.1" value="0.8"><span class="vl" id="cv_hp">0.80</span></div>
+        <div class="zdiv"></div>
+        <div class="zst">Variable costs</div>
+        <div class="ir"><span class="lb">Consumables (% clin rev)</span><input type="range" id="c_cons" min="10" max="35" step="1" value="22"><span class="vl" id="cv_cons">22%</span></div>
+        <div class="ir"><span class="lb">F&B cost (% F&B rev)</span><input type="range" id="c_fnb" min="20" max="45" step="1" value="32"><span class="vl" id="cv_fnb">32%</span></div>
+        <div class="ir"><span class="lb">Marketing (% revenue)</span><input type="range" id="c_mkt" min="2" max="12" step="1" value="8"><span class="vl" id="cv_mkt">8%</span></div>
+        <div class="ir"><span class="lb">R&M (% revenue)</span><input type="range" id="c_rm" min="1" max="5" step="0.5" value="2.5"><span class="vl" id="cv_rm">2.5%</span></div>
+        <div class="zdiv"></div>
+        <div class="zst">Fixed costs (₹ Cr / month)</div>
+        <div class="ir"><span class="lb">Power & fuel</span><input type="range" id="c_pwr" min="0.1" max="3" step="0.1" value="0.6"><span class="vl" id="cv_pwr">0.60</span></div>
+        <div class="ir"><span class="lb">Admin & general</span><input type="range" id="c_adm" min="0.1" max="2" step="0.05" value="0.35"><span class="vl" id="cv_adm">0.35</span></div>
+        <div class="ir"><span class="lb">Clinical compliance (₹ Cr/yr)</span><input type="range" id="c_comp" min="0.1" max="3" step="0.1" value="0.6"><span class="vl" id="cv_comp">0.60</span></div>
+        <div class="zdiv"></div>
+        <div class="ir"><span class="lb">Opex inflation (% p.a.)</span><input type="range" id="c_inf" min="3" max="10" step="1" value="6"><span class="vl" id="cv_inf">6%</span></div>
+        <div class="zdiv"></div>
+        <div class="zst">Cost rates</div>
+        <div class="ir"><span class="lb">Consumables (% clin rev)</span><input type="range" id="c_cons2" min="10" max="35" step="1" value="22"><span class="vl" id="cv_cons2">22%</span></div>
+        <div class="ir"><span class="lb">F&B cost (% F&B rev)</span><input type="range" id="c_fnb2" min="20" max="45" step="1" value="32"><span class="vl" id="cv_fnb2">32%</span></div>
+        <div class="ir"><span class="lb">GST net impact factor (%)</span><input type="range" id="c_gst2" min="10" max="100" step="5" value="50"><span class="vl" id="cv_gst2">50%</span></div>
+        <div class="zdiv"></div>
+        <div class="zst">Depreciation & tax</div>
+        <div class="ir"><span class="lb">Building SLM life (years)</span><input type="range" id="c_dep1" min="10" max="50" step="5" value="30"><span class="vl" id="cv_dep1">30 yrs</span></div>
+        <div class="ir"><span class="lb">Equipment SLM life (years)</span><input type="range" id="c_dep2" min="5" max="20" step="1" value="10"><span class="vl" id="cv_dep2">10 yrs</span></div>
+        <div class="ir"><span class="lb">Corporate tax rate (%)</span><input type="range" id="c_tax" min="20" max="35" step="0.5" value="25.17"><span class="vl" id="cv_tax">25.2%</span></div>
+      </div>
+    </div>
+    <div class="adv-toggle" onclick="toggleAdv()">
+      <div>
+        <div class="adv-toggle-label">Additional assumptions</div>
+        <div class="adv-toggle-hint">OPD · F&B · Retail · Wellness · Residential occupancy Y2 · Lease escalation</div>
+      </div>
+      <span class="adv-arrow" id="adv-arrow">▼</span>
+    </div>
+    <div class="adv-body" id="adv-body">
+      <div class="adv-grid">
+        <div>
+          <div class="adv-section-title">OPD & Consultations</div>
+          <div class="ir"><span class="lb">Footfall / month Y1</span><input type="range" id="adv_opd_fp" min="10" max="300" step="10" value="100"><span class="vl" id="advv_opd_fp">100</span></div>
+          <div class="ir"><span class="lb">Consultation fee (₹)</span><input type="range" id="adv_opd_fee" min="500" max="8000" step="100" value="2000"><span class="vl" id="advv_opd_fee">₹2,000</span></div>
+          <div class="ir"><span class="lb">Repeat visit rate (%)</span><input type="range" id="adv_opd_rv" min="10" max="70" step="5" value="35"><span class="vl" id="advv_opd_rv">35%</span></div>
+          <div class="ir"><span class="lb">Footfall growth (% p.a.)</span><input type="range" id="adv_opd_gr" min="5" max="40" step="5" value="20"><span class="vl" id="advv_opd_gr">20%</span></div>
+          <div class="adv-section-title" style="margin-top:10px">F&B</div>
+          <div class="ir"><span class="lb">Guest spend / day (₹)</span><input type="range" id="adv_fnb_spend" min="1000" max="15000" step="500" value="5000"><span class="vl" id="advv_fnb_spend">₹5,000</span></div>
+          <div class="ir"><span class="lb">F&B revenue growth (% p.a.)</span><input type="range" id="adv_fnb_gr" min="3" max="15" step="1" value="8"><span class="vl" id="advv_fnb_gr">8%</span></div>
+        </div>
+        <div>
+          <div class="adv-section-title">Retail & Pharmacy</div>
+          <div class="ir"><span class="lb">Clinical guest / stay (₹)</span><input type="range" id="adv_ret_clin" min="2000" max="50000" step="1000" value="10000"><span class="vl" id="advv_ret_clin">₹10,000</span></div>
+          <div class="ir"><span class="lb">Wellness guest / visit (₹)</span><input type="range" id="adv_ret_well" min="500" max="8000" step="200" value="1500"><span class="vl" id="advv_ret_well">₹1,500</span></div>
+          <div class="ir"><span class="lb">Online retail Y1 (₹L/month)</span><input type="range" id="adv_ret_online" min="0" max="20" step="1" value="5"><span class="vl" id="advv_ret_online">₹5L</span></div>
+          <div class="ir"><span class="lb">Retail growth (% p.a.)</span><input type="range" id="adv_ret_gr" min="5" max="30" step="5" value="20"><span class="vl" id="advv_ret_gr">20%</span></div>
+          <div class="adv-section-title" style="margin-top:10px">Wellness</div>
+          <div class="ir"><span class="lb">Sessions / room / day</span><input type="range" id="adv_well_sess" min="2" max="10" step="1" value="5"><span class="vl" id="advv_well_sess">5</span></div>
+          <div class="ir"><span class="lb">Day package rate (₹)</span><input type="range" id="adv_well_pkg" min="10000" max="80000" step="5000" value="35000"><span class="vl" id="advv_well_pkg">₹35k</span></div>
+          <div class="ir"><span class="lb">Day pkg guests / month Y1</span><input type="range" id="adv_well_gst" min="5" max="100" step="5" value="40"><span class="vl" id="advv_well_gst">40</span></div>
+          <div class="ir"><span class="lb">Wellness growth (% p.a.)</span><input type="range" id="adv_well_gr" min="3" max="20" step="1" value="12"><span class="vl" id="advv_well_gr">12%</span></div>
+        </div>
+        <div>
+          <div class="adv-section-title">Residential</div>
+          <div class="ir"><span class="lb">ADR growth rate (% p.a.)</span><input type="range" id="adv_res_adr_gr" min="3" max="15" step="1" value="8"><span class="vl" id="advv_res_adr_gr">8%</span></div>
+          <div class="ir"><span class="lb">Occupancy Y2 (%)</span><input type="range" id="adv_res_oy2" min="30" max="80" step="5" value="62"><span class="vl" id="advv_res_oy2">62%</span></div>
+          <div class="adv-section-title" style="margin-top:10px">Lease</div>
+          <div class="ir"><span class="lb">Rental escalation every (yrs)</span><input type="range" id="adv_lease_trig" min="1" max="5" step="1" value="3"><span class="vl" id="advv_lease_trig">3 yrs</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     TAB 3 — KPI
+══════════════════════════════════════════════════════ -->
+<div class="tab-view" id="view-kpi">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+    <div>
+      <div style="font-size:16px;font-weight:500;color:#fff;margin-bottom:3px">KPI Dashboard</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.3)">Live from model · Move any slider to update</div>
+    </div>
+    <select id="kpi-yr-sel" onchange="renderKPI()" style="background:#152636;border:0.5px solid rgba(255,255,255,.2);border-radius:5px;color:#fff;font-size:11px;padding:6px 12px;cursor:pointer;font-family:inherit;outline:none"></select>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:14px">
+    <input id="kpi-nlp" onkeydown="if(event.key==='Enter')sendKPIQuery()" placeholder="Ask a question about these KPIs..." style="flex:1;background:rgba(255,255,255,.06);border:0.5px solid rgba(255,255,255,.12);border-radius:5px;color:#fff;font-size:12px;padding:8px 14px;font-family:inherit;outline:none"/>
+    <button onclick="sendKPIQuery()" style="background:#0D7A6B;border:none;border-radius:5px;color:#fff;font-size:11px;padding:8px 16px;cursor:pointer;font-family:inherit;white-space:nowrap">Ask</button>
+  </div>
+  <div id="kpi-ans" style="margin-bottom:12px"></div>
+  <div id="kpi-tiles" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     TAB 4 — COMPLIANCE
+══════════════════════════════════════════════════════ -->
+<div class="tab-view" id="view-compliance">
+  <div class="comp-header">
+    <h2>Compliance & Licensing Critical Path</h2>
+    <p>AyurExp · Bangalore · Sequence, timeline, and what each licence gates · Start early — most founders underestimate this</p>
+  </div>
+
+  <div style="background:#E1F5EE;border:1px solid #9FE1CB;border-radius:6px;padding:12px 16px;margin-bottom:20px;font-size:11px;color:#085041;line-height:1.7">
+    <strong>Critical path:</strong> KSPCB CTE must be filed before construction starts. AYUSH licence gates all clinical revenue — 43% of Year 1. BBMP OC is the longest tail item — begin day one of construction. Two-entity structure recommended for GST optimisation before any registration is done.
+  </div>
+
+  <div class="comp-section-hdr">Pre-construction — file before breaking ground</div>
+  <div class="comp-grid">
+    <div class="comp-item">
+      <div class="comp-phase">Pre-construction</div>
+      <div class="comp-main">
+        <h4>KSPCB Consent to Establish (CTE)</h4>
+        <p>Karnataka State Pollution Control Board consent required before any construction activity begins. Apply with site plan, DPR, and environmental impact details. Without this, construction cannot legally start.</p>
+        <div class="gates">Gates: construction start</div>
+      </div>
+      <div class="comp-timeline"><span class="months">4–6</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot critical">Critical path</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">Pre-construction</div>
+      <div class="comp-main">
+        <h4>Entity & GST structure</h4>
+        <p>Two-entity structure recommended — clinical entity (exempt from GST) and hospitality entity (taxable with ITC). Must be incorporated before any asset is created. Fixing structure after the fact is expensive and complex.</p>
+        <div class="gates">Gates: all downstream registrations and contracts</div>
+      </div>
+      <div class="comp-timeline"><span class="months">1–2</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot critical">Do first</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">Pre-construction</div>
+      <div class="comp-main">
+        <h4>Building plan approval — BBMP / BDA</h4>
+        <p>Sanctioned building plan from BBMP or BDA required before construction. For a 15-acre clinical facility, this involves zoning verification, FAR calculations, and health facility classification under master plan.</p>
+        <div class="gates">Gates: construction start, BBMP OC later</div>
+      </div>
+      <div class="comp-timeline"><span class="months">6–12</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot critical">Critical path</span></div>
+    </div>
+  </div>
+
+  <div class="comp-section-hdr">During construction — parallel track</div>
+  <div class="comp-grid">
+    <div class="comp-item">
+      <div class="comp-phase">During construction</div>
+      <div class="comp-main">
+        <h4>AYUSH Hospital Licence</h4>
+        <p>Karnataka AYUSH Department. Requires minimum 10 beds, registered BAMS/MD Ayurveda doctor as medical superintendent, qualified staff ratios, and compliant infrastructure. This is the single most important licence for this project.</p>
+        <div class="gates">Gates: all clinical operations — 43% of Year 1 revenue</div>
+      </div>
+      <div class="comp-timeline"><span class="months">10–12</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot critical">Critical path</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">During construction</div>
+      <div class="comp-main">
+        <h4>BBMP Occupancy Certificate (OC)</h4>
+        <p>Required before any person can occupy or operate from the building. For a project this size, requires completion certificate from licensed architect and BBMP inspection. Start the process on day one of construction — do not wait for fit-out to complete.</p>
+        <div class="gates">Gates: operations start, all other licences</div>
+      </div>
+      <div class="comp-timeline"><span class="months">6–18</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot critical">Longest tail</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">During construction</div>
+      <div class="comp-main">
+        <h4>Biomedical Waste Authorisation</h4>
+        <p>KSPCB authorisation for collection, storage, treatment and disposal of biomedical waste. Mandatory for any clinical facility. Requires waste management plan and tie-up with authorised disposal agency.</p>
+        <div class="gates">Gates: AYUSH licence grant</div>
+      </div>
+      <div class="comp-timeline"><span class="months">2–3</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot important">Important</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">During construction</div>
+      <div class="comp-main">
+        <h4>Clinical Establishment Registration</h4>
+        <p>Under the Clinical Establishments (Registration and Regulation) Act 2010. Apply to District Health Office. Can be done in parallel with AYUSH licence application. Requires facility details and doctor registration.</p>
+        <div class="gates">Gates: clinical operations</div>
+      </div>
+      <div class="comp-timeline"><span class="months">3–6</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot important">Important</span></div>
+    </div>
+  </div>
+
+  <div class="comp-section-hdr">Pre-opening — before first guest</div>
+  <div class="comp-grid">
+    <div class="comp-item">
+      <div class="comp-phase">Pre-opening</div>
+      <div class="comp-main">
+        <h4>KSPCB Consent to Operate (CTO)</h4>
+        <p>Applied after construction completion. KSPCB inspects the facility and grants consent to operate. Separate from CTE — CTE is for construction, CTO is for operations. Required before opening.</p>
+        <div class="gates">Gates: operations start</div>
+      </div>
+      <div class="comp-timeline"><span class="months">2–3</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot important">Important</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">Pre-opening</div>
+      <div class="comp-main">
+        <h4>Fire NOC</h4>
+        <p>Karnataka Fire and Emergency Services. Required for occupancy certificate and operations. Involves fire safety audit of the completed building. For a facility of this size, fire safety systems must be designed into the building from the start.</p>
+        <div class="gates">Gates: occupancy certificate, operations</div>
+      </div>
+      <div class="comp-timeline"><span class="months">2–4</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot important">Important</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">Pre-opening</div>
+      <div class="comp-main">
+        <h4>Drug Licence</h4>
+        <p>Karnataka State Pharmacy Council for in-house pharmacy. Required if the facility dispenses Ayurvedic medicines on-site. A qualified pharmacist (D.Pharm or B.Pharm) must be on staff and registered with the council.</p>
+        <div class="gates">Gates: pharmacy operations and retail sales</div>
+      </div>
+      <div class="comp-timeline"><span class="months">1–2</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot standard">Standard</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">Pre-opening</div>
+      <div class="comp-main">
+        <h4>FSSAI Central Licence</h4>
+        <p>For F&B operations. Central licence required if annual F&B turnover exceeds ₹20 Cr — which it will at these projections. Apply 30 days before commencement of F&B operations.</p>
+        <div class="gates">Gates: F&B operations — ~7% of Year 1 revenue</div>
+      </div>
+      <div class="comp-timeline"><span class="months">1–2</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot standard">Standard</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">Pre-opening</div>
+      <div class="comp-main">
+        <h4>BBMP Trade Licence</h4>
+        <p>Required for commercial operations within BBMP limits. Applied for after obtaining OC. Separate licences may be required for the clinical and hospitality entities if two-entity structure is adopted.</p>
+        <div class="gates">Gates: commercial operations</div>
+      </div>
+      <div class="comp-timeline"><span class="months">1–2</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot standard">Standard</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">Pre-opening</div>
+      <div class="comp-main">
+        <h4>GST Registration</h4>
+        <p>Both entities require separate GST registrations. Clinical entity — AYUSH treatments may be exempt or at 5%. Hospitality entity — 18% with ITC. Bundled package pricing strategy must be locked before registration to align with chosen GST position.</p>
+        <div class="gates">Gates: invoicing, revenue collection</div>
+      </div>
+      <div class="comp-timeline"><span class="months">0.5–1</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot standard">Standard</span></div>
+    </div>
+  </div>
+
+  <div class="comp-section-hdr">Post-opening — within 12 months of operations</div>
+  <div class="comp-grid">
+    <div class="comp-item">
+      <div class="comp-phase">Post-opening</div>
+      <div class="comp-main">
+        <h4>NABH Accreditation</h4>
+        <p>National Accreditation Board for Hospitals. Optional but highly recommended for premium clinical positioning and medical tourism. Requires 6 months of operations before application. Signals quality to both domestic HNI and international guests.</p>
+        <div class="gates">Enables: premium pricing, medical tourism, insurance empanelment</div>
+      </div>
+      <div class="comp-timeline"><span class="months">12–18</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot standard">Recommended</span></div>
+    </div>
+    <div class="comp-item">
+      <div class="comp-phase">Post-opening</div>
+      <div class="comp-main">
+        <h4>HRACC 5-star Classification</h4>
+        <p>Hotel and Restaurant Approval and Classification Committee under Ministry of Tourism. Requires 6 months of operations. Not required to open or operate — but important for the AyurExp premium positioning and international visibility.</p>
+        <div class="gates">Enables: OTA premium listings, international partnerships</div>
+      </div>
+      <div class="comp-timeline"><span class="months">6–12</span><span class="unit">months</span></div>
+      <div class="comp-status"><span class="status-dot standard">Recommended</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     TAB 5 — FUNDS
+══════════════════════════════════════════════════════ -->
+<div class="tab-view" id="view-funds">
+  <div class="funds-header">
+    <h2>Investor & Lender Landscape</h2>
+    <p>AyurExp · Who invests in a project like this, what they look for, and which narrative to use</p>
+  </div>
+
+  <div class="funds-numbers" id="funds-numbers">
+    <div class="fn-card"><div class="num" id="fn-capex">₹200 Cr</div><div class="lbl">Total project cost</div></div>
+    <div class="fn-card"><div class="num" id="fn-dscr">2.88x</div><div class="lbl">DSCR Year 1 ops</div></div>
+    <div class="fn-card"><div class="num" id="fn-fcf">₹33 Cr</div><div class="lbl">FCF Year 1 ops</div></div>
+    <div class="fn-card"><div class="num" id="fn-exit">₹1,800 Cr</div><div class="lbl">Exit at 10x Y10</div></div>
+  </div>
+
+  <div class="funds-grid">
+    <div class="fund-card">
+      <span class="fund-type eq">Equity — PE / Family Office</span>
+      <h3>Growth & Healthcare PE</h3>
+      <p>Funds with healthcare or premium consumer mandates. Looking for category creation plays, not pure hotel investments. This is a clinical wellness platform play — the first mover in a category that does not exist at scale.</p>
+      <div class="fund-cares"><strong>What they care about:</strong> IRR 25-35%, category leadership, exit optionality at 10-14x EBITDA, promoter skin in game</div>
+      <div class="fund-pills">
+        <span class="fund-pill eq">₹100 Cr ticket</span>
+        <span class="fund-pill eq">50% stake</span>
+        <span class="fund-pill eq">5-7 yr horizon</span>
+        <span class="fund-pill eq">Board seat</span>
+      </div>
+    </div>
+    <div class="fund-card">
+      <span class="fund-type eq">Equity — Family Office</span>
+      <h3>Healthcare & Wellness Family Offices</h3>
+      <p>Ultra-HNI family offices with healthcare, Ayurveda, or wellness exposure. More patient capital than PE funds. Comfortable with longer gestation and lower near-term IRR if the asset and brand are right.</p>
+      <div class="fund-cares"><strong>What they care about:</strong> Asset quality, brand building, cash yield from Year 5, aligned promoter vision</div>
+      <div class="fund-pills">
+        <span class="fund-pill eq">Flexible ticket</span>
+        <span class="fund-pill eq">Minority stake</span>
+        <span class="fund-pill eq">Patient capital</span>
+        <span class="fund-pill eq">Value alignment</span>
+      </div>
+    </div>
+    <div class="fund-card debt-card">
+      <span class="fund-type dbt">Debt — Project Finance Bank</span>
+      <h3>HDFC / Axis / Kotak — Project Finance</h3>
+      <p>Private sector banks with project finance desks comfortable with hospitality and healthcare. Leasehold mortgage plus assignment of receivables is a standard security package. DSCR of 2.88x from Year 1 is strongly bankable.</p>
+      <div class="fund-cares"><strong>What they care about:</strong> DSCR above 1.25x, security package, promoter guarantee, AYUSH licence timeline</div>
+      <div class="fund-pills">
+        <span class="fund-pill dbt">₹100 Cr loan</span>
+        <span class="fund-pill dbt">10.5% rate</span>
+        <span class="fund-pill dbt">15 yr tenure</span>
+        <span class="fund-pill dbt">2 yr moratorium</span>
+      </div>
+    </div>
+    <div class="fund-card debt-card">
+      <span class="fund-type dbt">Debt — Development Finance</span>
+      <h3>IFC / DEG / FMO — Impact Lenders</h3>
+      <p>International development finance institutions actively investing in healthcare infrastructure in India. Clinical wellness with preventive health framing qualifies as impact. No personal guarantee requirement, longer tenure, patient on timelines.</p>
+      <div class="fund-cares"><strong>What they care about:</strong> Social impact, environmental standards, governance quality, replicability of the model</div>
+      <div class="fund-pills">
+        <span class="fund-pill dbt">Longer tenure</span>
+        <span class="fund-pill dbt">No promoter PG</span>
+        <span class="fund-pill dbt">Impact framing</span>
+        <span class="fund-pill dbt">ESG compliance</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="funds-narrative">
+    <h3>The narrative that works for each audience</h3>
+    <p><strong>For PE equity:</strong> This is not a hotel. It is the anchor asset of a clinical wellness platform — a category that does not exist at scale in India. Entry at asset value, no goodwill premium. Cash yield from Year 1 operations. Full capital back by Year 5. Exit at 10x EBITDA on ₹160 Cr gives ₹1,600 Cr equity value. The Apple pricing psychology — ₹80,000 per day, no discounting, ever — creates a moat that a standard wellness resort cannot replicate.</p>
+    <p><strong>For family office:</strong> A 15-acre leasehold in Bangalore with a 30-year tenure. Hard asset. Premium clinical Ayurveda brand. ₹80,000 per day positions this above any existing Ayurveda offering in India. You are not building a hotel — you are building the definitive Ayurveda experience for India's HNI and the international wellness traveller.</p>
+    <p><strong>For project finance bank:</strong> DSCR of 2.88x from the first operating year — 130% above the 1.25x minimum. FCF of ₹33 Cr positive from Year 1. Leasehold mortgage plus assignment of receivables plus DSRA. The AYUSH licence is the critical path — we have mapped the timeline and it is included in the moratorium period. The project does not require clinical revenue to service debt in Years 1 and 2.</p>
+    <p><strong>For development finance:</strong> Clinical Ayurveda at scale is preventive healthcare. Every guest who completes a programme reduces long-term healthcare burden. The 15-acre campus with therapeutic landscaping, traditional treatment protocols, and integrative medicine creates measurable health outcomes. This is impact investment with a strong financial return.</p>
+  </div>
+</div>
+
+
+<!-- CFO Agent Toggle -->
+<button class="agent-toggle" onclick="toggleAgent()" id="agent-toggle-btn">CFO Agent</button>
+
+<!-- CFO Agent Side Panel -->
+<div class="agent-panel" id="agent-panel">
+  <div class="agent-hdr">
+    <div class="agent-hdr-left">
+      <h3>CFO Agent</h3>
+      <p>Financial · Compliance · Strategy — model-aware</p>
+    </div>
+    <button class="agent-close" onclick="toggleAgent()">✕</button>
+  </div>
+  <div class="agent-status" id="agent-status">● Live — reading current model values</div>
+  <div class="agent-msgs" id="agent-msgs">
+    <div class="agent-msg assistant">
+      <div class="agent-bubble">
+        I am your CFO Agent for this clinical Ayurveda resort project. I can see your current model — ₹<span id="ag-capex">—</span> Cr capex, <span id="ag-debt">—</span>% debt, ₹<span id="ag-rate">—</span> daily rate.<br><br>
+        Ask me anything about the financials, compliance requirements, licensing timelines, GST structure, debt strategy, or what to prioritise. I can also update the model — just tell me what to change.
+      </div>
+      <div class="agent-msg-time">CFO Agent</div>
+    </div>
+  </div>
+  <div class="agent-input-area">
+  
+    <div class="agent-input-row">
+      <textarea class="agent-input" id="agent-input" placeholder="Ask anything — financial, compliance, strategy..." rows="1"></textarea>
+      <button class="agent-send" id="agent-send" onclick="sendAgent()">Send</button>
+    </div>
+    <button class="agent-clear" onclick="clearAgentChat()">Clear conversation</button>
+  </div>
+</div>
+
+
+<div class="narr-overlay" id="narr-overlay" onclick="if(event.target===this)closeNarrative()">
+  <div class="narr-modal" id="narr-modal">
+    <div class="narr-modal-hdr">
+      <h3 id="narr-modal-title">Equity narrative</h3>
+      <div class="narr-modal-hdr-btns">
+        <button class="narr-tab-btn eq active" id="narr-tab-eq" onclick="switchNarr('eq')">Equity</button>
+        <button class="narr-tab-btn" id="narr-tab-dbt" onclick="switchNarr('dbt')">Debt</button>
+        <button class="narr-export" onclick="exportNarrPDF()">Export PDF</button>
+        <button class="narr-close" onclick="closeNarrative()">✕ Close</button>
+      </div>
+    </div>
+    <div class="narr-content" id="narr-content"></div>
+  </div>
+</div>
+
+</body>
+</html>
+<div class="narr-overlay" id="narr-overlay" onclick="if(event.target===this)closeNarrative()">
+  <div class="narr-modal" id="narr-modal">
+    <div class="narr-modal-hdr">
+      <h3 id="narr-modal-title">Equity narrative</h3>
+      <div class="narr-modal-hdr-btns">
+        <button class="narr-tab-btn eq active" id="narr-tab-eq" onclick="switchNarr('eq')">Equity</button>
+        <button class="narr-tab-btn" id="narr-tab-dbt" onclick="switchNarr('dbt')">Debt</button>
+        <button class="narr-export" onclick="exportNarrPDF()">Export PDF</button>
+        <button class="narr-close" onclick="closeNarrative()">✕ Close</button>
+      </div>
+    </div>
+    <div class="narr-content" id="narr-content"></div>
+  </div>
+</div>
+
+</body>
+</html>
+<div class="cmp-overlay" id="cmp-overlay">
+  <div class="cmp-hdr">
+    <h2>Scenario Comparison</h2>
+    <div class="cmp-hdr-right">
+      <button class="cmp-export" onclick="exportComparison()">Export to Excel</button>
+      <button class="cmp-close" onclick="closeCompare()">✕ Close</button>
+    </div>
+  </div>
+  <div class="cmp-body">
+    <!-- Scenario 1 -->
+    <div class="cmp-col" id="cmp-col-0">
+      <div class="cmp-col-hdr">
+        <div class="cmp-col-name"><input id="cmp-name-0" value="Scenario 1 — Base" /></div>
+        <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:4px">Current dashboard values — update sliders to change</div>
+      </div>
+      <div class="cmp-scroll" id="cmp-data-0"></div>
+    </div>
+    <!-- Scenario 2 -->
+    <div class="cmp-col" id="cmp-col-1">
+      <div class="cmp-col-hdr">
+        <div class="cmp-col-name"><input id="cmp-name-1" value="Scenario 2" /></div>
+        <div class="cmp-nlp-wrap">
+          <input class="cmp-nlp-input" id="cmp-nlp-1" placeholder="e.g. debt 30% and daily rate 60000" onkeydown="if(event.key==='Enter')runScenarioNLP(1)" />
+          <button class="cmp-nlp-btn" id="cmp-btn-1" onclick="runScenarioNLP(1)">Apply</button>
+          <button class="cmp-reset" onclick="resetScenario(1)">Reset</button>
+        </div>
+        <div class="cmp-status" id="cmp-status-1"></div>
+      </div>
+      <div class="cmp-scroll" id="cmp-data-1"><div class="cmp-empty">Type a scenario above and click Apply<br><span style="font-size:10px">e.g. "debt 30%" · "occupancy 40%" · "employee cost up 2%"</span></div></div>
+    </div>
+    <!-- Scenario 3 -->
+    <div class="cmp-col" id="cmp-col-2">
+      <div class="cmp-col-hdr">
+        <div class="cmp-col-name"><input id="cmp-name-2" value="Scenario 3" /></div>
+        <div class="cmp-nlp-wrap">
+          <input class="cmp-nlp-input" id="cmp-nlp-2" placeholder="e.g. occupancy drops to 30% or rooms 150" onkeydown="if(event.key==='Enter')runScenarioNLP(2)" />
+          <button class="cmp-nlp-btn" id="cmp-btn-2" onclick="runScenarioNLP(2)">Apply</button>
+          <button class="cmp-reset" onclick="resetScenario(2)">Reset</button>
+        </div>
+        <div class="cmp-status" id="cmp-status-2"></div>
+      </div>
+      <div class="cmp-scroll" id="cmp-data-2"><div class="cmp-empty">Type a scenario above and click Apply<br><span style="font-size:10px">e.g. "interest 12%" · "rooms 150" · "clinical rate 70000"</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="drill-overlay" id="drill-overlay" onclick="if(event.target===this)closeDrillCard()">
+  <div class="drill-card">
+    <div class="drill-card-hdr">
+      <div><h3 id="drill-card-title">—</h3><p id="drill-card-sub">—</p></div>
+      <div class="drill-card-btns">
+        <button class="drill-export" onclick="exportDrillXlsx()">Export Excel</button>
+        <button class="drill-close-btn" onclick="closeDrillCard()">✕ Close</button>
+      </div>
+    </div>
+    <div class="drill-body">
+      <div class="drill-narr" id="drill-narr"></div>
+      <div class="drill-tbl" id="drill-tbl"></div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+
+function switchTab(t){
+  ['intro','model','kpi','compliance','funds'].forEach(id=>{
+    const tb=document.getElementById('tab-'+id);
+    const vw=document.getElementById('view-'+id);
+    if(tb) tb.classList.toggle('active',id===t);
+    if(vw) vw.classList.toggle('active',id===t);
+  });
+  const tools=document.getElementById('model-tools');
+  if(tools) tools.style.display=t==='model'?'flex':'none';
+  const ab=document.getElementById('adv-body'),aa=document.getElementById('adv-arrow');
+  if(ab) ab.classList.remove('open');
+  if(aa) aa.classList.remove('open');
+  if(t==='intro'){_esRunning=true;_esIdx=0;clearInterval(_esTimer);setTimeout(esNext,300);}
+  else{_esRunning=false;clearInterval(_esTimer);}
+  if(t==='kpi') renderKPI();
+  if(t==='funds') renderFundsNumbers();
+  if(t==='model'){renderAdv();render();}
+}
+const ES_STAGES=[
+  {label:'Structure & Strategy',q:'Before the first number is built, the right legal and operating foundation has to be in place. Entity structure, shareholding, registrations, the operating framework \u2014 done right from day one.',pills:['Entity structure','Shareholding','Registrations','Operating framework']},
+  {label:'Model & Fundraise',q:'Building the financial model is one part. Preparing the founder for the conversation with a lender or an investor is the other. I maintain an active network in the fund ecosystem and have facilitated those introductions.',pills:['Financial model','Capital structure','Equity narrative','Debt narrative','Fund network']},
+  {label:'Build & Execute',q:'The CFO role does not pause during construction. Capex monitoring, drawdown management, vendor payment structure, pre-opening cost control \u2014 making sure the financial architecture survives contact with reality.',pills:['Capex monitoring','Drawdown mgmt','Pre-opening costs','Vendor structure']},
+  {label:'Compliance & Risk',q:'Licences, tax structure, regulatory filings. For a clinical project the AYUSH licence gates revenue, GST on bundled packages is a real risk, BBMP OC is the longest tail item. Most founders underestimate this layer.',pills:['Licensing pathway','GST structure','Regulatory filings','Risk mapping']},
+  {label:'Track & Control',q:'Monthly MIS, actuals versus budget, cash flow monitoring, DSCR tracking. The discipline that keeps lenders comfortable and founders informed. Built this from scratch and ran it through multiple funding rounds.',pills:['MIS','Budget vs actuals','Cash flow','DSCR monitoring']},
+  {label:'Report & Govern',q:'Board packs, investor reporting, lender compliance certificates. The communication layer that maintains confidence \u2014 especially when the news is mixed. Experience from early stage through to a successful exit.',pills:['Board reporting','Investor updates','Lender certificates','Exit readiness']},
+];
+let _esIdx=0,_esCharIdx=0,_esTimer=null,_esRunning=true;
+function esSetActive(idx){
+  for(let i=0;i<6;i++){
+    const on=i===idx;
+    const g=document.getElementById('esn'+i);
+    const ta=document.getElementById('esnt'+i+'a');
+    const tb=document.getElementById('esnt'+i+'b');
+    if(g){g.classList.toggle('active',on);const c=g.querySelector('circle');if(c){c.setAttribute('fill',on?'#1D9E75':'#E1F5EE');c.setAttribute('stroke',on?'#085041':'#9FE1CB');}}
+    if(ta) ta.setAttribute('fill',on?'#fff':'#085041');
+    if(tb) tb.setAttribute('fill',on?'#fff':'#085041');
+  }
+}
+function esTypeQ(text,done){
+  const el=document.getElementById('es-q-text');
+  if(!el) return;
+  el.textContent='';_esCharIdx=0;clearInterval(_esTimer);
+  _esTimer=setInterval(()=>{
+    if(!_esRunning) return;
+    if(_esCharIdx<=text.length){el.textContent=text.slice(0,_esCharIdx++);}
+    else{clearInterval(_esTimer);setTimeout(()=>{if(_esRunning)done();},2600);}
+  },22);
+}
+function esNext(){
+  if(!_esRunning) return;
+  const s=ES_STAGES[_esIdx];
+  const lbl=document.getElementById('es-stage-lbl');
+  const pills=document.getElementById('es-pills');
+  if(lbl) lbl.textContent=s.label;
+  if(pills) pills.innerHTML='';
+  esSetActive(_esIdx);
+  esTypeQ(s.q,()=>{
+    if(pills) pills.innerHTML=(s.pills||[]).map(p=>`<span class="pocket-pill">${p}</span>`).join('');
+    setTimeout(()=>{_esIdx=(_esIdx+1)%ES_STAGES.length;esNext();},500);
+  });
+}
+let _kpiYr=0;
+function renderKPI(){
+  const m=calcModel();
+  const ops=m.years.filter(y=>y.phase!=='Construction');
+  const sel=document.getElementById('kpi-yr-sel');
+  if(sel&&sel.options.length===0){ops.forEach((y,i)=>{const o=document.createElement('option');o.value=i;o.textContent='Ops Year '+(i+1)+' (Y'+y.yr+')';sel.appendChild(o);});}
+  if(sel) _kpiYr=+sel.value;
+  if(!ops.length) return;
+  const y=ops[Math.min(_kpiYr,ops.length-1)];
+  const dscr=y.dscr||0,ebitdaPct=y.rev>0?(y.ebitda/y.rev)*100:0;
+  const colours={g:'#3CC9A0',a:'#E8B55A',r:'#F07060'};
+  function card(col,label,unit,badge,bcls){return{col,label,unit,badge,bcls};}
+  const cards=[
+    card('rev','Revenue per available bed','₹ / bed / day','From model','g'),
+    card('rev','Revenue per available room','₹ / room / night','From model','g'),
+    card('rev','Average clinical programme value','₹ per programme','From model','g'),
+    card('rev','Revenue per employee','₹ per employee per year','From model','g'),
+    card('rev','Wellness revenue per therapy room','₹ per room per year','From model','g'),
+    card('cost','Cost per occupied bed','₹ / bed / day','From model','g'),
+    card('cost','Consumables as % of clinical revenue','% of clinical revenue','From model','g'),
+    card('cost','Payroll as % of total revenue','% of total revenue','From model','g'),
+    card('cost','GST effective rate','% of total revenue','From model','g'),
+    card('cost','Customer acquisition cost','₹ per new guest','From model','g'),
+    card('ops','Clinical bed occupancy',n('rv_cy1')+'% of target '+n('rv_css')+'%',n('rv_cy1')>=n('rv_css')?'At target':n('rv_cy1')>=50?'Ramping':'Early',n('rv_cy1')>=n('rv_css')?'g':n('rv_cy1')>=50?'a':'r'),
+    card('ops','Therapy room utilisation',n('rv_wu')+'% utilisation',n('rv_wu')>=70?'At target':n('rv_wu')>=55?'Building':'Low',n('rv_wu')>=70?'g':n('rv_wu')>=55?'a':'r'),
+    card('ops','Debt service coverage ratio','x (minimum 1.25x)',dscr>=2?'Strong':dscr>=1.25?'Bankable':'Below',dscr>=1.25?'g':'r'),
+    card('ops','EBITDA margin','% of revenue',ebitdaPct>=45?'Strong':ebitdaPct>=30?'Good':'Low',ebitdaPct>=45?'g':ebitdaPct>=30?'a':'r'),
+  ];
+  const licences=[['AYUSH hospital licence','g','Current'],['KSPCB consent to operate','g','Current'],['BBMP trade licence','a','Due in 45 days'],['FSSAI licence','g','Current'],['Fire NOC','r','Renewal overdue']];
+  const tilesEl=document.getElementById('kpi-tiles');
+  if(!tilesEl) return;
+  tilesEl.innerHTML=['rev','cost','ops'].map(col=>{
+    const cc=cards.filter(c=>c.col===col);
+    const lbl={rev:'Revenue KPIs',cost:'Cost KPIs',ops:'Ops KPIs'}[col];
+    return `<div><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid rgba(255,255,255,.08)">${lbl}</div>
+    ${cc.map(c=>`<div class="kpi-tile"><div class="kpi-lbl">${c.label}</div><div style="font-size:10px;color:rgba(255,255,255,.25);margin-bottom:6px">${c.unit}</div><div class="kpi-meta"><span class="kpi-vs ${c.bcls}">${c.badge}</span></div></div>`).join('')}
+    ${col==='ops'?`<div class="kpi-tile"><div style="font-size:9px;color:rgba(255,255,255,.35);margin-bottom:8px">Licence compliance</div>${licences.map(([l,c,s])=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:0.5px solid rgba(255,255,255,.05)"><span style="font-size:10px;color:rgba(255,255,255,.5)">${l}</span><div style="display:flex;align-items:center;gap:6px"><span style="font-size:9px;color:rgba(255,255,255,.3)">${s}</span><div style="width:8px;height:8px;border-radius:50%;background:${colours[c]}"></div></div></div>`).join('')}</div>`:''}
+    </div>`;
+  }).join('');
+}
+async function sendKPIQuery(){
+  const inp=document.getElementById('kpi-nlp');
+  if(!inp||!inp.value.trim()) return;
+  const q=inp.value.trim();inp.value='';
+  const ans=document.getElementById('kpi-ans');
+  if(ans) ans.innerHTML='<div style="font-size:11px;color:rgba(255,255,255,.4)">Thinking...</div>';
+  try{
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:'You are Pocket CFO answering a KPI question about AyurExp clinical Ayurveda experience centre. Be specific, short, bulleted.',messages:[{role:'user',content:getModelSnapshot()+'\nKPI question: '+q}]})});
+    const data=await res.json();const raw=data.content?.[0]?.text||'';
+    const applied=applyAgentChanges(raw);
+    if(ans) ans.innerHTML=`<div style="background:#152636;border:0.5px solid rgba(255,255,255,.1);border-radius:6px;padding:12px 14px;font-size:11px;color:rgba(255,255,255,.8);line-height:1.6;position:relative"><button onclick="document.getElementById('kpi-ans').innerHTML=''" style="position:absolute;top:8px;right:8px;background:rgba(255,255,255,.1);border:none;border-radius:3px;color:rgba(255,255,255,.5);font-size:10px;padding:2px 8px;cursor:pointer">✕</button>${formatAgentResponse(raw)}${applied.length?`<div style="font-size:10px;color:#3CC9A0;margin-top:6px">Updated: ${applied.join(' · ')}</div>`:''}</div>`;
+    if(applied.length) renderKPI();
+  }catch(e){if(ans)ans.innerHTML='';}
+}
+function renderFundsNumbers(){
+  const m=calcModel(),cx=getCapex();
+  const ops=m.years.filter(y=>y.phase!=='Construction');
+  const y1=ops[0],y5=ops[4]||ops[ops.length-1];
+  const ebitda10=y5?y5.ebitda*Math.pow(1.06,3):0;
+  const remDebt=Math.max(0,m.loan-m.annPrin*8);
+  const exit10=Math.round(ebitda10*10-remDebt);
+  const el=id=>document.getElementById(id);
+  if(el('fn-capex')) el('fn-capex').textContent='₹'+f1(cx.total)+' Cr';
+  if(el('fn-dscr'))  el('fn-dscr').textContent=y1&&y1.dscr?y1.dscr.toFixed(2)+'x':'—';
+  if(el('fn-fcf'))   el('fn-fcf').textContent=y1?'₹'+f1(y1.fcf)+' Cr':'—';
+  if(el('fn-exit'))  el('fn-exit').textContent=exit10>0?'₹'+Math.round(exit10)+' Cr':'—';
+}
+let _drillExportData=null;
+function closeDrillCard(){document.getElementById('drill-overlay').classList.remove('open');}
+function narr(items){return items.map(([key,val,eq])=>`<div class="drill-narr-item"><div class="drill-narr-key">${key}</div><div class="drill-narr-eq">${val} <em>${eq}</em></div></div>`).join('');}
+function tbl(headers,rows,yrIdx){
+  const ths=headers.map((h,i)=>`<th${i>0?' style="text-align:right"':''}>${h}</th>`).join('');
+  const trs=rows.map(r=>{
+    if(r._sec) return `<tr class="dr-sec"><td colspan="${headers.length}">${r._sec}</td></tr>`;
+    const cls=r._tot?'dr-tot':r._hi?'dr-hi':'';
+    const cells=r.cells.map((c,i)=>{
+      if(i===0&&r._drill) return `<td><span class="drillable" data-drill="${r._drill}" data-yr="${yrIdx||0}">${c}</span></td>`;
+      return `<td${i>0?' style="text-align:right"':''}>${c}</td>`;
+    }).join('');
+    return `<tr class="${cls}">${cells}</tr>`;
+  }).join('');
+  return `<table><thead><tr>${ths}</tr></thead><tbody>${trs}</tbody></table>`;
+}
+function exportDrillXlsx(){
+  if(!_drillExportData||typeof XLSX==='undefined') return;
+  const tblEl=document.querySelector('#drill-tbl table');if(!tblEl) return;
+  const ws=XLSX.utils.table_to_sheet(tblEl);const wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,ws,'Drill');
+  XLSX.writeFile(wb,'AyurExp_'+_drillExportData.key+'_'+new Date().toISOString().slice(0,10)+'.xlsx');
+}
+
+
+let activeCard=null;
+const g=id=>document.getElementById(id);
+const n=id=>{const el=g(id);return el?+el.value:0;};
+const f2=v=>v.toFixed(2);
+const f1=v=>v.toFixed(1);
+const fp=v=>(v*100).toFixed(1)+'%';
+const fmt=v=>v>=0?f1(v):'('+f1(Math.abs(v))+')';
+const fmtN=v=>v.toLocaleString('en-IN');
+
+function getCapex(){
+  const bua=n('p_bua'),rooms=n('p_rooms');
+  const roomSz=n('a_roomsz')||400;
+  const commonA=n('a_common')||8000,clnfA=n('a_clin')||4000,wellA=n('a_well')||3500,landA=n('a_land')||8000;
+  const civil=bua*n('r_civil')/1e7;
+  const room=rooms*roomSz*n('r_room')/1e7;
+  const common=commonA*n('r_common')/1e7;
+  const clnf=clnfA*n('r_clnf')/1e7;
+  const well=wellA*n('r_well')/1e7;
+  const mep=bua*n('r_mep')/1e7;
+  const land=landA*n('r_land')/1e7;
+  const med=n('s_med'),preop=n('s_preop'),lp=n('s_lp');
+  const base=civil+room+common+clnf+well+mep+land+med+preop+lp;
+  const cont=base*n('s_cont')/100;
+  const total=base+cont;
+  const xfmls={
+    civil:`=${bua}*${n('r_civil')}/10000000`,
+    room:`=${rooms}*${roomSz}*${n('r_room')}/10000000`,
+    common:`=${commonA}*${n('r_common')}/10000000`,
+    clnf:`=${clnfA}*${n('r_clnf')}/10000000`,
+    well:`=${wellA}*${n('r_well')}/10000000`,
+    mep:`=${bua}*${n('r_mep')}/10000000`,
+    land:`=${landA}*${n('r_land')}/10000000`,
+    cont:`=${base.toFixed(6)}*${n('s_cont')/100}`,
+    total:`=${total.toFixed(6)}`
+  };
+  return{civil,room,common,clnf,well,mep,land,med,preop,lp,cont,base,total,xfmls};
+}
+
+function calcModel(){
+  const cx=getCapex();
+  const rooms=n('p_rooms'),treat=n('p_treat');
+  const clinMix=(n('rv_clinmix')||40)/100;
+  const resMix=(n('rv_resmix')||30)/100;
+  const clinBeds=Math.round(rooms*clinMix);
+  const resRooms=Math.round(rooms*resMix);
+  const debtPct=n('f_debt')/100,intRate=n('f_int')/100;
+  const tenure=n('f_ten'),morat=n('f_mor');
+  const lRent=n('f_lr'),lEsc=n('f_le')/100;
+  const rate=n('rv_r'),rg=n('rv_rg')/100;
+  const cy=[n('rv_cy1')/100,n('rv_cy2')/100,n('rv_cy3')/100,n('rv_css')/100,n('rv_css')/100,n('rv_css')/100,n('rv_css')/100,n('rv_css')/100];
+  const adr=n('rv_adr'),oy1=n('rv_oy1')/100,oss=n('rv_oss')/100;
+  const oy2=(n('adv_res_oy2')||55)/100;
+  const oc=[oy1,oy2,oss,oss,oss,oss,oss,oss];
+  const wu=n('rv_wu')/100,ws=n('rv_ws'),gst=n('rv_gst')/100;
+  const cp=n('c_cp'),hp=n('c_hp'),cons=(n('c_cons2')||22)/100,fnbPct=(n('c_fnb2')||32)/100;
+  const mkt=n('c_mkt')/100,rm=n('c_rm')/100,pwr=n('c_pwr'),adm=n('c_adm');
+  const comp=n('c_comp'),inf=n('c_inf')/100;
+  const gstFactor=(n('c_gst2')||25)/100;
+  const dep1=n('c_dep1')||30,dep2=n('c_dep2')||10;
+  const taxRate=(n('c_tax')||25.17)/100;
+  const dd1=(n('d_dd1')||45)/100,dd2=1-dd1;
+  const opdFp=n('adv_opd_fp')||60,opdFee=n('adv_opd_fee')||1200;
+  const opdRv=1+(n('adv_opd_rv')||35)/100,opdGr=(n('adv_opd_gr')||20)/100;
+  const fnbSpend=n('adv_fnb_spend')||2500,fnbGr=(n('adv_fnb_gr')||8)/100;
+  const retClin=n('adv_ret_clin')||4500,retWell=n('adv_ret_well')||800;
+  const retOnline=n('adv_ret_online')||2,retGr=(n('adv_ret_gr')||15)/100;
+  const wellSess=n('adv_well_sess')||4,wellPkg=n('adv_well_pkg')||18000;
+  const wellGsts=n('adv_well_gst')||20,wellGr=(n('adv_well_gr')||10)/100;
+  const resAdrGr=(n('adv_res_adr_gr')||7)/100;
+  const leaseTrig=n('adv_lease_trig')||3;
+  const loan=cx.total*debtPct,equity=cx.total-loan;
+  const repayYrs=Math.max(1,tenure-morat),annPrin=loan/repayYrs;
+  const years=[];
+  for(let i=0;i<10;i++){
+    const oi=i-morat,isConst=i<morat;
+    if(isConst){
+      const ob=i===0?loan*dd1:loan,iy=ob*intRate;
+      const constFml={clinRev:'n/a',resRev:'n/a',wellRev:'n/a',fnbRev:'n/a',retRev:'n/a',opdRev:'n/a',totalRev:'n/a',payroll:'n/a',consAmt:'n/a',fnbCost:'n/a',mktCost:'n/a',rmCost:'n/a',pwrAmt:'n/a',admAmt:'n/a',compAmt:'n/a',gstCost:'n/a',totalOpex:'n/a',ebitda:'n/a',margin:'n/a',lease:'n/a',ebitdaAL:'n/a',ds:'Interest only — moratorium period',dscr:'n/a',fcf:'n/a'};
+      years.push({yr:i+1,label:'Y'+(i+1),phase:'Construction',openBal:ob,drawdown:loan*(i===0?dd1:dd2),intYr:iy,prinYr:0,ds:iy,ebitda:0,ebitdaAL:0,margin:0,dscr:null,fcf:-iy,depBldg:0,depEquip:0,depTotal:0,ebit:0,ebt:0,taxPaid:0,pat:0,rev:0,clinRev:0,resRev:0,wellRev:0,fnbRev:0,retRev:0,opdRev:0,opex:0,payroll:0,consAmt:0,fnbCost:0,mktCost:0,rmCost:0,pwrAmt:0,admAmt:0,compAmt:0,gstCost:0,lease:0,closBal:loan,fmls:constFml});
+    } else {
+      const infF=Math.pow(1+inf,oi);
+      const r=rate*Math.pow(1+rg,oi);
+      const clinRev=clinBeds*cy[oi]*365*r/1e7;
+      const resRev=resRooms*oc[oi]*365*adr*Math.pow(1+resAdrGr,oi)/1e7;
+      const wellRev=(treat*wellSess*wu*365*ws+wellGsts*12*wellPkg)/1e7*Math.pow(1+wellGr,oi);
+      const fnbRev=resRooms*oc[oi]*fnbSpend*365/1e7*Math.pow(1+fnbGr,oi);
+      const retRev=(clinBeds*cy[oi]*(365/10)*retClin+wellGsts*12*retWell+retOnline*12)/1e7*Math.pow(1+retGr,oi);
+      const opdRev=opdFp*opdRv*12*opdFee/1e7*Math.pow(1+opdGr,oi);
+      const totalRev=clinRev+resRev+wellRev+fnbRev+retRev+opdRev;
+      const gstCost=totalRev*gst*gstFactor;
+      const payroll=(cp+hp)*12*infF;
+      const consAmt=clinRev*cons,fnbCost=fnbRev*fnbPct;
+      const mktCost=totalRev*mkt,rmCost=totalRev*rm;
+      const pwrAmt=pwr*12*infF,admAmt=adm*12*infF,compAmt=comp*infF;
+      const totalOpex=payroll+consAmt+fnbCost+mktCost+rmCost+pwrAmt+admAmt+compAmt+gstCost;
+      const lease=lRent*Math.pow(1+lEsc,Math.floor(oi/3));
+      const ebitda=totalRev-totalOpex,ebitdaAL=ebitda-lease;
+      const margin=totalRev>0?ebitda/totalRev:0;
+      const ob=Math.max(0,loan-annPrin*oi),iy=ob*intRate,ds=iy+annPrin;
+      const dscr=ds>0?ebitda/ds:0,closBal=Math.max(0,ob-annPrin);
+      // Depreciation - SLM, non-cash
+      const depBldg=cx.total*0.7/dep1;
+      const depEquip=cx.total*0.2/dep2;
+      const depTotal=depBldg+depEquip;
+      const ebitdaAL2=ebitda-lease;
+      const ebit=ebitdaAL2-depTotal;
+      const ebt=ebit-iy;
+      const taxPaid=Math.max(0,ebt>0?ebt*taxRate:0);
+      const pat=ebt-taxPaid;
+      const cyPct=(cy[oi]*100).toFixed(0),ocPct=(oc[oi]*100).toFixed(0);
+      const infPct=infF.toFixed(3),escalF=(Math.pow(1+lEsc,Math.floor(oi/3))).toFixed(3);
+      const xfmls={
+          openBal:`=${ob.toFixed(6)}`,
+          drawdown:`=0`,
+          intYr:`=${ob.toFixed(6)}*${intRate}`,
+          prinYr:`=${loan.toFixed(6)}/${repayYrs}`,
+          closBal:`=${Math.max(0,ob-annPrin).toFixed(6)}`,
+          clinRev:`=${clinBeds}*${cy[oi]}*365*${(rate*Math.pow(1+rg,oi)).toFixed(2)}/10000000`,
+          resRev:`=${resRooms}*${oc[oi]}*365*${(adr*Math.pow(1.07,oi)).toFixed(2)}/10000000`,
+          wellRev:`=${treat}*4*${wu}*365*${ws}/10000000*${Math.pow(1.10,oi).toFixed(6)}`,
+          fnbRev:`=${resRooms}*${oc[oi]}*365*2500/10000000*${Math.pow(1.08,oi).toFixed(6)}`,
+          retRev:`=${clinBeds}*${cy[oi]}*(365/10)*4500/10000000*${Math.pow(1.15,oi).toFixed(6)}`,
+          opdRev:`=60*1.35*12*1200/10000000*${Math.pow(1.20,oi).toFixed(6)}`,
+          totalRev:`=${totalRev.toFixed(6)}`,
+          payroll:`=(${cp}+${hp})*12*${infF.toFixed(6)}`,
+          consAmt:`=${clinRev.toFixed(6)}*${cons}`,
+          fnbCost:`=${fnbRev.toFixed(6)}*${fnbPct}`,
+          mktCost:`=${totalRev.toFixed(6)}*${mkt}`,
+          rmCost:`=${totalRev.toFixed(6)}*${rm}`,
+          pwrAmt:`=${pwr}*12*${infF.toFixed(6)}`,
+          admAmt:`=${adm}*12*${infF.toFixed(6)}`,
+          compAmt:`=${comp}*${infF.toFixed(6)}`,
+          gstCost:`=${totalRev.toFixed(6)}*${gst}*0.25`,
+          totalOpex:`=${totalOpex.toFixed(6)}`,
+          ebitda:`=${totalRev.toFixed(6)}-${totalOpex.toFixed(6)}`,
+          margin:`=${ebitda.toFixed(6)}/${totalRev.toFixed(6)}`,
+          lease:`=${lRent}*${Math.pow(1+lEsc,Math.floor(oi/3)).toFixed(6)}`,
+          ebitdaAL:`=${ebitda.toFixed(6)}-${lease.toFixed(6)}`,
+          depBldg:`=${cx.total.toFixed(6)}*0.7/${dep1}`,
+          depEquip:`=${cx.total.toFixed(6)}*0.2/${dep2}`,
+          depTotal:`=${depBldg.toFixed(6)}+${depEquip.toFixed(6)}`,
+          ebit:`=${ebitdaAL2.toFixed(6)}-${depTotal.toFixed(6)}`,
+          interest:`=${iy.toFixed(6)}`,
+          ebt:`=${ebit.toFixed(6)}-${iy.toFixed(6)}`,
+          taxPaid:`=${Math.max(0,ebt>0?ebt*taxRate:0).toFixed(6)}`,
+          pat:`=${ebt.toFixed(6)}-${taxPaid.toFixed(6)}`,
+          ds:`=${iy.toFixed(6)}+${annPrin.toFixed(6)}`,
+          dscr:`=${ebitda.toFixed(6)}/${ds.toFixed(6)}`,
+          fcf:`=${ebitdaAL.toFixed(6)}-${ds.toFixed(6)}`
+        };
+      years.push({yr:i+1,label:'Y'+(i+1),phase:'Ops Y'+(oi+1),openBal:ob,drawdown:0,intYr:iy,prinYr:annPrin,ds,ebitda,ebitdaAL,margin,dscr,fcf:ebitdaAL-ds,depBldg,depEquip,depTotal,ebit,ebt,taxPaid,pat,rev:totalRev,clinRev,resRev,wellRev,fnbRev,retRev,opdRev,opex:totalOpex,payroll,consAmt,fnbCost,mktCost,rmCost,pwrAmt,admAmt,compAmt,gstCost,lease,closBal,xfmls
+      });
+    }
+  }
+  return{cx,loan,equity,annPrin,years,rooms,clinBeds,resRooms};
+}
+
+function dcls(v){return v===null?'':v>=1.25?'g':v>=0.80?'w':'r'}
+
+function mkRow(lbl,vals,cls=''){
+  const cells=vals.map(v=>`<td>${v}</td>`).join('');
+  return`<tr class="${cls}"><td>${lbl}</td>${cells}</tr>`;
+}
+
+function drillHTML(card,m){
+  const yHdrs=m.years.map(y=>`<th>${y.label}<br><span class="sub">${y.phase}</span></th>`).join('');
+  const nrow=(lbl,fn,cls='')=>{
+    const vals=m.years.map(fn);
+    return mkRow(lbl,vals,cls);
+  };
+  if(card==='capex'){
+    const cx=m.cx;
+    const lines=[
+      ['Civil & conversion',cx.civil,`${n('p_bua').toLocaleString()} sqft × ₹${n('r_civil').toLocaleString()}/sqft ÷ 1Cr`],
+      ['Room interior',cx.room,`${n('p_rooms')} rooms × 400 sqft × ₹${n('r_room').toLocaleString()}/sqft ÷ 1Cr`],
+      ['Common areas',cx.common,`8,000 sqft × ₹${n('r_common').toLocaleString()}/sqft ÷ 1Cr`],
+      ['Clinical fit-out',cx.clnf,`4,000 sqft × ₹${n('r_clnf').toLocaleString()}/sqft ÷ 1Cr`],
+      ['Wellness & spa',cx.well,`3,500 sqft × ₹${n('r_well').toLocaleString()}/sqft ÷ 1Cr`],
+      ['MEP',cx.mep,`${n('p_bua').toLocaleString()} sqft × ₹${n('r_mep').toLocaleString()}/sqft ÷ 1Cr`],
+      ['Landscaping',cx.land,`8,000 sqft × ₹${n('r_land').toLocaleString()}/sqft ÷ 1Cr`],
+      ['Medical equipment',cx.med,'Lump sum input'],
+      ['Pre-operative',cx.preop,'Lump sum input'],
+      ['Lease premium',cx.lp,'Lump sum input'],
+      ['Contingency',cx.cont,`Base ₹${f1(cx.base)}Cr × ${n('s_cont')}%`],
+    ];
+    return`<table><tr><th style="text-align:left">Line item</th><th>₹ Cr</th><th>% of total</th><th style="text-align:left;font-size:9px;color:rgba(255,255,255,.35)">How arrived at</th></tr>${lines.map(([l,v,f])=>`<tr><td>${l}</td><td>${f1(v)}</td><td>${(v/cx.total*100).toFixed(1)}%</td><td style="font-size:9px;color:rgba(255,255,255,.35);text-align:left">${f}</td></tr>`).join('')}<tr class="tot"><td>Total project cost</td><td>${f1(cx.total)}</td><td>100%</td><td style="font-size:9px;color:rgba(255,255,255,.35);text-align:left">Sum of all lines above</td></tr></table>`;
+  }
+  if(card==='loan'){
+    return`<table><tr><th style="text-align:left">Item</th>${yHdrs}</tr>`+
+      nrow('Opening balance',y=>f1(y.openBal))+
+      nrow('Drawdown',y=>y.drawdown>0?f1(y.drawdown):'—',y=>y.drawdown>0?`Total loan × ${y.yr===1?'45%':'55%'} drawdown`:'No drawdown')+
+      nrow('Interest',y=>f1(y.intYr))+
+      nrow('Principal',y=>y.prinYr>0?f1(y.prinYr):'— (morat.)',y=>y.prinYr>0?`Loan ₹${f1(m.loan)}Cr ÷ ${n('f_ten')-n('f_mor')} repay yrs`:'Moratorium — no principal')+
+      nrow('Closing balance',y=>f1(y.closBal),'tot')+`</table>`;
+  }
+  if(card==='equity'){
+    return`<table><tr><th style="text-align:left">Item</th><th>₹ Cr</th><th>%</th><th style="text-align:left;font-size:9px;color:rgba(255,255,255,.35)">How arrived at</th></tr>
+    <tr><td>Total project cost</td><td>${f1(m.cx.total)}</td><td>100%</td><td style="font-size:9px;color:rgba(255,255,255,.35);text-align:left">Sum of all capex lines</td></tr>
+    <tr><td>Debt (loan)</td><td>${f1(m.loan)}</td><td>${(m.loan/m.cx.total*100).toFixed(1)}%</td><td style="font-size:9px;color:rgba(255,255,255,.35);text-align:left">₹${f1(m.cx.total)}Cr × ${n('f_debt')}% debt funding</td></tr>
+    <tr class="tot"><td>Equity required</td><td>${f1(m.equity)}</td><td>${(m.equity/m.cx.total*100).toFixed(1)}%</td><td style="font-size:9px;color:rgba(255,255,255,.35);text-align:left">Total cost ₹${f1(m.cx.total)}Cr − Loan ₹${f1(m.loan)}Cr</td></tr>
+    <tr><td>Capex per room</td><td>${f1(m.cx.total/m.rooms)} Cr</td><td></td><td style="font-size:9px;color:rgba(255,255,255,.35);text-align:left">₹${f1(m.cx.total)}Cr ÷ ${m.rooms} rooms</td></tr>
+    <tr><td>Loan per room</td><td>${f1(m.loan/m.rooms)} Cr</td><td></td><td style="font-size:9px;color:rgba(255,255,255,.35);text-align:left">₹${f1(m.loan)}Cr ÷ ${m.rooms} rooms</td></tr></table>`;
+  }
+  if(card==='ds'){
+    return`<table><tr><th style="text-align:left">Item</th>${yHdrs}</tr>`+
+      nrow('Debt service (P+I)',y=>f1(y.ds),'tot')+
+      nrow('— Interest',y=>f1(y.intYr))+
+      nrow('— Principal',y=>y.prinYr>0?f1(y.prinYr):'— (morat.)',y=>y.prinYr>0?`₹${f1(m.loan)}Cr ÷ ${n('f_ten')-n('f_mor')} yrs`:'Moratorium')+
+      nrow('EBITDA',y=>y.ebitda>0?f1(y.ebitda):'Pre-ops','eb')+
+      nrow('DSCR',y=>y.dscr!==null?`<span class="${dcls(y.dscr)}">${y.dscr.toFixed(2)}x</span>`:'—','ds')+
+      nrow('Benchmark 1.25x',()=>'1.25x')+`</table>`;
+  }
+  if(card==='rev'){
+    const wellSessV=n('adv_well_sess')||4,wellPkgV=n('adv_well_pkg')||18000,wellGstsV=n('adv_well_gst')||20;
+    const wellGrV=(n('adv_well_gr')||10)/100,wu2=n('rv_wu')/100,ws2=n('rv_ws'),treat2=n('p_treat');
+    const retClinV=n('adv_ret_clin')||4500,retWellV=n('adv_ret_well')||800;
+    const retOnlineV=n('adv_ret_online')||2,retGrV=(n('adv_ret_gr')||15)/100,clinBeds2=Math.round(n('p_rooms')*(n('rv_clinmix')||40)/100);
+    const morat2=n('f_mor');
+    function subVals(fn){return m.years.map(fn).map(v=>`<td>${v}</td>`).join('');}
+    const wellSubRows=`
+      <tr class="sub-row" id="well-sub-inpat"><td>↳ Inpatient sessions</td>${subVals(y=>y.phase==='Construction'?'—':f1(treat2*wellSessV*wu2*365*ws2/1e7*Math.pow(1+wellGrV,Math.max(0,y.yr-morat2-1))))}</tr>
+      <tr class="sub-row" id="well-sub-daypkg"><td>↳ Day packages</td>${subVals(y=>y.phase==='Construction'?'—':f1(wellGstsV*12*wellPkgV/1e7*Math.pow(1+wellGrV,Math.max(0,y.yr-morat2-1))))}</tr>`;
+    const retSubRows=`
+      <tr class="sub-row" id="ret-sub-clin"><td>↳ Clinical guest retail</td>${subVals(y=>y.phase==='Construction'?'—':f1(clinBeds2*(y.clinRev>0?y.clinRev/(clinBeds2*365*(n('rv_r')/1e7)*Math.pow(1+(n('rv_rg')/100),Math.max(0,y.yr-morat2-1))):0)*(365/10)*retClinV/1e7))}</tr>
+      <tr class="sub-row" id="ret-sub-well"><td>↳ Wellness guest retail</td>${subVals(y=>y.phase==='Construction'?'—':f1(wellGstsV*12*retWellV/1e7*Math.pow(1+retGrV,Math.max(0,y.yr-morat2-1))))}</tr>
+      <tr class="sub-row" id="ret-sub-online"><td>↳ Online pharmacy</td>${subVals(y=>y.phase==='Construction'?'—':f1(retOnlineV*12/1e7*Math.pow(1+retGrV,Math.max(0,y.yr-morat2-1))))}</tr>`;
+    return`<table><tr><th style="text-align:left">Revenue stream</th>${yHdrs}</tr>`+
+      nrow('Clinical programmes',y=>y.clinRev>0?f1(y.clinRev):'—')+
+      nrow('Resort rooms',y=>y.resRev>0?f1(y.resRev):'—')+
+      `<tr><td class="exp-lbl" data-key="well" onclick="toggleSub(this.dataset.key)"><span class="exp-icon" id="well-icon">+</span>Wellness &amp; spa</td>${subVals(y=>y.wellRev>0?f1(y.wellRev):'—')}</tr>`+
+      wellSubRows+
+      nrow('Food &amp; beverage',y=>y.fnbRev>0?f1(y.fnbRev):'—')+
+      `<tr><td class="exp-lbl" data-key="ret" onclick="toggleSub(this.dataset.key)"><span class="exp-icon" id="ret-icon">+</span>Retail &amp; pharmacy</td>${subVals(y=>y.retRev>0?f1(y.retRev):'—')}</tr>`+
+      retSubRows+
+      nrow('OPD &amp; consultations',y=>y.opdRev>0?f1(y.opdRev):'—')+
+      nrow('Total revenue',y=>y.rev>0?f1(y.rev):'—','tot')+`</table>`;
+  }
+    if(card==='ebitda'){
+    return`<table><tr><th style="text-align:left">P&L item</th>${yHdrs}</tr>`+
+      nrow('Total revenue',y=>y.rev>0?f1(y.rev):'—','tot')+
+      nrow('Payroll',y=>y.payroll>0?f1(y.payroll):'—')+
+      nrow('Consumables',y=>y.consAmt>0?f1(y.consAmt):'—')+
+      nrow('F&B cost',y=>y.fnbCost>0?f1(y.fnbCost):'—')+
+      nrow('Marketing',y=>y.mktCost>0?f1(y.mktCost):'—')+
+      nrow('R&M',y=>y.rmCost>0?f1(y.rmCost):'—')+
+      nrow('Power & fuel',y=>y.pwrAmt>0?f1(y.pwrAmt):'—')+
+      nrow('Admin',y=>y.admAmt>0?f1(y.admAmt):'—')+
+      nrow('Compliance',y=>y.compAmt>0?f1(y.compAmt):'—')+
+      nrow('GST cost',y=>y.gstCost>0?f1(y.gstCost):'—')+
+      nrow('Total opex',y=>y.opex>0?f1(y.opex):'—','tot')+
+      nrow('EBITDA',y=>y.ebitda>0?f1(y.ebitda):'—','eb')+
+      nrow('EBITDA margin %',y=>y.rev>0?fp(y.margin):'—','pct')+
+      nrow('Lease rental',y=>y.lease>0?f1(y.lease):'—')+
+      nrow('EBITDA after lease',y=>y.phase!=='Construction'?fmt(y.ebitdaAL):'—','eb')+
+      nrow('Depreciation — building',y=>y.depBldg>0?'('+f1(y.depBldg)+')':'—')+
+      nrow('Depreciation — equipment',y=>y.depEquip>0?'('+f1(y.depEquip)+')':'—')+
+      nrow('EBIT',y=>y.phase!=='Construction'?fmt(y.ebit):'—','key')+
+      nrow('Interest',y=>y.intYr>0?'('+f1(y.intYr)+')':'—')+
+      nrow('EBT',y=>y.phase!=='Construction'?fmt(y.ebt):'—','key')+
+      nrow('Tax (25.17%)',y=>y.taxPaid>0?'('+f1(y.taxPaid)+')':'—')+
+      nrow('PAT',y=>y.phase!=='Construction'?`<span class="${y.pat>=0?'g':'r'}">${fmt(y.pat)}</span>`:'—','tot')+
+      `</table>`;
+  }
+    if(card==='dscr'){
+    return`<table><tr><th style="text-align:left">Item</th>${yHdrs}</tr>`+
+      nrow('EBITDA',y=>y.ebitda>0?f1(y.ebitda):'—','eb')+
+      nrow('Debt service P+I',y=>f1(y.ds))+
+      nrow('DSCR',y=>y.dscr!==null?`<span class="${dcls(y.dscr)}">${y.dscr.toFixed(2)}x</span>`:'—','ds')+
+      nrow('Benchmark 1.25x',()=>'1.25x')+`</table>`;
+  }
+  if(card==='fcf'){
+    // Build cumulative FCF from Y1 construction
+    let cumFCF = 0;
+    const cumFCFArr = m.years.map(y => {
+      cumFCF += y.fcf;
+      return cumFCF;
+    });
+    const beYear = m.years.find((y,i) => cumFCFArr[i] >= 0);
+    const beHdr = beYear ? `Break-even: <span style="color:#3CC9A0;font-weight:500">Year ${beYear.yr}</span>` : '<span style="color:#F07060">No break-even in Y1–10</span>';
+    return`<div style="font-size:10px;color:rgba(255,255,255,.5);padding:6px 8px 2px">${beHdr} — cumulative FCF crosses zero</div>
+    <table><tr><th style="text-align:left">Cash flow item</th>${yHdrs}</tr>`+
+      nrow('EBITDA',y=>y.ebitda>0?f1(y.ebitda):'Pre-ops',null,'eb')+
+      nrow('Less: Lease rental',y=>y.lease>0?'('+f1(y.lease)+')':'—')+
+      nrow('EBITDA after lease',y=>fmt(y.ebitdaAL))+
+      nrow('Less: Debt service P+I',y=>'('+f1(y.ds)+')')+
+      nrow('Annual free cash flow',y=>`<span class="${y.fcf>=0?'g':'r'}">${fmt(y.fcf)}</span>`,'tot')+
+      `<tr style="border-top:1px solid rgba(255,255,255,.15)"><td style="font-size:10px;color:rgba(255,255,255,.4);padding:6px 8px 2px" colspan="${m.years.length+1}">Cumulative (from Y1 construction)</td></tr>`+
+      mkRow('Cumulative FCF', m.years.map((y,i)=>{
+        const cum=cumFCFArr[i];
+        return `<span class="${cum>=0?'g':'r'}">${fmt(cum)}</span>`;
+      }),'tot')+
+      `</table>`;
+  }
+  
+  return'';
+}
+
+function exportXlsx(card,m){
+  const wb=XLSX.utils.book_new();
+  const titles={capex:'Capex',loan:'Debt_Schedule',equity:'Capital_Structure',ds:'Debt_Service',rev:'Revenue',ebitda:'PL',dscr:'DSCR',fcf:'Cash_Flow'};
+  const rows=[];
+
+  function ef(fmlStr){
+    // Convert '=...' string to XLSX formula cell object
+    if(typeof fmlStr==='string'&&fmlStr.startsWith('=')){
+      return {f:fmlStr.slice(1)};
+    }
+    return fmlStr;
+  }
+
+  if(card==='rev'){
+    rows.push(['Item',...m.years.map(y=>y.label)]);
+    const moratE=n('f_mor');
+    const wellSessE=n('adv_well_sess')||4,wellPkgE=n('adv_well_pkg')||18000,wellGstsE=n('adv_well_gst')||20;
+    const wellGrE=(n('adv_well_gr')||10)/100,wu2E=n('rv_wu')/100,ws2E=n('rv_ws'),treat2E=n('p_treat');
+    const retClinE=n('adv_ret_clin')||4500,retWellE=n('adv_ret_well')||800;
+    const retOnlineE=n('adv_ret_online')||2,retGrE=(n('adv_ret_gr')||15)/100,clinBeds2E=Math.round(n('p_rooms')*(n('rv_clinmix')||40)/100);
+    // helper: formula cell or dash
+    function efCell(y, formulaStr) {
+      return y.phase==='Construction' ? '—' : {f: formulaStr};
+    }
+    [['Clinical programmes','clinRev'],['Resort rooms','resRev']].forEach(([lbl,k])=>{
+      rows.push([lbl,...m.years.map(y=>y.xfmls?ef(y.xfmls[k]):0)]);
+    });
+    // Wellness parent row
+    rows.push(['Wellness & spa',...m.years.map(y=>y.xfmls?ef(y.xfmls.wellRev):0)]);
+    // Wellness sub rows
+    rows.push(['  ↳ Inpatient sessions',...m.years.map(y=>{
+      if(y.phase==='Construction') return '—';
+      const oi=Math.max(0,y.yr-moratE-1);
+      return {f:`${treat2E}*${wellSessE}*${wu2E}*365*${ws2E}/10000000*${Math.pow(1+wellGrE,oi).toFixed(6)}`};
+    })]);
+    rows.push(['  ↳ Day packages',...m.years.map(y=>{
+      if(y.phase==='Construction') return '—';
+      const oi=Math.max(0,y.yr-moratE-1);
+      return {f:`${wellGstsE}*12*${wellPkgE}/10000000*${Math.pow(1+wellGrE,oi).toFixed(6)}`};
+    })]);
+    // F&B
+    rows.push(['Food & beverage',...m.years.map(y=>y.xfmls?ef(y.xfmls.fnbRev):0)]);
+    // Retail parent row
+    rows.push(['Retail & pharmacy',...m.years.map(y=>y.xfmls?ef(y.xfmls.retRev):0)]);
+    // Retail sub rows
+    rows.push(['  ↳ Clinical guest retail',...m.years.map(y=>{
+      if(y.phase==='Construction') return '—';
+      const oi=Math.max(0,y.yr-moratE-1);
+      const occ=y.clinRev>0?(y.clinRev/(clinBeds2E*365*(n('rv_r')/1e7)*Math.pow(1+(n('rv_rg')/100),oi))):0;
+      return {f:`${clinBeds2E}*${occ.toFixed(4)}*(365/10)*${retClinE}/10000000*${Math.pow(1+retGrE,oi).toFixed(6)}`};
+    })]);
+    rows.push(['  ↳ Wellness guest retail',...m.years.map(y=>{
+      if(y.phase==='Construction') return '—';
+      const oi=Math.max(0,y.yr-moratE-1);
+      return {f:`${wellGstsE}*12*${retWellE}/10000000*${Math.pow(1+retGrE,oi).toFixed(6)}`};
+    })]);
+    rows.push(['  ↳ Online pharmacy',...m.years.map(y=>{
+      if(y.phase==='Construction') return '—';
+      const oi=Math.max(0,y.yr-moratE-1);
+      return {f:`${retOnlineE}*12/10000000*${Math.pow(1+retGrE,oi).toFixed(6)}`};
+    })]);
+    rows.push(['OPD & consultations',...m.years.map(y=>y.xfmls?ef(y.xfmls.opdRev):0)]);
+    rows.push(['Total revenue',...m.years.map(y=>y.xfmls?ef(y.xfmls.totalRev):0)]);
+  }
+  
+  if(card==='ebitda'){
+    rows.push(['Item',...m.years.map(y=>y.label)]);
+    const plMap=[
+      ['Total revenue','rev'],['Payroll','payroll'],['Consumables','consAmt'],
+      ['F&B cost','fnbCost'],['Marketing','mktCost'],['R&M','rmCost'],
+      ['Power & fuel','pwrAmt'],['Admin','admAmt'],['Compliance','compAmt'],
+      ['GST cost','gstCost'],['Total opex','opex'],['EBITDA','ebitda'],
+      ['Lease rental','lease'],['EBITDA after lease','ebitdaAL'],
+      ['Depreciation — building','depBldg'],['Depreciation — equipment','depEquip'],
+      ['EBIT','ebit'],['Interest','intYr'],['EBT','ebt'],
+      ['Tax (25.17%)','taxPaid'],['PAT','pat']
+    ];
+    plMap.forEach(([lbl,k])=>{
+      rows.push([lbl,...m.years.map(y=>{
+        if(y.xfmls&&y.xfmls[k]) return ef(y.xfmls[k]);
+        return y[k]!=null?+y[k].toFixed(2):0;
+      })]);
+    });
+  }
+  
+  if(card==='ds'||card==='dscr'){
+    rows.push(['Item',...m.years.map(y=>y.label)]);
+    rows.push(['EBITDA',...m.years.map(y=>y.xfmls?ef(y.xfmls.ebitda):0)]);
+    rows.push(['Debt service P+I',...m.years.map(y=>y.xfmls?ef(y.xfmls.ds):0)]);
+    rows.push(['DSCR',...m.years.map(y=>y.xfmls?ef(y.xfmls.dscr):0)]);
+    rows.push(['Benchmark 1.25x',...m.years.map(()=>1.25)]);
+  }
+  if(card==='fcf'){
+    rows.push(['Item',...m.years.map(y=>y.label)]);
+    [['EBITDA','ebitda'],['Lease rental','lease'],['EBITDA after lease','ebitdaAL'],['Debt service P+I','ds'],['Annual free cash flow','fcf']].forEach(([lbl,k])=>{
+      rows.push([lbl,...m.years.map(y=>y.xfmls?ef(y.xfmls[k]||String(+y[k].toFixed(2))):+y[k].toFixed(2))]);
+    });
+    let cum2=0;
+    const cumArr2=m.years.map(y=>{cum2+=y.fcf;return +cum2.toFixed(2);});
+    rows.push(['Cumulative free cash flow',...cumArr2]);
+    const beIdx2=cumArr2.findIndex(v=>v>=0);
+    rows.push(['Break-even year',...m.years.map((y,i)=>i===beIdx2?'← Break-even':'')]);
+  }
+  
+  if(card==='loan'){
+    rows.push(['Item',...m.years.map(y=>y.label)]);
+    [['Opening balance','openBal'],['Drawdown','drawdown'],['Interest','intYr'],['Principal','prinYr'],['Closing balance','closBal']].forEach(([lbl,k])=>{
+      rows.push([lbl,...m.years.map(y=>y.xfmls?ef(y.xfmls[k]):0)]);
+    });
+  }
+  if(card==='capex'){
+    rows.push(['Line item','₹ Cr','% of total']);
+    const cx=m.cx;
+    [['Civil & conversion','civil'],['Room interior','room'],['Common areas','common'],
+     ['Clinical fit-out','clnf'],['Wellness & spa','well'],['MEP','mep'],['Landscaping','land']].forEach(([lbl,k])=>{
+      rows.push([lbl,ef(cx.xfmls[k]),+(cx[k]/cx.total*100).toFixed(2)]);
+    });
+    rows.push(['Medical equipment',cx.med,+(cx.med/cx.total*100).toFixed(2)]);
+    rows.push(['Pre-operative',cx.preop,+(cx.preop/cx.total*100).toFixed(2)]);
+    rows.push(['Lease premium',cx.lp,+(cx.lp/cx.total*100).toFixed(2)]);
+    rows.push(['Contingency',ef(cx.xfmls.cont),+(cx.cont/cx.total*100).toFixed(2)]);
+    rows.push(['Total project cost',ef(cx.xfmls.total),100]);
+  }
+  if(card==='equity'){
+    rows.push(['Item','₹ Cr','%']);
+    rows.push(['Total project cost',ef(m.cx.xfmls.total),1]);
+    rows.push(['Debt (loan)',+m.loan.toFixed(4),+(m.loan/m.cx.total).toFixed(4)]);
+    rows.push(['Equity required',+m.equity.toFixed(4),+(m.equity/m.cx.total).toFixed(4)]);
+    rows.push(['Capex per room',+(m.cx.total/m.rooms).toFixed(4),'']);
+    rows.push(['Loan per room',+(m.loan/m.rooms).toFixed(4),'']);
+  }
+
+  const ws=XLSX.utils.aoa_to_sheet(rows);
+  XLSX.utils.book_append_sheet(wb,ws,titles[card]||'Data');
+  XLSX.writeFile(wb,`Ayurveda_${titles[card]||card}_${new Date().toISOString().slice(0,10)}.xlsx`);
+}
+
+function showDrill(card,m){
+  const panel=g('drill-panel');
+  if(activeCard===card){panel.style.display='none';activeCard=null;document.querySelectorAll('.mcard').forEach(c=>c.classList.remove('active'));return;}
+  activeCard=card;
+  document.querySelectorAll('.mcard').forEach(c=>c.classList.remove('active'));
+  const idx={capex:0,loan:1,equity:2,ds:3,rev:4,ebitda:5,dscr:6,fcf:7};
+  document.querySelectorAll('.mcard')[idx[card]]?.classList.add('active');
+  const titles={capex:'Capex breakdown',loan:'Debt drawdown schedule',equity:'Capital structure',ds:'Debt service schedule',rev:'Revenue by stream',ebitda:'Full P&L',dscr:'DSCR analysis',fcf:'Cash flow schedule'};
+  panel.innerHTML=`<div class="drill-top"><span class="drill-title">${titles[card]||card} — ₹ Crores · grey rows show how each number is arrived at</span><button class="export-btn" onclick="exportXlsx('${card}',calcModel())">Export to Excel</button></div>`+drillHTML(card,m);
+  panel.style.display='block';
+}
+
+function render(){
+  const bua=n('p_bua'),rooms=n('p_rooms');
+  const cx=getCapex();
+  g('cs_civil').textContent=Math.round(bua/1000)+'k';
+  g('cs_mep').textContent=Math.round(bua/1000)+'k';
+  g('cs_room').textContent=(rooms*400/1000).toFixed(0)+'k';
+  ['civil','room','common','clnf','well','mep','land'].forEach(k=>{
+    g('sv_'+k).textContent='₹'+Number(g('r_'+k).value).toLocaleString();
+  });
+  const sqftA={
+    civil:bua,
+    room:rooms*(n('a_roomsz')||400),
+    common:n('a_common')||8000,
+    clnf:n('a_clin')||4000,
+    well:n('a_well')||3500,
+    mep:bua,
+    land:n('a_land')||8000
+  };
+  ['civil','room','common','clnf','well','mep','land'].forEach(k=>{g('cm_'+k).textContent=f1(sqftA[k]*n('r_'+k)/1e7);});
+  g('cm_med').textContent=f1(n('s_med'));g('cm_preop').textContent=f1(n('s_preop'));
+  g('cm_lp').textContent=f1(n('s_lp'));g('cm_cont').textContent=f1(cx.cont);
+  g('cx-total-big').textContent=f1(cx.total);
+  g('fv_debt').textContent=n('f_debt')+'%';g('fv_int').textContent=n('f_int')+'%';
+  g('fv_ten').textContent=n('f_ten')+' yrs';g('fv_mor').textContent=n('f_mor')+' yrs';
+  g('fv_lr').textContent=n('f_lr');g('fv_le').textContent=n('f_le')+'%';
+  g('rvv_r').textContent='₹'+(n('rv_r')/1000).toFixed(0)+'k';
+  if(g('rvv_clinmix')) g('rvv_clinmix').textContent=n('rv_clinmix')+'%';
+  if(g('rvv_resmix'))  g('rvv_resmix').textContent=n('rv_resmix')+'%';
+  ['cy1','cy2','cy3','css','rg'].forEach(k=>g('rvv_'+k).textContent=n('rv_'+k)+'%');
+  g('rvv_adr').textContent='₹'+(n('rv_adr')/1000).toFixed(0)+'k';
+  ['oy1','oss','wu'].forEach(k=>g('rvv_'+k).textContent=n('rv_'+k)+'%');
+  g('rvv_ws').textContent='₹'+(n('rv_ws')/1000).toFixed(0)+'k';
+  g('rvv_gst').textContent=n('rv_gst')+'%';
+  g('cv_cp').textContent=n('c_cp').toFixed(2);g('cv_hp').textContent=n('c_hp').toFixed(2);
+  ['cons','fnb','mkt'].forEach(k=>g('cv_'+k).textContent=n('c_'+k)+'%');
+  g('cv_rm').textContent=n('c_rm')+'%';
+  ['pwr','adm','comp'].forEach(k=>g('cv_'+k).textContent=n('c_'+k).toFixed(2));
+  g('cv_inf').textContent=n('c_inf')+'%';
+  const m=calcModel();
+  const yrIdx=n('yr-sel');
+  const opYrs=m.years.filter(y=>y.phase!=='Construction');
+  const selYr=opYrs[yrIdx]||opYrs[0];
+  const y1=opYrs[0];
+  const yrLabel='Ops Y'+(yrIdx+1);
+  const cards=[
+    {id:'capex',l:'Total project cost',n:'₹'+f1(cx.total)+' Cr',v:'₹'+f1(cx.total/m.rooms)+' Cr per room',c:''},
+    {id:'loan',l:'Loan',n:'₹'+f1(m.loan)+' Cr',v:n('f_debt')+'% of total capex',c:''},
+    {id:'equity',l:'Equity required',n:'₹'+f1(m.equity)+' Cr',v:(100-n('f_debt'))+'% promoter contribution',c:''},
+    {id:'ds',l:'Debt service Y1',n:'₹'+f1(y1?y1.ds:0)+' Cr',v:y1&&y1.rev>0?'= '+(y1.ds/y1.rev*100).toFixed(0)+'% of Y1 revenue':'P+I from ops Year 1',c:''},
+    {id:'rev',l:'Revenue — '+yrLabel,n:selYr?'₹'+f1(selYr.rev)+' Cr':'—',v:selYr&&selYr.rev>0?'Clinical: ₹'+f1(selYr.clinRev)+' Cr':'—',c:''},
+    {id:'ebitda',l:'EBITDA margin — '+yrLabel,n:selYr&&selYr.rev>0?fp(selYr.margin):'—',v:selYr&&selYr.rev>0?(selYr.margin>=0.30?'Above 30% target':selYr.margin>=0.20?'Below target':'Well below target'):'—',c:selYr&&selYr.rev>0?(selYr.margin>=0.30?'g':selYr.margin>=0.20?'w':'r'):''},
+    {id:'dscr',l:'DSCR — '+yrLabel,n:selYr&&selYr.dscr!==null?selYr.dscr.toFixed(2)+'x':'—',v:selYr&&selYr.dscr!==null?(selYr.dscr>=1.25?'Lender threshold met':selYr.dscr>=0.80?'Below threshold — marginal':'Well below — restructure needed'):'—',c:selYr&&selYr.dscr!==null?dcls(selYr.dscr):''},
+    {id:'fcf',l:'Free cash flow — '+yrLabel,n:selYr&&selYr.phase!=='Construction'?'₹'+f1(Math.abs(selYr.fcf))+' Cr':'—',v:selYr&&selYr.phase!=='Construction'?(selYr.fcf>=0?'Positive — project self-funding':'Negative — cash needed'):'—',c:selYr&&selYr.phase!=='Construction'?(selYr.fcf>=0?'g':'r'):''},
+  ];
+  const mc=g('mcards');if(mc)mc.innerHTML=cards.map(c=>`<div class="mcard${activeCard===c.id?' active':''}" onclick="handleCard('${c.id}')">
+    <div class="ml">${c.l}</div><div class="mn ${c.c}">${c.n}</div><div class="mv ${c.c}">${c.v}</div>
+  </div>`).join('');
+  if(activeCard){
+    const titles={capex:'Capex breakdown',loan:'Debt drawdown schedule',equity:'Capital structure',ds:'Debt service schedule',rev:'Revenue by stream',ebitda:'Full P&L',dscr:'DSCR analysis',fcf:'Cash flow schedule'};
+    g('drill-panel').innerHTML=`<div class="drill-top"><span class="drill-title">${titles[activeCard]||activeCard} — ₹ Crores · grey rows show how each number is arrived at</span><button class="export-btn" onclick="exportXlsx('${activeCard}',calcModel())">Export to Excel</button></div>`+drillHTML(activeCard,m);
+    g('drill-panel').style.display='block';
+  }
+}
+
+function handleCard(card){showDrill(card,calcModel());}
+// Advanced drawer toggle
+function toggleAdv(){
+  const body=document.getElementById('adv-body');
+  const arrow=document.getElementById('adv-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// Update advanced slider labels
+function renderAdv(){
+  const advMap=[
+    ['adv_opd_fp','advv_opd_fp',v=>v],
+    ['adv_opd_fee','advv_opd_fee',v=>'₹'+Number(v).toLocaleString('en-IN')],
+    ['adv_opd_rv','advv_opd_rv',v=>v+'%'],
+    ['adv_opd_gr','advv_opd_gr',v=>v+'%'],
+    ['adv_fnb_spend','advv_fnb_spend',v=>'₹'+Number(v).toLocaleString('en-IN')],
+    ['adv_fnb_gr','advv_fnb_gr',v=>v+'%'],
+    ['adv_ret_clin','advv_ret_clin',v=>'₹'+Number(v).toLocaleString('en-IN')],
+    ['adv_ret_well','advv_ret_well',v=>'₹'+Number(v).toLocaleString('en-IN')],
+    ['adv_ret_online','advv_ret_online',v=>'₹'+v+'L'],
+    ['adv_ret_gr','advv_ret_gr',v=>v+'%'],
+    ['adv_well_sess','advv_well_sess',v=>v],
+    ['adv_well_pkg','advv_well_pkg',v=>'₹'+(v/1000).toFixed(0)+'k'],
+    ['adv_well_gst','advv_well_gst',v=>v],
+    ['adv_well_gr','advv_well_gr',v=>v+'%'],
+    ['adv_res_adr_gr','advv_res_adr_gr',v=>v+'%'],
+    ['adv_res_oy2','advv_res_oy2',v=>v+'%'],
+    ['adv_lease_trig','advv_lease_trig',v=>v+' yrs'],
+  ];
+  advMap.forEach(([id,vid,fmt])=>{
+    const el=g(id); const vel=g(vid);
+    if(el&&vel) vel.textContent=fmt(el.value);
+  });
+  // cost zone labels
+  if(g('cv_cons2')) g('cv_cons2').textContent=n('c_cons2')+'%';
+  if(g('cv_fnb2'))  g('cv_fnb2').textContent=n('c_fnb2')+'%';
+  if(g('cv_gst2'))  g('cv_gst2').textContent=n('c_gst2')+'%';
+  if(g('cv_dep1'))  g('cv_dep1').textContent=n('c_dep1')+' yrs';
+  if(g('cv_dep2'))  g('cv_dep2').textContent=n('c_dep2')+' yrs';
+  if(g('cv_tax'))   g('cv_tax').textContent=n('c_tax').toFixed(1)+'%';
+  if(g('dv_dd1'))   g('dv_dd1').textContent=n('d_dd1')+'%';
+  if(g('dv_dd2'))   g('dv_dd2').textContent=(100-n('d_dd1'))+'%';
+}
+
+
+// ── NLP LAYER ────────────────────────────────────────────────────────────────
+const API_URL = '/api/chat';
+
+const PMAP = {
+  debt:       {id:'f_debt',        min:40,    max:100,    step:5,    u:'%',      lbl:'Debt %'},
+  interest:   {id:'f_int',         min:8,     max:15,     step:0.5,  u:'%',      lbl:'Interest rate'},
+  tenure:     {id:'f_ten',         min:10,    max:25,     step:1,    u:'yrs',    lbl:'Loan tenure'},
+  moratorium: {id:'f_mor',         min:1,     max:4,      step:1,    u:'yrs',    lbl:'Moratorium'},
+  clinmix:    {id:'rv_clinmix', min:10, max:80, step:5, u:'%', lbl:'Clinical patrons %'},
+  resmix:     {id:'rv_resmix',  min:10, max:80, step:5, u:'%', lbl:'Resort patrons %'},
+  rate:       {id:'rv_r',          min:40000, max:200000, step:5000, u:'₹',      lbl:'Daily rate'},
+  adr:        {id:'rv_adr',        min:10000, max:60000,  step:2500, u:'₹',      lbl:'Resort ADR'},
+  rooms:      {id:'p_rooms',       min:20,    max:300,    step:10,   u:'',       lbl:'Total rooms'},
+  clinbeds:   {id:'p_clin',        min:5,     max:200,    step:5,    u:'',       lbl:'Clinical beds'},
+  resrooms:   {id:'p_res',         min:5,     max:200,    step:5,    u:'',       lbl:'Resort rooms'},
+  census:     {id:'rv_css',        min:50,    max:95,     step:5,    u:'%',      lbl:'Clinical occ SS'},
+  resocc:     {id:'rv_oss',        min:40,    max:90,     step:5,    u:'%',      lbl:'Resort occ SS'},
+  marketing:  {id:'c_mkt',         min:2,     max:12,     step:1,    u:'%',      lbl:'Marketing %'},
+  lease:      {id:'f_lr',          min:0.25,  max:5,      step:0.25, u:'Cr',     lbl:'Lease rental'},
+  clinpay:    {id:'c_cp',          min:0.1,   max:2,      step:0.1,  u:'Cr',     lbl:'Clinical payroll'},
+  hosppay:    {id:'c_hp',          min:0.1,   max:2,      step:0.1,  u:'Cr',     lbl:'Hosp payroll'},
+  consumables:{id:'c_cons2',       min:10,    max:35,     step:1,    u:'%',      lbl:'Consumables %'},
+  fnbcost:    {id:'c_fnb2',        min:20,    max:45,     step:1,    u:'%',      lbl:'F&B cost %'},
+  taxrate:    {id:'c_tax',         min:20,    max:35,     step:0.5,  u:'%',      lbl:'Tax rate'},
+  roomrate:   {id:'r_room',        min:1000,  max:20000,  step:500,  u:'₹/sqft', lbl:'Room interior rate'},
+  civilrate:  {id:'r_civil',       min:1000,  max:20000,  step:500,  u:'₹/sqft', lbl:'Civil rate'},
+  meprate:    {id:'r_mep',         min:1000,  max:20000,  step:500,  u:'₹/sqft', lbl:'MEP rate'},
+  medequip:   {id:'s_med',         min:1,     max:100,    step:1,    u:'Cr',     lbl:'Medical equip'},
+  bua:        {id:'p_bua',         min:10000, max:200000, step:1000, u:'sqft',   lbl:'Total BUA'},
+  drawdown1:  {id:'d_dd1',         min:20,    max:80,     step:5,    u:'%',      lbl:'Y1 drawdown'},
+  roomsz:     {id:'a_roomsz',      min:200,   max:800,    step:50,   u:'sqft',   lbl:'Room size'},
+  opdfoot:    {id:'adv_opd_fp',    min:10,    max:200,    step:10,   u:'',       lbl:'OPD footfall'},
+  opdfee:     {id:'adv_opd_fee',   min:500,   max:5000,   step:100,  u:'₹',      lbl:'OPD fee'},
+  fnbspend:   {id:'adv_fnb_spend', min:500,   max:8000,   step:250,  u:'₹',      lbl:'F&B spend/day'},
+  adrgrowth:  {id:'adv_res_adr_gr',min:3,     max:15,     step:1,    u:'%',      lbl:'ADR growth'},
+  resoy2:     {id:'adv_res_oy2',   min:30,    max:80,     step:5,    u:'%',      lbl:'Resort occ Y2'},
+};
+
+const CHIPS = [
+  "what if debt is 70% and daily rate 55000",
+  "set interest rate to 9%",
+  "change rooms to 80",
+  "what if clinical occupancy is 80%",
+  "set room interior rate to 4000",
+];
+
+function snapVal(v, min, max, step) {
+  const s = Math.round((v - min) / step) * step + min;
+  return Math.min(max, Math.max(min, s));
+}
+
+function showChips() {
+  const el = document.getElementById('nlp-chips');
+  if (!el) return;
+  el.innerHTML = CHIPS.map(c =>
+    `<span class="nlp-chip" onclick="document.getElementById('nlp-input').value='${c}';askNLP()">${c}</span>`
+  ).join('');
+}
+
+async function askNLP() {
+  const inp = document.getElementById('nlp-input');
+  const btn = document.getElementById('nlp-btn');
+  const resp = document.getElementById('nlp-resp');
+  const txt = document.getElementById('nlp-text');
+  const q = inp ? inp.value.trim() : '';
+  if (!q) return;
+
+  if (btn) btn.disabled = true;
+  if (resp) resp.className = 'nlp-resp on';
+  if (txt) txt.innerHTML = '<span style="color:rgba(255,255,255,.3);font-style:italic">Thinking...</span>';
+
+  // Current model snapshot
+  const cx = getCapex();
+  const m = calcModel();
+  const ops = m.years.filter(y => y.phase !== 'Construction');
+  const y1 = ops[0], y5 = ops[4] || ops[ops.length-1];
+
+  const snap = `Model: ${n('p_rooms')} rooms, capex ₹${cx.total.toFixed(1)}Cr, debt ${n('f_debt')}%, loan ₹${m.loan.toFixed(1)}Cr, rate ₹${n('rv_r').toLocaleString()}, interest ${n('f_int')}%, Y1 rev ₹${y1?y1.rev.toFixed(1):'?'}Cr EBITDA ₹${y1?y1.ebitda.toFixed(1):'?'}Cr DSCR ${y1&&y1.dscr?y1.dscr.toFixed(2):'?'}x`;
+
+  const SYS = `You are a CFO model assistant. Extract parameter changes from the user question and return JSON only.
+
+PARAMETERS (use exact key names):
+debt=debt%, interest=interest rate pa%, tenure=loan years, moratorium=moratorium years,
+rate=clinical daily rate ₹, adr=resort ADR ₹, rooms=total rooms count,
+clinbeds=clinical bed count, resrooms=resort rooms, census=clinical occ SS%,
+resocc=resort occ SS%, marketing=marketing%, lease=annual lease ₹Cr,
+clinpay=clinical payroll ₹Cr/mth, hosppay=hosp payroll ₹Cr/mth,
+consumables=consumables% of clin rev, fnbcost=F&B cost%, taxrate=corp tax%,
+roomrate=room interior ₹/sqft, civilrate=civil ₹/sqft, meprate=MEP ₹/sqft,
+medequip=medical equip ₹Cr, bua=total BUA sqft, drawdown1=Y1 drawdown%,
+roomsz=room size sqft, opdfoot=OPD footfall/mth, opdfee=OPD fee ₹,
+fnbspend=F&B spend per guest/day ₹, adrgrowth=ADR growth% pa, resoy2=resort occ Y2%
+
+RULES: Return ONLY valid JSON. Extract ALL changes mentioned. % values as numbers (80 not 0.8). If cannot identify parameter set changes:[].
+
+{"changes":[{"param":"debt","value":70},{"param":"rate","value":55000}],"response":"1-2 sentence CFO comment with specific numbers on DSCR/loan/cashflow impact."}`;
+
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 300,
+        system: SYS,
+        messages: [{role:'user', content: snap + '\n\nQuestion: ' + q}]
+      })
+    });
+    const data = await res.json();
+    const raw = (data.content[0].text || '').trim();
+    let parsed;
+    try { parsed = JSON.parse(raw); }
+    catch(e) { const m = raw.match(/\{[\s\S]*\}/); parsed = m ? JSON.parse(m[0]) : {changes:[],response:raw}; }
+
+    const applied = [];
+    if (parsed.changes && parsed.changes.length) {
+      parsed.changes.forEach(({param, value}) => {
+        const p = PMAP[param];
+        if (!p || !p.id) return;
+        const el = document.getElementById(p.id);
+        if (!el) return;
+        const v = snapVal(+value, p.min, p.max, p.step);
+        el.value = v;
+        applied.push(`${p.lbl} → ${p.u==='₹'||p.u==='₹/sqft' ? '₹'+v.toLocaleString('en-IN')+(p.u==='₹/sqft'?'/sqft':'') : v+(p.u?' '+p.u:'')}`);
+      });
+      if (applied.length) { renderAdv(); render(); }
+    }
+
+    let r = parsed.response || 'Done.';
+    r = r.replace(/([\d.]+x)/g, v => { const f=parseFloat(v); return f>=1.25?`<span class="nlp-hi">${v}</span>`:f>=0.8?`<span class="nlp-wa">${v}</span>`:`<span class="nlp-lo">${v}</span>`; });
+    r = r.replace(/(₹[\d,.]+\s*Cr)/g, '<span style="color:#fff;font-weight:500">$1</span>');
+
+    const changedTxt = applied.length ? `<span style="color:rgba(255,255,255,.4);font-size:10px">[${applied.join(' · ')}]</span><br>` : '';
+    if (txt) txt.innerHTML = changedTxt + r;
+    showChips();
+    if (inp) inp.value = '';
+
+  } catch(err) {
+    if (txt) txt.innerHTML = '<span class="nlp-lo">Connection error — check network.</span>';
+    console.error(err);
+  }
+  if (btn) btn.disabled = false;
+}
+
+// Enter key
+(function(){
+  const el = document.getElementById('nlp-input');
+  if (el) el.addEventListener('keydown', e => { if (e.key==='Enter') askNLP(); });
+})();
+
+// Show chips on load
+(function(){
+  const r = document.getElementById('nlp-resp');
+  const t = document.getElementById('nlp-text');
+  if (r && t) {
+    r.className = 'nlp-resp on';
+    t.innerHTML = '<span style="color:rgba(255,255,255,.35);font-size:10.5px">Ask anything about the model — or click a suggestion:</span>';
+    showChips();
+  }
+})();
+// ── END NLP LAYER ─────────────────────────────────────────────────────────────
+
+
+// ── SCENARIO COMPARISON ───────────────────────────────────────────────────────
+
+// scenarioState[1] and [2] hold overridden input values {id: value}
+const scenarioState = {1: null, 2: null};
+
+function openCompare() {
+  document.getElementById('cmp-overlay').classList.add('open');
+  renderScenario0();
+  if (scenarioState[1]) renderScenarioCol(1, scenarioState[1]);
+  if (scenarioState[2]) renderScenarioCol(2, scenarioState[2]);
+}
+
+function closeCompare() {
+  document.getElementById('cmp-overlay').classList.remove('open');
+}
+
+// Capture current slider state
+function captureState() {
+  const state = {};
+  document.querySelectorAll('input[id], select[id]').forEach(el => {
+    if (el.id && el.type !== 'text' && el.type !== 'button') {
+      state[el.id] = el.value;
+    }
+  });
+  return state;
+}
+
+// Run model with a given state overlay on top of current state
+function calcModelWithState(overrides) {
+  // Temporarily apply overrides
+  const originals = {};
+  Object.entries(overrides).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) { originals[id] = el.value; el.value = val; }
+  });
+  const cx = getCapex();
+  const m = calcModel();
+  // Restore
+  Object.entries(originals).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val;
+  });
+  return {cx, m};
+}
+
+// Render Scenario 1 (always live model)
+function renderScenario0() {
+  const cx = getCapex();
+  const m = calcModel();
+  const base = captureState();
+  document.getElementById('cmp-data-0').innerHTML = buildColHTML(cx, m, null, base);
+}
+
+function renderScenarioCol(idx, overrides) {
+  const {cx, m} = calcModelWithState(overrides);
+  const base = captureState();
+  const baseResult = calcModel();
+  const baseCx = getCapex();
+  document.getElementById('cmp-data-' + idx).innerHTML = buildColHTML(cx, m, {cx: baseCx, m: baseResult}, base, overrides);
+}
+
+function buildColHTML(cx, m, baseData, baseState, overrides) {
+  const ops = m.years.filter(y => y.phase !== 'Construction');
+  const y1 = ops[0], y3 = ops[2], y5 = ops[4] || ops[ops.length-1];
+  const baseOps = baseData ? baseData.m.years.filter(y => y.phase !== 'Construction') : null;
+  const by1 = baseOps ? baseOps[0] : null;
+  const by3 = baseOps ? baseOps[2] : null;
+  const by5 = baseOps ? (baseOps[4] || baseOps[baseOps.length-1]) : null;
+
+  const f1 = v => v != null ? v.toFixed(1) : '—';
+  const fp = v => v != null ? (v*100).toFixed(1)+'%' : '—';
+  const fx = v => v != null ? v.toFixed(2)+'x' : '—';
+
+  function dscrClass(v) { return v >= 1.25 ? 'better' : v >= 0.8 ? 'cmp-row-val' : 'worse'; }
+
+  function valClass(val, base, higher_is_better=true) {
+    if (base == null) return '';
+    const diff = val - base;
+    if (Math.abs(diff) < 0.001) return 'same';
+    return (diff > 0) === higher_is_better ? 'better' : 'worse';
+  }
+
+  // Find first year DSCR >= 1.25
+  const firstDSCR = m.years.find(y => y.dscr != null && y.dscr >= 1.25);
+  const firstFCF  = m.years.find(y => y.phase !== 'Construction' && y.fcf > 0);
+  const bFirstDSCR = baseData ? baseData.m.years.find(y => y.dscr != null && y.dscr >= 1.25) : null;
+  const bFirstFCF  = baseData ? baseData.m.years.find(y => y.phase !== 'Construction' && y.fcf > 0) : null;
+
+  // Changed assumptions block
+  let assumHTML = '';
+  if (overrides && Object.keys(overrides).length) {
+    const changedItems = Object.entries(overrides).map(([id, val]) => {
+      const el = document.getElementById(id);
+      const lbl = el ? (el.closest('.ir')?.querySelector('.lb')?.textContent || id) : id;
+      return `<div class="cmp-row"><span class="cmp-row-lbl">${lbl}</span><span class="cmp-row-val changed">${parseFloat(val).toFixed(1)}</span></div>`;
+    }).join('');
+    assumHTML = `<div class="cmp-section-title">Changed assumptions</div>${changedItems}`;
+  }
+
+  function row(lbl, val, baseVal, hib=true, fmt=f1) {
+    const cls = baseVal != null ? valClass(val, baseVal, hib) : '';
+    const delta = baseVal != null && Math.abs(val-baseVal) > 0.001 
+      ? ` <span style="font-size:9px;opacity:.6">(${val>baseVal?'+':''}${fmt(val-baseVal)})</span>` : '';
+    return `<div class="cmp-row"><span class="cmp-row-lbl">${lbl}</span><span class="cmp-row-val ${cls}">${fmt(val)}${delta}</span></div>`;
+  }
+
+  function dscrRow(lbl, val, baseVal) {
+    const cls = val != null ? dscrClass(val) : '';
+    const delta = baseVal != null && val != null && Math.abs(val-baseVal) > 0.001
+      ? ` <span style="font-size:9px;opacity:.6">(${val>baseVal?'+':''}${fx(val-baseVal)})</span>` : '';
+    return `<div class="cmp-row"><span class="cmp-row-lbl">${lbl}</span><span class="cmp-row-val ${cls}">${fx(val)}${delta}</span></div>`;
+  }
+
+  return `
+    ${assumHTML}
+    <div class="cmp-section-title">Capital structure</div>
+    ${row('Total capex (₹ Cr)', cx.total, baseData?.cx.total)}
+    ${row('Loan (₹ Cr)', m.loan, baseData?.m.loan, false)}
+    ${row('Equity (₹ Cr)', m.equity, baseData?.m.equity)}
+    ${row('Capex / room (₹ Cr)', cx.total/m.rooms, baseData ? baseData.cx.total/baseData.m.rooms : null, false)}
+
+    <div class="cmp-section-title">Revenue (₹ Cr)</div>
+    ${row('Revenue Year 1', y1?.rev, by1?.rev)}
+    ${row('Revenue Year 3', y3?.rev, by3?.rev)}
+    ${row('Revenue Year 5', y5?.rev, by5?.rev)}
+
+    <div class="cmp-section-title">EBITDA margin</div>
+    ${row('EBITDA Year 1', y1?.ebitda, by1?.ebitda, true, f1)}
+    ${row('Margin Year 1 (%)', y1 ? y1.margin*100 : null, by1 ? by1.margin*100 : null, true, v=>v.toFixed(1)+'%')}
+    ${row('EBITDA Year 3', y3?.ebitda, by3?.ebitda)}
+    ${row('Margin Year 3 (%)', y3 ? y3.margin*100 : null, by3 ? by3.margin*100 : null, true, v=>v.toFixed(1)+'%')}
+    ${row('EBITDA Year 5', y5?.ebitda, by5?.ebitda)}
+    ${row('Margin Year 5 (%)', y5 ? y5.margin*100 : null, by5 ? by5.margin*100 : null, true, v=>v.toFixed(1)+'%')}
+
+    <div class="cmp-section-title">Debt service & DSCR</div>
+    ${row('Debt service Y1 (₹ Cr)', y1?.ds, by1?.ds, false)}
+    ${dscrRow('DSCR Year 1', y1?.dscr, by1?.dscr)}
+    ${dscrRow('DSCR Year 3', y3?.dscr, by3?.dscr)}
+    <div class="cmp-row"><span class="cmp-row-lbl">DSCR crosses 1.25x</span><span class="cmp-row-val ${firstDSCR ? 'better' : 'worse'}">${firstDSCR ? 'Year '+firstDSCR.yr : 'Never in Y1-10'}</span></div>
+
+    <div class="cmp-section-title">Free cash flow (₹ Cr)</div>
+    ${row('FCF Year 1', y1?.fcf, by1?.fcf)}
+    ${row('FCF Year 3', y3?.fcf, by3?.fcf)}
+    ${row('FCF Year 5', y5?.fcf, by5?.fcf)}
+    <div class="cmp-row"><span class="cmp-row-lbl">First positive FCF</span><span class="cmp-row-val ${firstFCF ? 'better' : 'worse'}">${firstFCF ? 'Year '+firstFCF.yr : 'Never in Y1-10'}</span></div>
+  `;
+}
+
+async function runScenarioNLP(idx) {
+  const inp = document.getElementById('cmp-nlp-' + idx);
+  const btn = document.getElementById('cmp-btn-' + idx);
+  const status = document.getElementById('cmp-status-' + idx);
+  const q = inp ? inp.value.trim() : '';
+  if (!q) return;
+
+  btn.disabled = true;
+  status.textContent = 'Thinking...';
+
+  const cx = getCapex();
+  const m = calcModel();
+  const ops = m.years.filter(y => y.phase !== 'Construction');
+  const y1 = ops[0];
+  const snap = `Model: ${n('p_rooms')} rooms, capex ₹${cx.total.toFixed(1)}Cr, debt ${n('f_debt')}%, loan ₹${m.loan.toFixed(1)}Cr, rate ₹${n('rv_r').toLocaleString()}, interest ${n('f_int')}%, Y1 DSCR ${y1&&y1.dscr?y1.dscr.toFixed(2):'?'}x`;
+
+  const SYS = `You are a CFO model assistant. Extract parameter changes and return JSON only.
+PARAMETERS: debt=debt%, interest=interest rate%, tenure=loan years, moratorium=moratorium years,
+rate=clinical daily rate ₹, adr=resort ADR ₹, rooms=total rooms, clinbeds=clinical beds,
+resocc=resort occ SS%, census=clinical occ SS%, marketing=marketing%, lease=annual lease ₹Cr,
+clinpay=clinical payroll ₹Cr/mth, hosppay=hosp payroll ₹Cr/mth,
+consumables=consumables% clin rev, fnbcost=F&B cost%, taxrate=corp tax%,
+roomrate=room interior ₹/sqft, civilrate=civil ₹/sqft, medequip=medical equip ₹Cr,
+bua=BUA sqft, roomsz=room size sqft, drawdown1=Y1 drawdown%,
+opdfoot=OPD footfall/mth, fnbspend=F&B spend/guest/day ₹, adrgrowth=ADR growth% pa, resoy2=resort occ Y2%
+RULES: JSON only. % as numbers. Handle "up 2%" as current+2, "down 10%" as current-10, "reduces to 30%" as 30.
+{"changes":[{"param":"debt","value":30}],"response":"Brief CFO comment."}`;
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 300,
+        system: SYS,
+        messages: [{role:'user', content: snap + '\nQuestion: ' + q}]
+      })
+    });
+    const data = await res.json();
+    const raw = (data.content[0].text || '').trim();
+    let parsed;
+    try { parsed = JSON.parse(raw); }
+    catch(e) { const m2 = raw.match(/\{[\s\S]*\}/); parsed = m2 ? JSON.parse(m2[0]) : {changes:[],response:'Could not parse'}; }
+
+    const overrides = scenarioState[idx] || {};
+    if (parsed.changes && parsed.changes.length) {
+      parsed.changes.forEach(({param, value}) => {
+        const p = PMAP[param];
+        if (!p || !p.id) return;
+        const snapped = Math.min(p.max, Math.max(p.min, Math.round((+value - p.min)/p.step)*p.step + p.min));
+        overrides[p.id] = snapped;
+      });
+      scenarioState[idx] = overrides;
+      renderScenarioCol(idx, overrides);
+      status.textContent = parsed.response || 'Applied.';
+    } else {
+      status.textContent = parsed.response || 'No changes identified.';
+    }
+  } catch(err) {
+    status.textContent = 'Connection error.';
+    console.error(err);
+  }
+  btn.disabled = false;
+}
+
+function resetScenario(idx) {
+  scenarioState[idx] = null;
+  document.getElementById('cmp-data-' + idx).innerHTML = '<div class="cmp-empty">Type a scenario above and click Apply<br><span style="font-size:10px">e.g. "debt 30%" · "occupancy 40%" · "employee cost up 2%"</span></div>';
+  document.getElementById('cmp-nlp-' + idx).value = '';
+  document.getElementById('cmp-status-' + idx).textContent = '';
+}
+
+function exportComparison() {
+  if (typeof XLSX === 'undefined') { alert('Excel library not loaded.'); return; }
+  const wb = XLSX.utils.book_new();
+  const cols = [0,1,2];
+  const names = cols.map(i => document.getElementById('cmp-name-'+i)?.value || 'Scenario '+(i+1));
+
+  // Build data for each scenario
+  function getScenarioData(idx) {
+    const overrides = idx === 0 ? {} : (scenarioState[idx] || {});
+    if (idx > 0 && !scenarioState[idx]) return null;
+    const {cx, m} = idx === 0 ? {cx: getCapex(), m: calcModel()} : calcModelWithState(overrides);
+    const ops = m.years.filter(y => y.phase !== 'Construction');
+    const y1=ops[0], y3=ops[2], y5=ops[4]||ops[ops.length-1];
+    const firstDSCR = m.years.find(y => y.dscr!=null && y.dscr>=1.25);
+    const firstFCF = m.years.find(y => y.phase!=='Construction' && y.fcf>0);
+    return {
+      'Total capex (₹ Cr)': +cx.total.toFixed(2),
+      'Loan (₹ Cr)': +m.loan.toFixed(2),
+      'Equity (₹ Cr)': +m.equity.toFixed(2),
+      'Capex per room (₹ Cr)': +(cx.total/m.rooms).toFixed(2),
+      'Revenue Y1 (₹ Cr)': +(y1?.rev||0).toFixed(2),
+      'Revenue Y3 (₹ Cr)': +(y3?.rev||0).toFixed(2),
+      'Revenue Y5 (₹ Cr)': +(y5?.rev||0).toFixed(2),
+      'EBITDA Y1 (₹ Cr)': +(y1?.ebitda||0).toFixed(2),
+      'EBITDA margin Y1': +((y1?.margin||0)*100).toFixed(1),
+      'EBITDA Y3 (₹ Cr)': +(y3?.ebitda||0).toFixed(2),
+      'EBITDA margin Y3': +((y3?.margin||0)*100).toFixed(1),
+      'EBITDA Y5 (₹ Cr)': +(y5?.ebitda||0).toFixed(2),
+      'EBITDA margin Y5': +((y5?.margin||0)*100).toFixed(1),
+      'Debt service Y1 (₹ Cr)': +(y1?.ds||0).toFixed(2),
+      'DSCR Y1': +(y1?.dscr||0).toFixed(2),
+      'DSCR Y3': +(y3?.dscr||0).toFixed(2),
+      'DSCR crosses 1.25x': firstDSCR ? 'Year '+firstDSCR.yr : 'Never',
+      'FCF Y1 (₹ Cr)': +(y1?.fcf||0).toFixed(2),
+      'FCF Y3 (₹ Cr)': +(y3?.fcf||0).toFixed(2),
+      'FCF Y5 (₹ Cr)': +(y5?.fcf||0).toFixed(2),
+      'First positive FCF': firstFCF ? 'Year '+firstFCF.yr : 'Never',
+    };
+  }
+
+  const s0 = getScenarioData(0);
+  const s1 = getScenarioData(1);
+  const s2 = getScenarioData(2);
+  const metrics = Object.keys(s0);
+  const rows = [['Metric', names[0], names[1]||'—', names[2]||'—']];
+  metrics.forEach(k => {
+    rows.push([k, s0[k], s1?s1[k]:'—', s2?s2[k]:'—']);
+  });
+
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  XLSX.utils.book_append_sheet(wb, ws, 'Comparison');
+  XLSX.writeFile(wb, 'Ayurveda_Scenarios_'+new Date().toISOString().slice(0,10)+'.xlsx');
+}
+
+// Keep scenario 1 live when overlay is open
+const _origRender = render;
+// ── END SCENARIO COMPARISON ───────────────────────────────────────────────────
+
+
+
+function toggleSub(key) {
+  const rows = document.querySelectorAll(`[id^="${key}-sub-"]`);
+  const icon = document.getElementById(key + '-icon');
+  const isOpen = [...rows].some(r => r.classList.contains('open'));
+  rows.forEach(r => r.classList.toggle('open', !isOpen));
+  if (icon) icon.textContent = isOpen ? '+' : '−';
+}
+
+
+// ── CFO AGENT ────────────────────────────────────────────────────────────────
+const agentHistory = [];
+let agentOpen = false;
+
+const AGENT_SYSTEM = `You are Pocket CFO — strategic CFO advisor for AyurExp, a premium clinical Ayurveda experience centre on 15 acres in Bangalore. Not a hotel or resort. Daily rate ₹80,000. You have deep expertise in:
+
+FINANCIAL ANALYSIS:
+- Project finance, debt structuring, DSCR analysis
+- Healthcare and hospitality project economics
+- Capex planning, working capital, cash flow modelling
+- Investor returns, IRR, equity structuring
+
+PROJECT CONTEXT — CURRENT DEFAULTS:
+- 100 rooms: 40% clinical patrons (40 beds), 30% general resort patrons (30 rooms), 30 therapy rooms (independent)
+- BUA: 80,000 sqft | Room size: 550 sqft | Luxury new-build standard
+- Total project cost: ~₹200 Cr (₹2 Cr per key)
+- Funding: 50% debt ₹100 Cr at 10.5% | 50% equity ₹100 Cr
+- Equity: ₹100 Cr for 50% stake — Day 0 valuation = ₹200 Cr (asset value, no goodwill)
+- Clinical daily rate: ₹80,000 all-inclusive | Rate growth: 8% pa
+- Clinical occupancy: Y1 45%, Y2 60%, Y3 70%, SS 80%
+- Resort ADR: ₹45,000/night | ADR growth: 8% pa | Occupancy Y1 50%, SS 75%
+- Moratorium: 2 years | Annual debt service from Y3: ~₹18.5 Cr (P+I)
+- Year 1 ops: Revenue ~₹108 Cr | EBITDA ~₹43 Cr (44%) | DSCR ~2.88x | FCF ~₹33 Cr | PAT ~₹17 Cr
+- Year 5 ops: Revenue ~₹198 Cr | EBITDA ~₹129 Cr (65%) | DSCR ~8.5x | FCF ~₹112 Cr
+- DSCR crosses 1.25x: Year 1 of operations (2.35x from day 1 — strongly bankable)
+- Equity payback: Year 5 from operating cash flows alone (no exit needed)
+- Exit at 10x EBITDA Y10 (~₹160 Cr EBITDA): EV ~₹1,600 Cr, less debt ~₹40 Cr = equity ~₹1,560 Cr
+- IRR: ~45-50% | Cash on cash from operations alone: ~6x over 8 years
+
+VALUATION NOTE:
+- Day 0: ₹100 Cr for 50% = ₹200 Cr company = exactly project cost = no premium
+- This is the right framing for an early investor — paying for the asset, not the promise
+- As AYUSH licence granted, occupancy ramps, brand builds — intrinsic value exceeds construction cost
+- A strategic acquirer or IPO re-rates the asset at 12-15x EBITDA vs 10x base assumption
+
+COMPLIANCE & LICENSING (Karnataka / India specific):
+- AYUSH hospital licence: Apply to Karnataka AYUSH Department. Requires: minimum 10 beds, registered BAMS/MD Ayurveda doctor as medical superintendent, qualified staff ratios, infrastructure standards. Timeline: 6-12 months. This is the CRITICAL PATH item — nothing clinical can operate without it.
+- Clinical Establishment Registration: Under Clinical Establishments Act 2010. Apply to District Health Office. Timeline: 3-6 months. Can be done in parallel with AYUSH licence.
+- BBMP Trade Licence: Required for operations in Bangalore. Apply after OC. Timeline: 30-60 days.
+- BBMP Occupancy Certificate: Required before any operations. For leasehold conversions, requires completion certificate from licensed architect. Timeline: 6-18 months — start this on day 1 of construction.
+- KSPCB Consent to Establish (CTE): Required before construction begins. Apply to Karnataka State Pollution Control Board. Timeline: 4-6 months.
+- KSPCB Consent to Operate (CTO): Required before operations. Apply after construction. Timeline: 2-3 months.
+- Fire NOC: From Karnataka Fire and Emergency Services. Required for occupancy. Timeline: 2-4 months.
+- Hotel Classification (HRACC 5-star): Applied to Ministry of Tourism. Requires operations for 6 months first. Timeline: 6-12 months post-opening. Not required to start operations but important for positioning.
+- Drug Licence: From Karnataka State Pharmacy Council for in-house pharmacy. Timeline: 30-60 days.
+- FSSAI Central Licence: For F&B operations above ₹20 Cr turnover. Timeline: 30-60 days.
+- Biomedical Waste Authorisation: From KSPCB for clinical waste. Timeline: 2-3 months.
+- NABH Accreditation: National Accreditation Board for Hospitals — optional but highly recommended for premium clinical positioning. Timeline: 12-18 months post-opening.
+
+GST STRUCTURE:
+- Clinical Ayurveda treatments: Exempt (0%) if recognised medical procedures OR 5% if wellness/preventive
+- Bundled all-inclusive packages: HIGH RISK — tax authorities may classify as mixed supply attracting 18% on entire package
+- Resort accommodation above ₹7,500/night: 18% GST
+- F&B in hotel: 18% with ITC
+- Pharmacy/retail: 0% to 18% depending on HSN classification
+- KEY RISK: Composite vs mixed supply classification for bundled clinical packages must be resolved with GST counsel BEFORE pricing is finalised. If classified as mixed supply, effective GST could be 18% on entire revenue — this would severely impact EBITDA.
+- ITC apportionment: Under Rule 42/43 CGST, ITC on shared inputs must be apportioned between taxable and exempt supplies. Clinical revenue being exempt means significant ITC reversal.
+- Recommendation: Separate clinical and hospitality invoicing. Clinical invoice from doctor, hospitality invoice from hotel entity — consider two-entity structure for GST optimisation.
+
+LABOUR LAW:
+- Karnataka Shops and Establishments Act: All employees must be registered
+- ESIC: Mandatory for employees earning below ₹21,000/month
+- PF: Mandatory for employees earning below ₹15,000/month — both employer and employee contribution 12% each
+- Contract Labour: Therapists often engaged as contract labour — Karnataka Contract Labour Act applies, principal employer liability exists
+- Minimum Wage: Karnataka hospitality sector scheduled wages updated periodically — currently approximately ₹12,000-18,000/month depending on category
+- Clinical staff: Must hold valid BAMS/BUMS/MD Ayurveda degrees registered with Karnataka Ayurveda Medical Council
+
+CORPORATE & ENTITY STRUCTURE:
+- Single entity risk: Clinical and taxable revenue in same entity creates ITC apportionment complexity
+- Two-entity option: Clinical entity (exempt) + hospitality entity (taxable) — cleaner GST but more compliance overhead
+- FEMA: Foreign equity in healthcare requires RBI approval under automatic or approval route depending on FDI policy
+- Section 80IC tax holiday: Available for healthcare infrastructure in specified regions — check applicability
+
+STRATEGIC PRIORITIES (in order):
+1. Resolve AYUSH licence pathway — it gates everything
+2. File KSPCB CTE immediately — it must precede construction
+3. Get GST counsel opinion on bundled pricing — before any pricing is fixed
+4. Ensure BBMP OC process starts day 1 — longest tail risk
+5. Structure entity and funding before any asset creation
+6. Target DSCR above 1.25x before approaching lenders — below that is not bankable
+
+
+REVENUE FORMULAS — EXACT (use these when explaining any revenue number):
+1. Clinical programmes:
+   = total rooms × clinical patrons % × occupancy % × 365 × daily rate ÷ 1Cr
+   Example at defaults: 100 rooms × 40% × 45% × 365 × ₹65,000 = ₹42.7 Cr
+   Never say "40 beds" — always say "100 rooms × 40% clinical patrons"
+
+2. Resort rooms:
+   = total rooms × general resort patrons % × occupancy % × 365 × ADR ÷ 1Cr
+   Example at defaults: 100 rooms × 30% × 50% × 365 × ₹45,000 = ₹24.6 Cr
+   Never say "30 rooms" — always say "100 rooms × 30% resort patrons"
+
+3. Wellness & spa (TWO components):
+   Inpatient sessions = therapy rooms × sessions/day × utilisation % × 365 × session rate ÷ 1Cr
+   Day packages = day pkg guests/month × 12 × pkg rate ÷ 1Cr
+   Therapy rooms are INDEPENDENT — not part of the 100 rooms
+
+4. Debt service (straight-line):
+   Annual principal = loan ÷ (tenure − moratorium) — FLAT every year
+   Annual interest = opening balance × interest rate — REDUCES each year
+   Total debt service DECREASES each year
+
+TONE & BEHAVIOUR:
+- Speak as a senior CFO advisor — direct, specific, number-aware
+- Always reference the current model values when answering financial questions
+- Flag risks clearly but constructively
+- Prioritise actions — do not just list everything equally
+- When you recommend a model change, state the specific parameter and value
+- Keep responses concise — 3-5 sentences for simple questions, structured bullets for complex ones
+- You CAN update model parameters — if you recommend a change, also apply it unless the user says no
+
+PARAMETER CHANGES:
+When you recommend changing a model parameter, include a JSON block at the END of your response in this exact format:
+<model_changes>{"changes":[{"param":"debt","value":65},{"param":"rate","value":55000}]}</model_changes>
+
+Available params: debt, interest, tenure, moratorium, rate, adr, rooms, clinbeds, resrooms, census, resocc, marketing, lease, clinpay, hosppay, consumables, fnbcost, taxrate, roomrate, civilrate, meprate, medequip, bua, roomsz, drawdown1, opdfoot, opdfee, fnbspend, adrgrowth, resoy2`;
+
+function toggleAgent() {
+  agentOpen = !agentOpen;
+  const panel = document.getElementById('agent-panel');
+  const btn = document.getElementById('agent-toggle-btn');
+  panel.classList.toggle('open', agentOpen);
+  if (agentOpen) {
+    updateAgentStatus();
+    document.getElementById('agent-input').focus();
+  }
+}
+
+function updateAgentStatus() {
+  const cx = getCapex();
+  const m = calcModel();
+  const ops = m.years.filter(y => y.phase !== 'Construction');
+  const y1 = ops[0];
+  // Update intro message live values
+  const capexEl = document.getElementById('ag-capex');
+  const debtEl = document.getElementById('ag-debt');
+  const rateEl = document.getElementById('ag-rate');
+  if (capexEl) capexEl.textContent = cx.total.toFixed(1);
+  if (debtEl) debtEl.textContent = n('f_debt');
+  if (rateEl) rateEl.textContent = (n('rv_r')/1000).toFixed(0) + 'k';
+  const status = document.getElementById('agent-status');
+  if (status && y1) {
+    const dscr = y1.dscr ? y1.dscr.toFixed(2) + 'x' : '—';
+    const dscrColour = y1.dscr >= 1.25 ? '#3CC9A0' : y1.dscr >= 0.8 ? '#E8B55A' : '#F07060';
+    status.innerHTML = `● Live — Capex ₹${cx.total.toFixed(1)}Cr · Debt ${n('f_debt')}% · Y1 DSCR <span style="color:${dscrColour};font-weight:500">${dscr}</span>`;
+  }
+}
+
+function getModelSnapshot() {
+  const cx = getCapex();
+  const m = calcModel();
+  const ops = m.years.filter(y => y.phase !== 'Construction');
+  const y1 = ops[0], y3 = ops[2], y5 = ops[4] || ops[ops.length-1];
+  const firstDSCR = m.years.find(y => y.dscr != null && y.dscr >= 1.25);
+  const firstFCF = m.years.find(y => y.phase !== 'Construction' && y.fcf > 0);
+  return `CURRENT MODEL STATE:
+- Rooms: ${n('p_rooms')} total, ${(n('rv_clinmix')||40)}% clinical patrons (${Math.round(n('p_rooms')*(n('rv_clinmix')||40)/100)} beds), ${(n('rv_resmix')||30)}% resort patrons (${Math.round(n('p_rooms')*(n('rv_resmix')||30)/100)} rooms)
+- Total capex: ₹${cx.total.toFixed(1)} Cr (₹${(cx.total/n('p_rooms')).toFixed(1)} Cr/room)
+- Funding: ${n('f_debt')}% debt = ₹${m.loan.toFixed(1)} Cr loan, ₹${m.equity.toFixed(1)} Cr equity
+- Interest: ${n('f_int')}% pa, ${n('f_ten')} year tenure, ${n('f_mor')} year moratorium
+- Clinical daily rate: ₹${n('rv_r').toLocaleString('en-IN')} all-inclusive
+- Clinical occupancy: Y1 ${n('rv_cy1')}%, SS ${n('rv_css')}%
+- Resort ADR: ₹${n('rv_adr').toLocaleString('en-IN')}, occupancy Y1 ${n('rv_oy1')}%, SS ${n('rv_oss')}%
+- Lease rental: ₹${n('f_lr')} Cr/yr
+- Year 1 ops: Revenue ₹${y1?y1.rev.toFixed(1):'—'} Cr, EBITDA ₹${y1?y1.ebitda.toFixed(1):'—'} Cr (${y1?((y1.margin||0)*100).toFixed(1):'—'}%), DSCR ${y1&&y1.dscr?y1.dscr.toFixed(2):'—'}x, FCF ₹${y1?y1.fcf.toFixed(1):'—'} Cr
+- Year 3 ops: Revenue ₹${y3?y3.rev.toFixed(1):'—'} Cr, EBITDA ₹${y3?y3.ebitda.toFixed(1):'—'} Cr, DSCR ${y3&&y3.dscr?y3.dscr.toFixed(2):'—'}x
+- Year 5 ops: Revenue ₹${y5?y5.rev.toFixed(1):'—'} Cr, EBITDA ₹${y5?y5.ebitda.toFixed(1):'—'} Cr, DSCR ${y5&&y5.dscr?y5.dscr.toFixed(2):'—'}x
+- DSCR crosses 1.25x: ${firstDSCR?'Year '+firstDSCR.yr:'Never in Y1-10'}
+- First positive FCF: ${firstFCF?'Year '+firstFCF.yr:'Never in Y1-10'}
+- Marketing: ${n('c_mkt')}%, Consumables: ${n('c_cons2')||22}%, GST blended: ${n('rv_gst')}%`;
+}
+
+function agentSuggest(el) {
+  const input = document.getElementById('agent-input');
+  if (input) { input.value = el.textContent; input.focus(); }
+}
+
+function clearAgentChat() {
+  agentHistory.length = 0;
+  const msgs = document.getElementById('agent-msgs');
+  if (msgs) msgs.innerHTML = `<div class="agent-msg assistant"><div class="agent-bubble">Conversation cleared. What would you like to discuss?</div></div>`;
+}
+
+function addAgentMsg(role, html, actions) {
+  const msgs = document.getElementById('agent-msgs');
+  if (!msgs) return;
+  const time = new Date().toLocaleTimeString('en-IN', {hour:'2-digit', minute:'2-digit'});
+  const div = document.createElement('div');
+  div.className = `agent-msg ${role}`;
+  div.innerHTML = `<div class="agent-bubble">${html}</div>${actions?`<div class="agent-actions">${actions}</div>`:''}<div class="agent-msg-time">${role === 'user' ? 'You' : 'CFO Agent'} · ${time}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function formatAgentResponse(text) {
+  // Remove model_changes block from display
+  text = text.replace(/<model_changes>[\s\S]*?<\/model_changes>/g, '');
+  // Format markdown-ish
+  text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/\n\n/g, '<br><br>');
+  text = text.replace(/\n- /g, '<br>• ');
+  text = text.replace(/\n(\d+)\. /g, '<br>$1. ');
+  text = text.replace(/\n/g, '<br>');
+  // Colour DSCR values
+  text = text.replace(/([\d.]+x)/g, v => {
+    const f = parseFloat(v);
+    return f >= 1.25 ? `<span class="hi">${v}</span>` : f >= 0.8 ? `<span class="wa">${v}</span>` : `<span class="lo">${v}</span>`;
+  });
+  // Colour ₹ amounts
+  text = text.replace(/(₹[\d,.]+ ?Cr)/g, '<span style="color:#fff;font-weight:500">$1</span>');
+  return text.trim();
+}
+
+function applyAgentChanges(text) {
+  const match = text.match(/<model_changes>([\s\S]*?)<\/model_changes>/);
+  if (!match) return [];
+  try {
+    const parsed = JSON.parse(match[1]);
+    const applied = [];
+    if (parsed.changes) {
+      parsed.changes.forEach(({param, value}) => {
+        const p = PMAP[param];
+        if (!p || !p.id) return;
+        const el = document.getElementById(p.id);
+        if (!el) return;
+        const v = Math.min(p.max, Math.max(p.min, Math.round((+value - p.min)/p.step)*p.step + p.min));
+        el.value = v;
+        applied.push(`${p.lbl} → ${p.u==='₹'||p.u==='₹/sqft'?'₹'+v.toLocaleString('en-IN')+(p.u==='₹/sqft'?'/sqft':''):v+(p.u?' '+p.u:'')}`);
+      });
+      if (applied.length) { renderAdv(); render(); updateAgentStatus(); }
+    }
+    return applied;
+  } catch(e) { return []; }
+}
+
+async function sendAgent() {
+  const input = document.getElementById('agent-input');
+  const sendBtn = document.getElementById('agent-send');
+  const msgs = document.getElementById('agent-msgs');
+  const q = input ? input.value.trim() : '';
+  if (!q) return;
+
+  // Add user message
+  addAgentMsg('user', q);
+  agentHistory.push({role: 'user', content: q});
+  input.value = '';
+  if (sendBtn) sendBtn.disabled = true;
+
+  // Add thinking indicator
+  const thinkDiv = document.createElement('div');
+  thinkDiv.className = 'agent-msg assistant';
+  thinkDiv.innerHTML = '<div class="agent-thinking"><span></span><span></span><span></span></div>';
+  msgs.appendChild(thinkDiv);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  // Build messages with model snapshot injected into latest user message
+  const snapshot = getModelSnapshot();
+  const messagesWithSnap = agentHistory.map((msg, i) => {
+    if (i === agentHistory.length - 1 && msg.role === 'user') {
+      return {role: 'user', content: snapshot + '\n\nQuestion: ' + msg.content};
+    }
+    return msg;
+  });
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: AGENT_SYSTEM,
+        messages: messagesWithSnap
+      })
+    });
+    const data = await res.json();
+    const raw = data.content?.[0]?.text || 'Sorry, I could not process that.';
+
+    // Apply any model changes
+    const applied = applyAgentChanges(raw);
+    const actionsText = applied.length ? `Updated: ${applied.join(' · ')}` : '';
+
+    // Format and display
+    const formatted = formatAgentResponse(raw);
+    msgs.removeChild(thinkDiv);
+    addAgentMsg('assistant', formatted, actionsText);
+
+    // Add to history with clean text (no snapshot, no model_changes)
+    agentHistory.push({role: 'assistant', content: raw.replace(/<model_changes>[\s\S]*?<\/model_changes>/g, '').trim()});
+
+  } catch(err) {
+    msgs.removeChild(thinkDiv);
+    addAgentMsg('assistant', '<span class="lo">Connection error — check network.</span>');
+    console.error(err);
+  }
+  if (sendBtn) sendBtn.disabled = false;
+  if (msgs) msgs.scrollTop = msgs.scrollHeight;
+}
+
+// Enter to send (Shift+Enter for new line)
+(function(){
+  const el = document.getElementById('agent-input');
+  if (el) el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAgent(); }
+  });
+})();
+
+// Auto-resize textarea
+(function(){
+  const el = document.getElementById('agent-input');
+  if (el) el.addEventListener('input', () => {
+    el.style.height = '40px';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  });
+})();
+
+// Update agent status when model changes
+const _agentRenderHook = render;
+// ── END CFO AGENT ─────────────────────────────────────────────────────────────
+
+
+// ── NARRATIVES ────────────────────────────────────────────────────────────────
+let _narrMode = 'eq';
+
+function openNarrative() {
+  document.getElementById('narr-overlay').classList.add('open');
+  renderNarrative(_narrMode);
+}
+function closeNarrative() {
+  document.getElementById('narr-overlay').classList.remove('open');
+}
+function switchNarr(mode) {
+  _narrMode = mode;
+  document.getElementById('narr-tab-eq').classList.toggle('active', mode==='eq');
+  document.getElementById('narr-tab-eq').classList.toggle('eq', mode==='eq');
+  document.getElementById('narr-tab-dbt').classList.toggle('active', mode==='dbt');
+  document.getElementById('narr-modal-title').textContent = mode==='eq' ? 'Equity narrative' : 'Debt narrative';
+  renderNarrative(mode);
+}
+
+function renderNarrative(mode) {
+  const m = calcModel();
+  const cx = getCapex();
+  const ops = m.years.filter(y => y.phase !== 'Construction');
+  const y1 = ops[0], y5 = ops[4] || ops[ops.length-1];
+  const rooms = n('p_rooms');
+  const clinMix = (n('rv_clinmix')||40)/100;
+  const resMix = (n('rv_resmix')||30)/100;
+  const clinBeds = Math.round(rooms*clinMix);
+  const resRooms = Math.round(rooms*resMix);
+  const treat = n('p_treat');
+  const rate = n('rv_r');
+  const adr = n('rv_adr');
+  const debtPct = n('f_debt');
+  const loanAmt = m.loan;
+  const equityAmt = m.equity;
+  const intRate = n('f_int');
+  const tenure = n('f_ten');
+  const morat = n('f_mor');
+  const annPrin = m.annPrin;
+  
+  // Cumulative FCF
+  let cum=0;
+  const beYear = m.years.find(y=>{cum+=y.fcf;return cum>=0;});
+
+  // Exit values
+  const ebitda10 = y5 ? y5.ebitda * Math.pow(1.06, 3) : 0;
+  const remDebt10 = Math.max(0, loanAmt - annPrin * 8);
+  const exit8 = Math.round(ebitda10*8 - remDebt10);
+  const exit10 = Math.round(ebitda10*10 - remDebt10);
+  const exit14 = Math.round(ebitda10*14 - remDebt10);
+
+  // DSCR table rows
+  const dscrRows = m.years.slice(0,8).map((y,i)=>{
+    if(y.phase==='Construction') {
+      return `<tr><td>${y.label}</td><td>${y.phase}</td><td class="r">—</td><td class="r">${f1(y.ds)}</td><td class="r">—</td><td style="font-size:9px;color:#888;font-family:Arial,sans-serif">Moratorium</td></tr>`;
+    }
+    const bar = Math.min(200, Math.round((y.dscr||0)*20));
+    const cls = (y.dscr||0)>=1.25?'n-dscr-v':'';
+    return `<tr${i%2===0?' class="hi"':''}><td>${y.label}</td><td>${y.phase}</td><td class="r">${f1(y.ebitda)}</td><td class="r">${f1(y.ds)}</td><td class="r"><span class="${cls}">${y.dscr?(y.dscr.toFixed(2)+'x'):'—'}</span></td><td><div class="n-dscr-bar" style="width:${bar}px"></div></td></tr>`;
+  }).join('');
+
+  const coverageBuffer = y1 ? Math.round((1 - 1.25/y1.dscr)*100) : 0;
+
+  if(mode === 'eq') {
+    document.getElementById('narr-content').innerHTML = `
+    <div class="narr-page">
+      <div class="n-top-bar">
+        <div style="text-align:right">
+          <div class="n-doc-label">Investment brief</div>
+          <div class="n-doc-title eq">Equity narrative<span class="n-conf eq">Confidential</span></div>
+        </div>
+      </div>
+      <div class="n-hero-sub">The opportunity</div>
+      <div class="n-hero-h">5-star clinical Ayurveda resort<br>Bangalore · 30-year leasehold</div>
+      <div class="n-hero-desc">${rooms} rooms · ${(n('rv_clinmix')||40)}% clinical patrons · ${(n('rv_resmix')||30)}% resort patrons · ${treat} therapy rooms (independent) · ${n('p_bua').toLocaleString('en-IN')} sqft · ₹${cx.total.toFixed(0)} Cr project · ${debtPct}/${100-debtPct} debt-equity structure</div>
+      <div class="n-divider"></div>
+      <div style="margin-bottom:20px">
+        <div class="n-sec-lbl">Capital structure — your ₹${equityAmt.toFixed(0)} Cr unlocks ₹${loanAmt.toFixed(0)} Cr of bank debt</div>
+        <div class="n-stack-row">
+          <div class="n-stack-debt"><div><div class="n-stack-a">Bank debt — ₹${loanAmt.toFixed(0)} Cr</div><div class="n-stack-b">${intRate}% · ${tenure} yr tenure · ${morat} yr moratorium</div></div></div>
+          <div class="n-stack-eq"><div><div class="n-stack-a">Equity — ₹${equityAmt.toFixed(0)} Cr</div><div class="n-stack-b">${100-debtPct}% stake · Day 0 valuation ₹${cx.total.toFixed(0)} Cr</div></div></div>
+        </div>
+        <div class="n-note">Day 0 valuation = project cost. No goodwill premium. You are paying for the asset, not the promise.</div>
+      </div>
+      <div style="margin-bottom:20px">
+        <div class="n-sec-lbl">The journey</div>
+        <div class="n-tl"><div class="n-tl-track">
+          <div class="n-tl-pt"><div class="n-tl-yr">Year 0</div><div class="n-tl-dot g"></div><div class="n-tl-ev">Equity in</div><div class="n-tl-vl">₹${equityAmt.toFixed(0)} Cr</div></div>
+          <div class="n-tl-pt"><div class="n-tl-yr">Y1–${morat}</div><div class="n-tl-dot"></div><div class="n-tl-ev">Construction</div><div class="n-tl-vl">—</div></div>
+          <div class="n-tl-pt"><div class="n-tl-yr">Year ${morat+1}</div><div class="n-tl-dot g"></div><div class="n-tl-ev">Ops begin</div><div class="n-tl-vl">+₹${y1?y1.fcf.toFixed(0):'—'} Cr FCF</div></div>
+          <div class="n-tl-pt"><div class="n-tl-yr">Year ${beYear?beYear.yr:'—'}</div><div class="n-tl-dot lg"></div><div class="n-tl-ev">Capital recovered</div><div class="n-tl-vl">₹${equityAmt.toFixed(0)} Cr back</div></div>
+          <div class="n-tl-pt"><div class="n-tl-yr">Y${(beYear?beYear.yr:6)+1}–9</div><div class="n-tl-dot g"></div><div class="n-tl-ev">Pure upside</div><div class="n-tl-vl">₹${y5?y5.fcf.toFixed(0):'—'}+ Cr/yr</div></div>
+          <div class="n-tl-pt"><div class="n-tl-yr">Year 10</div><div class="n-tl-dot g"></div><div class="n-tl-ev">Exit</div><div class="n-tl-vl">₹${exit10.toFixed(0)} Cr+</div></div>
+        </div></div>
+      </div>
+      <div style="margin-bottom:6px">
+        <div class="n-sec-lbl">Certain returns — no exit assumption needed</div>
+        <div class="n-metrics">
+          <div class="n-mc"><div class="num">₹${y1?y1.fcf.toFixed(0):'—'} Cr</div><div class="lbl">Free cash flow Year 1 of operations</div></div>
+          <div class="n-mc"><div class="num">Year ${beYear?beYear.yr:'—'}</div><div class="lbl">Full ₹${equityAmt.toFixed(0)} Cr recovered from operations</div></div>
+          <div class="n-mc"><div class="num">₹${y5?Math.round(y5.ebitda*6):'—'} Cr</div><div class="lbl">Est. cumulative cash over 8 operating years</div></div>
+          <div class="n-mc"><div class="num">${y5&&equityAmt>0?Math.round(y5.ebitda*6/equityAmt)+'x':'—'}</div><div class="lbl">Cash on cash from operations — before exit</div></div>
+        </div>
+      </div>
+      <div class="n-divider"></div>
+      <div style="margin-bottom:16px">
+        <div class="n-sec-lbl">Exit value — EV/EBITDA at Year 10 · EBITDA ~₹${ebitda10.toFixed(0)} Cr</div>
+        <div class="n-exit-row">
+          <div class="n-exit-seg n-ef"><div class="n-exit-lbl">Floor · 8x</div><div class="n-exit-val">~₹${exit8.toFixed(0)} Cr equity</div></div>
+          <div class="n-exit-seg n-eb"><div class="n-exit-lbl">Base · 10x</div><div class="n-exit-val">~₹${exit10.toFixed(0)} Cr equity</div></div>
+          <div class="n-exit-seg n-eu"><div class="n-exit-lbl">Strategic / IPO · 14x+</div><div class="n-exit-val">~₹${exit14.toFixed(0)} Cr equity</div></div>
+        </div>
+        <div class="n-note">8x = pure hospitality floor · 10x = base, no clinical premium credited · 14x+ = strategic acquirer or platform IPO</div>
+      </div>
+      <div style="margin-bottom:20px">
+        <div class="n-sec-lbl">What protects your capital</div>
+        <div class="n-prot-grid">
+          <div class="n-prot"><div class="n-prot-t">Hard asset</div><div class="n-prot-b">${n('p_lt')}-year leasehold. ₹${cx.total.toFixed(0)} Cr physical asset. Not a tech bet.</div></div>
+          <div class="n-prot"><div class="n-prot-t">Cash flow from Year 1</div><div class="n-prot-b">₹${y1?y1.fcf.toFixed(1):'—'} Cr FCF in first operating year. No exit needed to generate returns.</div></div>
+          <div class="n-prot"><div class="n-prot-t">Conservative base</div><div class="n-prot-b">GST at ${n('rv_gst')}% worst case. DSCR ${y1?y1.dscr.toFixed(2):'—'}x in Year 1 — revenue cushion before debt threatened.</div></div>
+        </div>
+      </div>
+      <div class="n-footer">
+        <div class="n-footer-l">All figures in Indian Rupees · Model assumptions live at time of generation</div>
+        <div class="n-footer-r">This document is illustrative. Assumptions to be verified.</div>
+      </div>
+    </div>`;
+  } else {
+    document.getElementById('narr-content').innerHTML = `
+    <div class="narr-page">
+      <div class="n-top-bar">
+        <div style="text-align:right">
+          <div class="n-doc-label">Lender brief</div>
+          <div class="n-doc-title dbt">Debt narrative<span class="n-conf dbt">Confidential</span></div>
+        </div>
+      </div>
+      <div class="n-hero-sub">The project</div>
+      <div class="n-hero-h">Term loan request — ₹${loanAmt.toFixed(0)} Cr</div>
+      <div class="n-hero-desc">5-star clinical Ayurveda resort · Bangalore · ${n('p_lt')}-year leasehold · ₹${cx.total.toFixed(0)} Cr project cost · ${100-debtPct}% promoter equity contribution · ₹${equityAmt.toFixed(0)} Cr equity confirmed</div>
+      <div class="n-divider"></div>
+      <div style="margin-bottom:6px">
+        <div class="n-sec-lbl">Loan structure</div>
+        <div class="n-loan-row">
+          <div class="n-loan-c key"><div class="num">₹${loanAmt.toFixed(0)} Cr</div><div class="lbl">Term loan requested</div></div>
+          <div class="n-loan-c"><div class="num">${intRate}%</div><div class="lbl">Interest rate pa</div></div>
+          <div class="n-loan-c"><div class="num">${tenure} yrs</div><div class="lbl">Total tenure</div></div>
+          <div class="n-loan-c"><div class="num">${morat} yrs</div><div class="lbl">Moratorium</div></div>
+          <div class="n-loan-c"><div class="num">₹${annPrin.toFixed(1)} Cr</div><div class="lbl">Annual principal (straight-line)</div></div>
+        </div>
+      </div>
+      <div class="n-note" style="margin-bottom:16px">Drawdown: ${n('d_dd1')||45}% Year 1 · ${100-(n('d_dd1')||45)}% Year 2 · Principal repayment from Year ${morat+1}</div>
+      <div style="margin-bottom:6px">
+        <div class="n-sec-lbl">DSCR — year by year · lender threshold 1.25x</div>
+        <table class="n-dscr-tbl">
+          <tr><th>Year</th><th>Phase</th><th class="r">EBITDA (₹ Cr)</th><th class="r">Debt service (₹ Cr)</th><th class="r">DSCR</th><th>Coverage</th></tr>
+          ${dscrRows}
+        </table>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+        <span style="font-size:9px;color:#E24B4A;font-family:Arial,sans-serif;font-weight:600;white-space:nowrap">1.25x lender minimum</span>
+        <div style="flex:1;height:1px;border-top:1.5px dashed #E24B4A"></div>
+        <span style="font-size:9px;color:#888;font-family:Arial,sans-serif">DSCR exceeds threshold from Year ${morat+1}</span>
+      </div>
+      <div style="margin-bottom:16px">
+        <div class="n-sec-lbl">Bankability at a glance</div>
+        <div class="n-cov-grid">
+          <div class="n-cov-c"><div class="num">${y1?y1.dscr.toFixed(2)+'x':'—'}</div><div class="lbl">DSCR Year 1 ops — ${coverageBuffer}% above minimum</div></div>
+          <div class="n-cov-c"><div class="num">${y1?Math.round((1-y1.ds/y1.ebitda)*100):'—'}%</div><div class="lbl">EBITDA headroom above debt service Year 1</div></div>
+          <div class="n-cov-c"><div class="num">₹${equityAmt.toFixed(0)} Cr</div><div class="lbl">Promoter equity — ${100-debtPct}% skin in game</div></div>
+        </div>
+      </div>
+      <div style="margin-bottom:20px">
+        <div class="n-sec-lbl">Lender protections</div>
+        <div class="n-prot-grid">
+          <div class="n-prot dbt"><div class="n-prot-t">Moratorium aligned to AYUSH</div><div class="n-prot-b">${morat}-year moratorium covers construction and licensing. If AYUSH slips, extend to ${morat+1} years — agreed upfront not after.</div></div>
+          <div class="n-prot dbt"><div class="n-prot-t">Security package</div><div class="n-prot-b">Leasehold mortgage, assignment of receivables, promoter personal guarantee, DSRA of 3 months debt service.</div></div>
+          <div class="n-prot dbt"><div class="n-prot-t">Reducing debt service</div><div class="n-prot-b">Straight-line principal means total debt service falls every year as interest reduces. No balloon payment risk.</div></div>
+        </div>
+      </div>
+      <div class="n-footer">
+        <div class="n-footer-l">All figures in Indian Rupees · Straight-line principal · Reducing balance interest</div>
+        <div class="n-footer-r">This document is illustrative. Assumptions to be verified with lender.</div>
+      </div>
+    </div>`;
+  }
+}
+
+function exportNarrPDF() {
+  const content = document.getElementById('narr-content').innerHTML;
+  const win = window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${_narrMode==='eq'?'Equity':'Debt'} Narrative</title>
+  <style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Georgia,'Times New Roman',serif;background:#fff;color:#1a1a1a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @media print{body{margin:0}@page{margin:0;size:A4}}
+  ${document.querySelector('style').textContent}
+  .narr-page{padding:44px 48px}
+  </style></head><body>${content}
+  <script>window.onload=function(){window.print();}<\/script>
+  
+
+
+</body></html>`);
+  win.document.close();
+}
+// ── END NARRATIVES ────────────────────────────────────────────────────────────
+
+
+
+
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',()=>{renderAdv();render();}));
+renderAdv();
+render();
+
+
+renderAdv();
+render();
+switchTab('intro');
+document.addEventListener('click',function(e){
+  const el=e.target.closest('[data-drill]');
+  if(el){e.stopPropagation();openDrillCard(el.dataset.drill,parseInt(el.dataset.yr)||0);}
+});
+
+</script>
+</body>
+</html>
