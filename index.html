@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AyurExp — Pocket CFO</title>
+<title>AyurExp — CFO Desk</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -19,7 +19,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 
 /* ── HEADER ── */
 .hdr{background:var(--navy);padding:0 20px;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:100}
-.hdr-brand{font-size:16px;font-weight:600;color:#fff;letter-spacing:.02em}
+.hdr-brand{font-size:20px;font-weight:700;color:#fff;letter-spacing:.01em}
 .hdr-brand span{color:var(--green);font-weight:700}
 .hdr-right{display:flex;align-items:center;gap:8px}
 .tool-btn{background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:rgba(255,255,255,.7);font-size:16px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:all .15s}
@@ -521,7 +521,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 
 <!-- ── HEADER ── -->
 <div class="hdr">
-  <div class="hdr-brand"><span>Pocket</span> CFO</div>
+  <div class="hdr-brand">CFO <span>Desk</span></div>
   <div class="hdr-right" id="model-tools" style="display:none">
     <button class="narr-btn" onclick="openNarrative()">Narratives</button>
     <button class="cmp-btn" onclick="openCompare()">⇌ Compare</button>
@@ -546,9 +546,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
   <div class="intro-layout">
     <div class="intro-left">
       <div>
-        <div class="pocket-brand"><span>Pocket</span> CFO</div>
-        <div class="pocket-sub">Strategic finance · End to end</div>
-        <div class="pocket-divider"></div>
+      <div class="pocket-divider"></div>
         <div class="pocket-proj-label">Project</div>
         <div class="pocket-proj-name">AyurExp<br>Bangalore · 15 acres</div>
         <ul class="pocket-bullets">
@@ -568,7 +566,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
       </div>
     </div>
     <div class="intro-right">
-      <div class="intro-q-label">The Pocket CFO engagement</div>
+      <div class="intro-q-label">The CFO Desk engagement</div>
       <svg viewBox="0 0 340 340" width="100%" style="max-width:340px;display:block;margin:0 auto">
         <defs>
           <marker id="esa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto">
@@ -577,8 +575,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
         </defs>
         <circle cx="170" cy="170" r="140" fill="none" stroke="#f0f0f0" stroke-width="1"/>
         <circle cx="170" cy="170" r="46" fill="#1D9E75"/>
-        <text x="170" y="163" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#fff" font-family="Arial,sans-serif">Pocket</text>
-        <text x="170" y="179" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#fff" font-family="Arial,sans-serif">CFO</text>
+        <text x="170" y="163" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#fff" font-family="Arial,sans-serif">CFO</text>
+        <text x="170" y="179" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#fff" font-family="Arial,sans-serif">Desk</text>
         <g class="es-node" id="esn0">
           <circle cx="170" cy="30" r="26" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="1.2"/>
           <text x="170" y="24" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#085041" font-family="Arial,sans-serif" id="esnt0a">Structure</text>
@@ -633,7 +631,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
     <div class="mhdr">
       <div>
         <h1>AyurExp · Bangalore · 15 acres · Clinical Ayurveda Experience Centre</h1>
-        <p>Pocket CFO · Strategic Finance Model · ₹ Crores · Leasehold</p>
+        <p>CFO Desk · Strategic Finance Model · ₹ Crores · Leasehold</p>
       </div>
       <div class="badge">CFO Model</div>
     </div>
@@ -1179,7 +1177,7 @@ async function sendKPIQuery(){
   const ans=document.getElementById('kpi-ans');
   if(ans) ans.innerHTML='<div style="font-size:11px;color:rgba(255,255,255,.4)">Thinking...</div>';
   try{
-    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:'You are Pocket CFO answering a KPI question about AyurExp clinical Ayurveda experience centre. Be specific, short, bulleted.',messages:[{role:'user',content:getModelSnapshot()+'\nKPI question: '+q}]})});
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:'You are CFO Desk answering a KPI question about AyurExp clinical Ayurveda experience centre. Be specific, short, bulleted.',messages:[{role:'user',content:getModelSnapshot()+'\nKPI question: '+q}]})});
     const data=await res.json();const raw=data.content?.[0]?.text||'';
     const applied=applyAgentChanges(raw);
     if(ans) ans.innerHTML=`<div style="background:#152636;border:0.5px solid rgba(255,255,255,.1);border-radius:6px;padding:12px 14px;font-size:11px;color:rgba(255,255,255,.8);line-height:1.6;position:relative"><button onclick="document.getElementById('kpi-ans').innerHTML=''" style="position:absolute;top:8px;right:8px;background:rgba(255,255,255,.1);border:none;border-radius:3px;color:rgba(255,255,255,.5);font-size:10px;padding:2px 8px;cursor:pointer">✕</button>${formatAgentResponse(raw)}${applied.length?`<div style="font-size:10px;color:#3CC9A0;margin-top:6px">Updated: ${applied.join(' · ')}</div>`:''}</div>`;
@@ -2237,7 +2235,7 @@ function toggleSub(key) {
 const agentHistory = [];
 let agentOpen = false;
 
-const AGENT_SYSTEM = `You are Pocket CFO — strategic CFO advisor for AyurExp, a premium clinical Ayurveda experience centre on 15 acres in Bangalore. Not a hotel or resort. Daily rate ₹80,000. You have deep expertise in:
+const AGENT_SYSTEM = `You are CFO Desk — strategic CFO advisor for AyurExp, a premium clinical Ayurveda experience centre on 15 acres in Bangalore. Not a hotel or resort. Daily rate ₹80,000. You have deep expertise in:
 
 FINANCIAL ANALYSIS:
 - Project finance, debt structuring, DSCR analysis
