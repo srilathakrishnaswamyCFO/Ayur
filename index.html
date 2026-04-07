@@ -15,11 +15,11 @@
 }
 
 /* ── RESET & BASE ── */
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;color:var(--ink);background:var(--surf);min-height:100vh;display:flex;flex-direction:column}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;color:var(--ink);background:var(--surf);min-height:100vh;display:flex;flex-direction:column}
 
 /* ── HEADER ── */
 .hdr{background:var(--navy);padding:0 20px;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:sticky;top:0;z-index:100}
-.hdr-brand{font-size:13px;font-weight:600;color:#fff;letter-spacing:.02em}
+.hdr-brand{font-size:15px;font-weight:600;color:#fff;letter-spacing:.02em}
 .hdr-brand span{color:var(--green);font-weight:700}
 .hdr-right{display:flex;align-items:center;gap:8px}
 .tool-btn{background:rgba(255,255,255,.07);border:0.5px solid rgba(255,255,255,.15);border-radius:5px;color:rgba(255,255,255,.7);font-size:11px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:all .15s}
@@ -29,7 +29,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .tab-bar{background:#0a1520;border-bottom:0.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:38px;flex-shrink:0;position:sticky;top:48px;z-index:99;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab-bar::-webkit-scrollbar{display:none}
 .tabs{display:flex;flex-shrink:0}
-.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.35);font-size:11px;font-weight:500;padding:0 16px;height:38px;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;flex-shrink:0}
+.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,.35);font-size:13px;font-weight:500;padding:0 16px;height:38px;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;flex-shrink:0}
 .tab:hover{color:rgba(255,255,255,.7)}
 .tab.active{color:#fff;border-bottom-color:var(--green)}
 .tab-tools{display:flex;gap:6px;align-items:center;flex-shrink:0;margin-left:12px}
@@ -43,23 +43,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .intro-layout{display:grid;grid-template-columns:2fr 3fr;min-height:calc(100vh - 86px)}
 .intro-left{padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid #f0f0f0;overflow-y:auto}
 .intro-right{padding:28px 36px;background:#fafafa;display:flex;flex-direction:column;gap:16px;overflow-y:auto}
-.pocket-brand{font-size:22px;font-weight:700;color:var(--green);letter-spacing:-.01em;margin-bottom:4px}
+.pocket-brand{font-size:26px;font-weight:700;color:var(--green);letter-spacing:-.01em;margin-bottom:4px}
 .pocket-brand span{color:var(--navy)}
-.pocket-sub{font-size:11px;color:#bbb;letter-spacing:.04em;margin-bottom:20px}
+.pocket-sub{font-size:13px;color:#bbb;letter-spacing:.04em;margin-bottom:20px}
 .pocket-divider{width:32px;height:2px;background:var(--green);margin-bottom:20px}
-.pocket-proj-label{font-size:9px;letter-spacing:.14em;color:#bbb;text-transform:uppercase;margin-bottom:8px}
-.pocket-proj-name{font-size:20px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:12px}
+.pocket-proj-label{font-size:11px;letter-spacing:.14em;color:#bbb;text-transform:uppercase;margin-bottom:8px}
+.pocket-proj-name{font-size:24px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:12px}
 .pocket-bullets{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:18px}
-.pocket-bullets li{font-size:11px;color:#333;font-weight:500;padding-left:14px;position:relative;line-height:1.5}
+.pocket-bullets li{font-size:13px;color:#333;font-weight:500;padding-left:14px;position:relative;line-height:1.5}
 .pocket-bullets li::before{content:'';position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--green)}
 .pocket-pills{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:20px}
 .pocket-pill{font-size:9px;color:var(--green2);background:var(--green-lt);border:1px solid var(--green-bd);border-radius:2px;padding:2px 8px}
-.pocket-btn{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--green);background:transparent;border:1.5px solid var(--green);border-radius:4px;padding:9px 18px;cursor:pointer;font-family:inherit;transition:all .15s;width:fit-content}
+.pocket-btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--green);background:transparent;border:1.5px solid var(--green);border-radius:4px;padding:9px 18px;cursor:pointer;font-family:inherit;transition:all .15s;width:fit-content}
 .pocket-btn:hover{background:var(--green);color:#fff}
-.intro-q-label{font-size:9px;letter-spacing:.12em;color:#bbb;text-transform:uppercase;margin-bottom:8px}
-.intro-stage-name{font-size:11px;font-weight:700;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;min-height:16px}
+.intro-q-label{font-size:11px;letter-spacing:.12em;color:#bbb;text-transform:uppercase;margin-bottom:8px}
+.intro-stage-name{font-size:13px;font-weight:700;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;min-height:16px}
 .intro-text-box{background:#fff;border:0.5px solid #eee;border-radius:5px;padding:12px 14px}
-.intro-typed{font-size:12px;color:#444;line-height:1.8;min-height:56px}
+.intro-typed{font-size:14px;color:#444;line-height:1.8;min-height:56px}
 .intro-cursor{display:inline-block;width:2px;height:12px;background:var(--green);margin-left:1px;vertical-align:middle;animation:cur .65s infinite}
 @keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
 .intro-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;min-height:20px}
@@ -79,9 +79,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .mcard{padding:10px 12px;border-right:0.5px solid rgba(255,255,255,.06);cursor:pointer;transition:background .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .mcard:hover{background:rgba(255,255,255,.05)}
 .mcard.active{background:var(--navy3);border-bottom:2px solid #3CC9A0}
-.mcard .ml{font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
-.mcard .mn{font-size:16px;font-weight:500;color:#fff;line-height:1;white-space:nowrap}
-.mcard .mv{font-size:9px;margin-top:2px;color:var(--ink3)}
+.mcard .ml{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.mcard .mn{font-size:18px;font-weight:500;color:#fff;line-height:1;white-space:nowrap}
+.mcard .mv{font-size:10px;margin-top:2px;color:var(--ink3)}
 .g{color:#3CC9A0!important}.w{color:#E8B55A!important}.r{color:#F07060!important}
 .yr-sel{padding:10px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-left:0.5px solid rgba(255,255,255,.08);min-width:100px}
 .yr-sel label{font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
@@ -108,12 +108,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .s1{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.72fr) minmax(0,.72fr) minmax(0,.72fr);background:#fff;border-top:0.5px solid var(--border)}
 .zone{padding:14px 16px;border-right:0.5px solid var(--border)}
 .zone:last-child{border-right:none}
-.zt{font-size:11px;font-weight:500;color:var(--ink);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
-.zst{font-size:9.5px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;margin:8px 0 5px}
+.zt{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:10px;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
+.zst{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em;margin:8px 0 5px}
 .zdiv{height:0.5px;background:var(--border);margin:8px 0}
 .pa-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
 .pa-item{background:var(--surf);border:0.5px solid var(--border);border-radius:6px;padding:6px 8px}
-.pa-lbl{font-size:9.5px;color:var(--ink3);margin-bottom:2px}
+.pa-lbl{font-size:11px;color:var(--ink3);margin-bottom:2px}
 .pa-inp{display:flex;align-items:center;gap:4px}
 .pa-inp input[type=number]{width:100%;border:none;background:transparent;font-size:12px;font-weight:500;color:var(--ink);-moz-appearance:textfield;padding:0}
 .pa-inp input[type=number]::-webkit-inner-spin-button{opacity:1;height:14px}
@@ -143,8 +143,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 .ptw input[type=number]::-webkit-inner-spin-button{opacity:1}
 .u{font-size:9.5px;color:var(--ink3)}
 .ir{display:flex;align-items:center;gap:7px;margin-bottom:8px}
-.ir .lb{font-size:10.5px;color:var(--ink2);flex:1;min-width:0;line-height:1.3}
-.ir .vl{font-size:10.5px;font-weight:500;color:var(--ink);min-width:52px;text-align:right}
+.ir .lb{font-size:12px;color:var(--ink2);flex:1;min-width:0;line-height:1.3}
+.ir .vl{font-size:12px;font-weight:500;color:var(--ink);min-width:52px;text-align:right}
 .ir input[type=range]{max-width:85px;width:100%}
 .gnote{font-size:9.5px;color:var(--ink3);line-height:1.5;margin-top:3px}
 .adv-toggle{background:var(--surf2);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);padding:8px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
@@ -159,7 +159,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 .adv-section{margin-bottom:10px}
 .adv-section-title{font-size:9px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;padding-bottom:4px;border-bottom:0.5px solid var(--border)}
 .nlp-bar{background:#0a1520;border-bottom:1px solid rgba(255,255,255,.1);padding:10px 20px;display:flex;gap:10px;align-items:center}
-.nlp-input{flex:1;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.18);border-radius:6px;color:#fff;font-size:12px;padding:8px 14px;outline:none;font-family:inherit}
+.nlp-input{flex:1;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.18);border-radius:6px;color:#fff;font-size:14px;padding:8px 14px;outline:none;font-family:inherit}
 .nlp-input::placeholder{color:#8FA8B8}
 .nlp-input:focus{border-color:rgba(255,255,255,.35)}
 .nlp-btn{background:#0D7A6B;border:none;border-radius:6px;color:#fff;font-size:11px;padding:8px 16px;cursor:pointer;font-family:inherit;white-space:nowrap}
@@ -179,53 +179,53 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 /* ── COMPLIANCE TAB ── */
 #view-compliance{background:#fff;overflow-y:auto;padding:24px}
 .comp-header{margin-bottom:24px}
-.comp-header h2{font-size:18px;font-weight:500;color:var(--navy);margin-bottom:4px}
-.comp-header p{font-size:12px;color:var(--ink3)}
+.comp-header h2{font-size:22px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.comp-header p{font-size:14px;color:var(--ink3)}
 .comp-grid{display:flex;flex-direction:column;gap:0}
 .comp-item{display:grid;grid-template-columns:160px 1fr 120px 140px;gap:0;border-bottom:0.5px solid var(--border);padding:14px 0;align-items:start}
 .comp-item:last-child{border-bottom:none}
-.comp-phase{font-size:9px;font-weight:600;color:var(--green2);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
-.comp-main h4{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:3px}
-.comp-main p{font-size:11px;color:var(--ink2);line-height:1.6;margin-bottom:4px}
-.comp-main .gates{font-size:10px;color:#E24B4A;font-weight:500}
+.comp-phase{font-size:10px;font-weight:600;color:var(--green2);text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.comp-main h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:3px}
+.comp-main p{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:4px}
+.comp-main .gates{font-size:11px;color:#E24B4A;font-weight:500}
 .comp-timeline{font-size:11px;color:var(--ink2);text-align:center}
 .comp-timeline .months{font-size:18px;font-weight:500;color:var(--navy);display:block;line-height:1.2}
-.comp-timeline .unit{font-size:9px;color:var(--ink3)}
+.comp-timeline .unit{font-size:10px;color:var(--ink3)}
 .comp-status{display:flex;justify-content:center}
 .status-dot{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:4px 10px;border-radius:12px}
 .status-dot.critical{background:#FCEBEB;color:#A32D2D}
 .status-dot.important{background:#FAEEDA;color:#854F0B}
 .status-dot.standard{background:var(--green-lt);color:var(--green3)}
-.comp-section-hdr{background:var(--surf2);padding:8px 16px;margin:12px -0px;border-radius:4px;font-size:10px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em;border-left:3px solid var(--green)}
+.comp-section-hdr{background:var(--surf2);padding:8px 16px;margin:12px -0px;border-radius:4px;font-size:12px;font-weight:600;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em;border-left:3px solid var(--green)}
 
 /* ── FUNDS TAB ── */
 #view-funds{background:#fff;overflow-y:auto;padding:24px}
 .funds-header{margin-bottom:24px}
-.funds-header h2{font-size:18px;font-weight:500;color:var(--navy);margin-bottom:4px}
-.funds-header p{font-size:12px;color:var(--ink3)}
+.funds-header h2{font-size:22px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.funds-header p{font-size:14px;color:var(--ink3)}
 .funds-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:24px}
 .fund-card{background:#fff;border:0.5px solid var(--border);border-radius:8px;padding:18px;cursor:pointer;transition:all .15s;border-top:3px solid var(--green)}
 .fund-card:hover{border-color:var(--green);box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .fund-card.debt-card{border-top-color:#185FA5}
-.fund-card h3{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.fund-card h3{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px}
 .fund-card .fund-type{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:2px;display:inline-block;margin-bottom:10px}
 .fund-card .fund-type.eq{background:var(--green-lt);color:var(--green3)}
 .fund-card .fund-type.dbt{background:#E6F1FB;color:#0C447C}
-.fund-card p{font-size:11px;color:var(--ink2);line-height:1.6;margin-bottom:12px}
-.fund-card .fund-cares{font-size:10px;color:var(--ink3);margin-bottom:8px}
+.fund-card p{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:12px}
+.fund-card .fund-cares{font-size:12px;color:var(--ink3);margin-bottom:8px}
 .fund-card .fund-cares strong{color:var(--ink2)}
 .fund-pills{display:flex;flex-wrap:wrap;gap:4px}
 .fund-pill{font-size:10px;padding:2px 8px;border-radius:2px}
 .fund-pill.eq{background:var(--green-lt);color:var(--green3);border:0.5px solid var(--green-bd)}
 .fund-pill.dbt{background:#E6F1FB;color:#0C447C;border:0.5px solid #B5D4F4}
 .funds-narrative{background:var(--surf2);border-radius:8px;padding:18px;border:0.5px solid var(--border);margin-top:8px}
-.funds-narrative h3{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px}
-.funds-narrative p{font-size:11px;color:var(--ink2);line-height:1.7;margin-bottom:8px}
+.funds-narrative h3{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.funds-narrative p{font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:8px}
 .funds-narrative p:last-child{margin-bottom:0}
 .funds-numbers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}
 .fn-card{background:#fff;border:0.5px solid var(--border);border-radius:6px;padding:10px 12px;text-align:center}
-.fn-card .num{font-size:18px;font-weight:500;color:var(--navy);line-height:1}
-.fn-card .lbl{font-size:9px;color:var(--ink3);margin-top:3px}
+.fn-card .num{font-size:22px;font-weight:500;color:var(--navy);line-height:1}
+.fn-card .lbl{font-size:11px;color:var(--ink3);margin-top:3px}
 
 /* ── OVERLAYS ── */
 .cmp-btn{background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.25);border-radius:6px;color:#fff;font-size:11px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:background .15s}
@@ -431,10 +431,10 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 
 /* ── KPI TILES ── */
 .kpi-tile{background:#111F2E;border:0.5px solid rgba(255,255,255,.08);border-radius:7px;padding:14px 16px;margin-bottom:10px}
-.kpi-lbl{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.05em;margin-bottom:6px}
+.kpi-lbl{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:.05em;margin-bottom:6px}
 .kpi-val{font-size:20px;font-weight:600;color:#fff;line-height:1;margin-bottom:5px}
 .kpi-meta{display:flex;align-items:center;justify-content:space-between}
-.kpi-vs{font-size:9px;padding:2px 7px;border-radius:3px;font-weight:600}
+.kpi-vs{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:600}
 .kpi-vs.g{background:rgba(60,201,160,.15);color:#3CC9A0}
 .kpi-vs.a{background:rgba(232,181,90,.15);color:#E8B55A}
 .kpi-vs.r{background:rgba(240,112,96,.15);color:#F07060}
@@ -485,7 +485,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 <div class="tab-bar">
   <div class="tabs">
     <button class="tab active" id="tab-intro"      onclick="switchTab('intro')">Intro</button>
-    <button class="tab"        id="tab-model"      onclick="switchTab('model')">Model</button>
+    <button class="tab"        id="tab-model"      onclick="switchTab('model')">Financial Model</button>
     <button class="tab"        id="tab-kpi"        onclick="switchTab('kpi')">KPI</button>
     <button class="tab"        id="tab-compliance" onclick="switchTab('compliance')">Compliance</button>
     <button class="tab"        id="tab-funds"      onclick="switchTab('funds')">Funds</button>
@@ -519,7 +519,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
           <span class="pocket-pill">Fund network</span>
         </div>
       </div>
-      <button class="pocket-btn" onclick="switchTab('model')">View model &nbsp;→</button>
     </div>
     <div class="intro-right">
       <div class="intro-q-label">The Pocket CFO engagement</div>
