@@ -441,32 +441,78 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;heigh
 
 /* ── MOBILE ── */
 @media(max-width:768px){
+  /* ── Intro ── */
   .intro-layout{grid-template-columns:1fr;min-height:auto}
   .intro-left{border-right:none;border-bottom:1px solid #f0f0f0;padding:24px 20px}
   .intro-right{padding:20px}
+
+  /* ── Model — year selector above cards ── */
+  .mstrip{flex-direction:column}
+  .yr-sel{
+    order:-1;
+    width:100%;
+    border-left:none;
+    border-bottom:0.5px solid rgba(255,255,255,.1);
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 14px;
+    min-width:unset
+  }
+  .yr-sel label{margin-bottom:0;margin-right:10px;white-space:nowrap}
+  .yr-sel select{width:auto;flex:1;max-width:200px}
+  /* 4 cards per row on mobile — 2 rows of 4 */
+  .mcards{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .mcard{padding:10px 8px;border-bottom:0.5px solid rgba(255,255,255,.06)}
+  .mcard .mn{font-size:15px}
+  .mcard .ml{font-size:10px}
+
+  /* ── Input zones ── */
   .s1{grid-template-columns:1fr}
   .zone{border-right:none;border-bottom:0.5px solid var(--border)}
   .zone:last-child{border-bottom:none}
-  .mcards{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .mcard{border-bottom:0.5px solid rgba(255,255,255,.06)}
-  .yr-sel{min-width:80px;padding:8px 10px}
+  .adv-grid{grid-template-columns:1fr}
+
+  /* ── KPI — 2 columns, equal width ── */
+  #kpi-tiles{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .kpi-tile{padding:12px}
+
+  /* ── Compliance tracker — stack columns ── */
+  #comp-table thead{display:none}
+  #comp-table tbody tr{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px 10px;
+    padding:12px 14px;
+    border-bottom:1px solid var(--border);
+    background:#fff
+  }
+  #comp-table tbody tr:nth-child(even){background:#fafafa}
+  #comp-table td{
+    padding:0!important;
+    border:none
+  }
+  #comp-table td:nth-child(1){grid-column:1/-1}
+  #comp-table td:nth-child(2){grid-column:1}
+  #comp-table td:nth-child(3){grid-column:2}
+  #comp-table td:nth-child(4){grid-column:1}
+  #comp-table td:nth-child(5){grid-column:2}
+  #comp-table td:nth-child(6){grid-column:1/-1}
+  #comp-table td:nth-child(7){grid-column:1/-1;text-align:right}
+  #comp-table td input,#comp-table td select{width:100%}
+
+  /* ── Overlays ── */
   .cmp-body{grid-template-columns:1fr}
   .cmp-col{border-right:none;border-bottom:0.5px solid rgba(255,255,255,.08)}
   .drill-body{grid-template-columns:1fr}
   .drill-narr{border-right:none;border-bottom:0.5px solid rgba(255,255,255,.08)}
-  .adv-grid{grid-template-columns:1fr}
-  .funds-grid{grid-template-columns:1fr}
-  .funds-numbers{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .comp-item{grid-template-columns:1fr 1fr;gap:8px}
-  .comp-phase{grid-column:1;grid-row:1}
-  .comp-main{grid-column:1/-1;grid-row:2}
-  .comp-timeline{grid-column:2;grid-row:1;text-align:right}
-  .comp-status{grid-column:1;grid-row:3;justify-content:flex-start}
   .agent-panel{width:100%;right:-100%}
   .agent-panel.open{right:0}
   .narr-page{padding:24px 20px}
-  .tab{padding:0 12px;font-size:16px}
-  .hdr-brand{font-size:16px}
+
+  /* ── Tabs ── */
+  .tab{padding:0 10px;font-size:13px}
+  .hdr-brand{font-size:15px}
 }
 </style>
 </head>
